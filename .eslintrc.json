@@ -3,6 +3,7 @@
   "extends": [
     "next/core-web-vitals",
     "airbnb",
+    "airbnb-typescript",
     "prettier",
     "plugin:prettier/recommended",
     "plugin:import/errors",
