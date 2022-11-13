@@ -1,0 +1,16 @@
+.c-search-bar {
+  &__input-field {
+    width: 20rem;
+    height: 100%;
+    border: color-palette('gray', 500) 1px solid;
+    background-color: color-palette('gray', 200);
+    border-radius: $g-ui-border-radius;
+    text-indent: 0.75rem;
+  }
+
+  &__search-icon {
+    width: auto;
+    height: 100%;
+    color: $color-primary;
+  }
+}

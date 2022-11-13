@@ -1,0 +1,34 @@
+.c-button {
+  display: flex;
+  width: 10rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-primary;
+  border-radius: $g-ui-border-radius;
+  color: $color-text-reverse;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  @include media-breakpoint-down(sm) {
+    width: 6rem;
+    height: 1.5rem;
+    border-radius: $g-ui-border-radius/2;
+    font-size: 0.75rem;
+  }
+
+  &:hover {
+    background-color: $color-primary-hover;
+  }
+
+  &--reverse {
+    background-color: $color-text-reverse;
+    color: $color-primary;
+
+    &:hover {
+      background-color: $color-text-reverse;
+      color: $color-primary-hover;
+    }
+  }
+}

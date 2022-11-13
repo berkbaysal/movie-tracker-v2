@@ -1,5 +1,13 @@
 {
   "parser": "@typescript-eslint/parser",
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": ["./tsconfig.json"]
+      }
+    }
+  ],
   "extends": [
     "next/core-web-vitals",
     "airbnb",

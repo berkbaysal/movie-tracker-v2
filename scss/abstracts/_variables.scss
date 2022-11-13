@@ -105,6 +105,7 @@ $g-gaps: (
 
 $g-base-padding: 2rem !default;
 $g-pads: (
+  none: 0,
   normal: $g-base-padding,
   small: (
     $g-base-padding * 0.75,
@@ -155,9 +156,9 @@ $grid-breakpoints: (
 
 // stylelint-disable-next-line meowtec/no-px
 $container-max-widths: (
-  sm: 576px,
-  md: 720px,
-  lg: 940px,
+  sm: 100%,
+  md: 100%,
+  lg: 100%,
   xl: 1440px,
 ) !default;
 
@@ -172,3 +173,6 @@ $grid-gutter-width: px-to-rem(32px) !default;
 //
 //  Global `z-index` values should be defined below
 // -------------------------
+
+//Custom variables
+$g-ui-border-radius: px-to-rem(6) !default;
