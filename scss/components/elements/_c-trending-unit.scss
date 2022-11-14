@@ -34,6 +34,12 @@ $trending-hover-animation: ease-out $g-transition-duration;
     transform: translateY(100%);
     transition: $trending-hover-animation;
 
+    @include media-breakpoint-down(lg) {
+      padding-right: pad(2xsmall);
+      padding-left: pad(2xsmall);
+      font-size: 0.75rem;
+    }
+
     &--top-trending {
       padding-top: pad(xsmall);
       padding-right: pad(xsmall);
@@ -41,6 +47,12 @@ $trending-hover-animation: ease-out $g-transition-duration;
       padding-left: pad(xsmall);
       font-size: 1.5rem;
       font-weight: 700;
+
+      @include media-breakpoint-down(lg) {
+        padding-right: pad(2xsmall);
+        padding-left: pad(2xsmall);
+        font-size: 1rem;
+      }
     }
   }
 }

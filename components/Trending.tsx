@@ -26,10 +26,10 @@ function Trending({ trending }: TrendingProps) {
           <div className="col c-trending__section-title">Trending Today</div>
         </div>
         <div className="row c-trending__content">
-          <div className="col col--sm-4 u-position-relative c-trending--top-trending">
+          <div className="col col--sm-4 u-padding-right-2xsmall">
             {trendingGrid[0]}
           </div>
-          <div className="col col--sm-8 c-trending__poster-grid">
+          <div className="col col--sm-8 c-trending__poster-grid u-padding-left-2xsmall">
             {trendingGrid.slice(1)}
           </div>
         </div>
