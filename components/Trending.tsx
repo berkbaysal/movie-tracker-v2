@@ -20,18 +20,23 @@ function Trending({ trending }: TrendingProps) {
   });
 
   return (
-    <div className="container-fluid o-background-container c-trending">
-      <div className="container">
+    <div className="container-fluid o-background-container c-trending u-padding-right-none@sm-down">
+      <div className="container u-padding-right-none@sm-down">
         <div className="row">
           <div className="col c-trending__section-title">Trending Today</div>
         </div>
-        <div className="row c-trending__content">
+        {/* Tablet & Desktop Layout */}
+        <div className="row c-trending__content u-display-none@sm-down">
           <div className="col col--sm-4 u-padding-right-2xsmall">
             {trendingGrid[0]}
           </div>
           <div className="col col--sm-8 c-trending__poster-grid u-padding-left-2xsmall">
             {trendingGrid.slice(1)}
           </div>
+        </div>
+        {/* Moblie Layout */}
+        <div className="c-trending__content u-display-none@md-up">
+          <div className="c-trending__scrollbox">{trendingGrid}</div>
         </div>
       </div>
     </div>

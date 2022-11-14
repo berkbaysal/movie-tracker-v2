@@ -3,15 +3,41 @@
   color: $color-text-reverse;
 
   &__section-title {
-    font-size: 2rem;
+    font-size: 1.25rem;
     font-weight: 900;
     text-transform: uppercase;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 2rem;
+    }
   }
 
   &__content {
-    padding-top: pad(small);
-    padding-bottom: pad(small);
+    padding-top: pad(2xsmall);
+    padding-bottom: pad(2xsmall);
     font-weight: 600;
+
+    @include media-breakpoint-up(lg) {
+      padding-top: pad(small);
+      padding-bottom: pad(small);
+    }
+
+    @include media-breakpoint-down(sm) {
+      display: flex;
+      overflow: scroll;
+      flex-wrap: nowrap;
+      -ms-overflow-style: none; /* IE and Edge */
+      scroll-behavior: smooth;
+      scrollbar-width: none; /* Firefox */
+
+      &::-webkit-scrollbar {
+        display: none; /*Chrome, Safari and Opera */
+      }
+    }
+  }
+
+  &__scrollbox {
+    display: flex;
   }
 
   &__poster-grid {

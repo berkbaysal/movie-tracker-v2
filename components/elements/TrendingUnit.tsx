@@ -33,8 +33,7 @@ function TrendingUnit({
       <div
         className={`c-trending-unit__title ${
           variant === 'large' ? 'c-trending-unit__title--top-trending' : ''
-        }`}
-        style={hovering ? { transform: 'translateY(0%)' } : {}}
+        } ${hovering ? 'c-trending-unit__title--slide-up' : ''}`}
       >
         {title}
       </div>
