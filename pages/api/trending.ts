@@ -1,13 +1,17 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import dotenv from 'dotenv';
 import { apiURL } from '../../static/resources';
-import { MovieListResult } from '../../static/interfaces';
+import {
+  MovieListResult,
+  PersonListResult,
+  TVListResult,
+} from '../../static/interfaces';
 
 dotenv.config();
 
 interface TrendingResponse {
   page: number;
-  results: MovieListResult[];
+  results: (MovieListResult | TVListResult | PersonListResult)[];
 }
 
 interface TrendingRequest extends NextApiRequest {
@@ -31,7 +35,8 @@ export default async function getMovie(
   );
   const json: TrendingResponse = await fetchRes.json();
   const filteredResponse = json.results.filter(
-    (result) => result.media_type !== 'person'
+    (result: MovieListResult | TVListResult | PersonListResult) =>
+      result.media_type !== 'person'
   );
 
   res.json(filteredResponse.slice(0, maxResults));

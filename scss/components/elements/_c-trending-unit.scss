@@ -1,0 +1,10 @@
+.c-trending-unit {
+  &__trending-poster {
+    width: 100%;
+    height: auto;
+  }
+
+  &__title {
+    padding-top: pad(2xsmall);
+  }
+}

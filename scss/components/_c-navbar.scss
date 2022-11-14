@@ -1,11 +1,4 @@
 .c-navbar {
-  padding: pad(xsmall) pad(normal);
-  border-bottom: px-to-rem(4px) solid $color-primary;
-
-  @include media-breakpoint-down(sm) {
-    padding: pad(2xsmall) pad(xsmall);
-  }
-
   &__logo {
     width: auto;
     height: 2.5rem;

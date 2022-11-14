@@ -1,0 +1,21 @@
+.c-trending {
+  background-color: $color-primary;
+  color: $color-text-reverse;
+
+  &__section-title {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  &__poster-grid {
+    padding-top: pad(small);
+    padding-bottom: pad(small);
+    font-weight: 600;
+  }
+
+  &--top-trending {
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+}

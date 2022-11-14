@@ -13,12 +13,12 @@ export interface MovieListResult {
   vote_count: number;
   video: boolean;
   vote_average: number;
-  media_type: string;
+  media_type: 'movie';
 }
 
 export interface TVListResult {
   poster_path: string | null;
-  media_type: string;
+  media_type: 'tv';
   overview: string;
   first_air_date: string;
   genre_ids: Array<number>;
@@ -31,4 +31,14 @@ export interface TVListResult {
   popularity: number;
   vote_count: number;
   vote_average: number;
+}
+
+export interface PersonListResult {
+  profile_path: string | null;
+  adult: boolean;
+  id: number;
+  media_type: 'person';
+  known_for: Array<MovieListResult | TVListResult>;
+  name: string;
+  popularity: number;
 }
