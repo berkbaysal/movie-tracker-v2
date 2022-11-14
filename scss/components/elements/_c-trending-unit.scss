@@ -1,10 +1,46 @@
+$trending-hover-animation: ease-out $g-transition-duration;
+
 .c-trending-unit {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  height: 100%;
+  flex-direction: column;
+  //   border-radius: 0.5rem;
+  line-height: 1.25;
+
   &__trending-poster {
     width: 100%;
     height: auto;
+    cursor: pointer;
+    transition: $trending-hover-animation;
+
+    &:hover {
+      filter: brightness(0.6);
+      transform: scale(1.05);
+    }
   }
 
   &__title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     padding-top: pad(2xsmall);
+    padding-right: pad(xsmall);
+    padding-bottom: pad(2xsmall);
+    padding-left: pad(xsmall);
+    background-color: $color-secondary;
+    transform: translateY(100%);
+    transition: $trending-hover-animation;
+
+    &--top-trending {
+      padding-top: pad(xsmall);
+      padding-right: pad(xsmall);
+      padding-bottom: pad(xsmall);
+      padding-left: pad(xsmall);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
   }
 }

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import { imgURL, posterSize } from '../../static/resources';
 
 interface TrendingUnitProps {
@@ -7,9 +7,18 @@ interface TrendingUnitProps {
   posterPath: string | null;
   width?: number;
   height?: number;
+  variant?: 'default' | 'large';
 }
 
-function TrendingUnit({ title, posterPath, width, height }: TrendingUnitProps) {
+function TrendingUnit({
+  title,
+  posterPath,
+  width,
+  height,
+  variant,
+}: TrendingUnitProps) {
+  const [hovering, setHovering] = useState<boolean>(false);
+
   return (
     <div className="c-trending-unit">
       <Image
@@ -18,8 +27,17 @@ function TrendingUnit({ title, posterPath, width, height }: TrendingUnitProps) {
         className="c-trending-unit__trending-poster"
         width={width}
         height={height}
+        onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => setHovering(false)}
       />
-      <div className="c-trending-unit__title">{title}</div>
+      <div
+        className={`c-trending-unit__title ${
+          variant === 'large' ? 'c-trending-unit__title--top-trending' : ''
+        }`}
+        style={hovering ? { transform: 'translateY(0%)' } : {}}
+      >
+        {title}
+      </div>
     </div>
   );
 }
@@ -27,6 +45,7 @@ function TrendingUnit({ title, posterPath, width, height }: TrendingUnitProps) {
 TrendingUnit.defaultProps = {
   width: posterSize.large.width,
   height: posterSize.large.height,
+  variant: 'default',
 };
 
 export default TrendingUnit;

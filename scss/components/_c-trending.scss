@@ -8,14 +8,16 @@
     text-transform: uppercase;
   }
 
-  &__poster-grid {
+  &__content {
     padding-top: pad(small);
     padding-bottom: pad(small);
     font-weight: 600;
   }
 
-  &--top-trending {
-    font-size: 1.75rem;
-    font-weight: 700;
+  &__poster-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
   }
 }

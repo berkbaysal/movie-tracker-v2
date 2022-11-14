@@ -159,7 +159,7 @@ $container-max-widths: (
   sm: 100%,
   md: 100%,
   lg: 100%,
-  xl: 1440px,
+  xl: 1366px,
 ) !default;
 
 // Grid columns
@@ -173,6 +173,8 @@ $grid-gutter-width: px-to-rem(32px) !default;
 //
 //  Global `z-index` values should be defined below
 // -------------------------
-
+$g-z-index-front: 3;
+$g-z-index-middle: 2;
+$g-z-index-back: -1;
 //Custom variables
 $g-ui-border-radius: px-to-rem(6) !default;
