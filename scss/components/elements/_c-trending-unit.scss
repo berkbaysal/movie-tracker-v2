@@ -11,7 +11,7 @@ $trending-hover-animation: ease-out $g-transition-duration;
 
   &__trending-poster {
     width: 100%;
-    height: auto;
+    height: 100%;
     cursor: pointer;
     transition: $trending-hover-animation;
 
@@ -47,6 +47,7 @@ $trending-hover-animation: ease-out $g-transition-duration;
       padding-left: pad(xsmall);
       font-size: 1.5rem;
       font-weight: 700;
+      object-fit: cover;
 
       @include media-breakpoint-down(lg) {
         padding-right: pad(2xsmall);
