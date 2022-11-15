@@ -39,5 +39,5 @@ export default async function getMovie(
       result.media_type !== 'person'
   );
 
-  res.json(filteredResponse.slice(0, maxResults));
+  res.status(200).json(filteredResponse.slice(0, maxResults));
 }
