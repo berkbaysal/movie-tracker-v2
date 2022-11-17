@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Trending from '../components/Trending';
-import { MovieListResult } from '../static/interfaces';
+import { MovieListResult } from '../static/interfacesAPI';
 import { siteURL } from '../static/resources';
 import config from '../static/config';
 

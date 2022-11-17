@@ -1,19 +1,18 @@
 import React from 'react';
-import { MovieListResult, TVListResult } from '../static/interfaces';
+import { TrendingResult } from '../static/interfacesApp';
 import TrendingUnit from './elements/TrendingUnit';
 
 interface TrendingProps {
-  trending: (MovieListResult | TVListResult)[];
+  trending: TrendingResult[];
 }
 
 function Trending({ trending }: TrendingProps) {
   const trendingGrid = trending.map((item, index) => {
-    const title = item.media_type === 'movie' ? item.title : item.original_name;
     return (
       <TrendingUnit
-        title={title}
-        posterPath={item.poster_path}
-        key={title}
+        title={item.title}
+        posterPath={item.posterPath}
+        key={item.title}
         variant={index === 0 ? 'large' : 'default'}
       />
     );
