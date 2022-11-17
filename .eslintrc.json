@@ -5,6 +5,15 @@
       "files": ["*.ts", "*.tsx"],
       "parserOptions": {
         "project": ["./tsconfig.json"]
+      },
+      "rules": {
+        //override airbnb rules to allow for..of iteration
+        "no-restricted-syntax": [
+          "error",
+          "ForInStatement",
+          "LabeledStatement",
+          "WithStatement"
+        ]
       }
     },
     {
