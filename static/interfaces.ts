@@ -23,7 +23,7 @@ export interface TVListResult {
   first_air_date: string;
   genre_ids: Array<number>;
   id: number;
-  origin_country: string;
+  origin_country: string[];
   original_name: string;
   original_language: string;
   title: string;

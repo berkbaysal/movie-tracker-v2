@@ -6,6 +6,13 @@
       "parserOptions": {
         "project": ["./tsconfig.json"]
       }
+    },
+    {
+      "files": ["*.stories.*"],
+      "rules": {
+        "react/function-component-definition": "off",
+        "react/jsx-props-no-spreading": "off"
+      }
     }
   ],
   "extends": [
@@ -18,15 +25,29 @@
     "plugin:import/warnings",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "plugin:storybook/recommended"
   ],
-  "plugins": ["prettier", "import", "@typescript-eslint", "react", "jsx-a11y"],
+  "plugins": [
+    "prettier",
+    "import",
+    "@typescript-eslint",
+    "react",
+    "jsx-a11y",
+    "storybook"
+  ],
   "rules": {
     "react/jsx-filename-extension": [
       1,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
-    "prettier/prettier": ["error"]
+    "prettier/prettier": ["error"],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [".storybook/**", "**/*.stories.*"]
+      }
+    ]
   },
   "ignorePatterns": ["_app.tsx"]
 }

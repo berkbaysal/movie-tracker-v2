@@ -1,4 +1,10 @@
 .c-search-bar {
+  height: 2.5rem;
+
+  @include media-breakpoint-down(sm) {
+    height: 1.5rem;
+  }
+
   &__input-field {
     width: 20rem;
     height: 100%;

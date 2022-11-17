@@ -6,6 +6,7 @@ $trending-hover-animation: ease-out $g-transition-duration;
   overflow: hidden;
   height: 100%;
   flex-direction: column;
+  color: $color-text-reverse;
   cursor: pointer;
   line-height: 1.25;
 
