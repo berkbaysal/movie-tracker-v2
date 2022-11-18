@@ -22,6 +22,13 @@
         "react/function-component-definition": "off",
         "react/jsx-props-no-spreading": "off"
       }
+    },
+    {
+      //This component should allow external URL hosted images from a DB and using <img> makes more sense over <picture> or next/Image
+      "files": ["FeaturedSlide.tsx"],
+      "rules": {
+        "@next/next/no-img-element": "off"
+      }
     }
   ],
   "extends": [
