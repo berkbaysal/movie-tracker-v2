@@ -69,15 +69,4 @@
       margin-right: unset;
     }
   }
-
-  &__slide-control {
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    font-size: 5rem;
-
-    &--reverse {
-      transform: rotate(180deg);
-    }
-  }
 }
