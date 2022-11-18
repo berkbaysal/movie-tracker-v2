@@ -1,0 +1,15 @@
+.c-featured {
+  position: relative;
+  height: px-to-rem(175px);
+  margin-bottom: 50rem;
+
+  @include media-breakpoint-up(sm) {
+    height: px-to-rem(250px);
+  }
+  @include media-breakpoint-up(md) {
+    height: px-to-rem(400px);
+  }
+  @include media-breakpoint-up(xl) {
+    height: px-to-rem(500px);
+  }
+}

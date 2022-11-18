@@ -4,6 +4,7 @@ import Trending from '../components/Trending';
 import { siteURL } from '../static/resources';
 import config from '../static/config';
 import { TrendingResult } from '../static/interfacesApp';
+import Featured from '../components/Featured';
 
 interface HomeProps {
   trending: TrendingResult[];
@@ -14,6 +15,7 @@ export default function Home({ trending }: HomeProps) {
     <div>
       <Navbar />
       <Trending trending={trending} />
+      <Featured />
     </div>
   );
 }

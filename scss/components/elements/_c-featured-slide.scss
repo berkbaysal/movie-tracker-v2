@@ -1,0 +1,83 @@
+.c-featured-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: $color-text-reverse;
+
+  &__cover-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__image-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: $color-secondary;
+    opacity: 0.75;
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    padding: 1rem;
+
+    @include media-breakpoint-up(md) {
+      padding: 3rem;
+    }
+  }
+
+  &__post-title {
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(sm) {
+      font-size: 2.5rem;
+    }
+
+    @include media-breakpoint-up(md) {
+      padding-right: 5rem;
+      padding-left: 5rem;
+      font-size: 3rem;
+    }
+    @include media-breakpoint-up(xl) {
+      padding-right: 10rem;
+      padding-left: 10rem;
+      font-size: 3.5rem;
+    }
+  }
+
+  &__read-more-button {
+    bottom: 0;
+    margin-right: auto;
+    margin-left: auto;
+
+    @include media-breakpoint-up(md) {
+      margin-right: unset;
+    }
+  }
+
+  &__slide-control {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    font-size: 5rem;
+
+    &--reverse {
+      transform: rotate(180deg);
+    }
+  }
+}

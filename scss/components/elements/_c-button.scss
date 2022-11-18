@@ -10,6 +10,7 @@
   cursor: pointer;
   font-weight: 700;
   text-transform: uppercase;
+  transition: $g-transition-duration;
 
   @include media-breakpoint-down(sm) {
     width: 6rem;
