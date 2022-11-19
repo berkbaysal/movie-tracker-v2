@@ -1,8 +1,8 @@
 .c-featured-slide {
-  position: absolute;
   width: 100%;
   height: 100%;
   color: $color-text-reverse;
+  transition: $g-transition-duration;
 
   &__cover-image {
     position: absolute;
@@ -61,6 +61,7 @@
   }
 
   &__read-more-button {
+    z-index: $g-z-index-front;
     bottom: 0;
     margin-right: auto;
     margin-left: auto;

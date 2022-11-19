@@ -5,15 +5,20 @@ interface FeaturedSlideProps {
   postTitle: string;
   backgroundImageUrl: string;
   buttonText?: string;
+  style?: React.CSSProperties;
 }
 
 function FeaturedSlide({
   postTitle,
   backgroundImageUrl,
   buttonText,
+  style,
 }: FeaturedSlideProps) {
   return (
-    <div className="c-featured-slide">
+    <div
+      className={`c-featured-slide c-featured-slide--${'position'}Slide-left`}
+      style={style}
+    >
       <img
         src={backgroundImageUrl}
         alt={`${postTitle} cover`}
@@ -32,6 +37,7 @@ function FeaturedSlide({
 
 FeaturedSlide.defaultProps = {
   buttonText: 'Read more',
+  style: {},
 };
 
 export default FeaturedSlide;
