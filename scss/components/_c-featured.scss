@@ -33,10 +33,27 @@
     top: 50%;
     display: flex;
     justify-content: center;
+    margin: 0 0.5rem;
     color: $color-text-reverse;
-    font-size: 5rem;
+    font-size: 2rem;
     pointer-events: auto;
     transform: translateY(-50%);
+
+    @include media-breakpoint-up(sm) {
+      font-size: 2.5rem;
+    }
+
+    @include media-breakpoint-up(md) {
+      margin: 0 1rem;
+      font-size: 3.5rem;
+    }
+    @include media-breakpoint-up(lg) {
+      font-size: 4.5rem;
+    }
+    @include media-breakpoint-up(xl) {
+      margin: 0;
+      font-size: 5rem;
+    }
 
     &--left {
       left: 0;

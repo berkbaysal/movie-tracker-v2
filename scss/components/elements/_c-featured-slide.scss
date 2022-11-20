@@ -37,20 +37,22 @@
     height: 100%;
     align-items: center;
     justify-content: center;
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
     font-size: 1.25rem;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
 
     @include media-breakpoint-up(sm) {
+      padding-right: 2.5rem;
+      padding-left: 2.5rem;
       font-size: 2.5rem;
     }
 
     @include media-breakpoint-up(md) {
-      padding-right: 5rem;
-      padding-left: 5rem;
+      padding-right: 3.5rem;
+      padding-left: 3.5rem;
       font-size: 3rem;
     }
     @include media-breakpoint-up(xl) {
