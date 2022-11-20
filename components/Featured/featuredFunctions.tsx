@@ -1,5 +1,5 @@
 import React from 'react';
-import FeaturedSlide from '../elements/FeaturedSlide';
+import FeaturedSlide from '../elements/FeaturedSlide/FeaturedSlide';
 
 export interface Post {
   postTitle: string;

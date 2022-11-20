@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import '../../scss/main.scss';
+import '../../../scss/main.scss';
 import SearchBar from './SearchBar';
 
 export default {
