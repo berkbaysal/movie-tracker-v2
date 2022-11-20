@@ -13,30 +13,7 @@ interface FeaturedProps {
   buttonText?: string;
 }
 
-const mockDBdata = [
-  {
-    postTitle: '1shaping film through music',
-    backgroundImageUrl:
-      'https://www.musicnotes.com/now/wp-content/uploads/Piano-Fingerings.png',
-    id: 1,
-  },
-  {
-    postTitle: '2shaping film through music',
-    backgroundImageUrl:
-      'https://www.musicnotes.com/now/wp-content/uploads/Piano-Fingerings.png',
-    id: 2,
-  },
-  {
-    postTitle: '3shaping film through music',
-    backgroundImageUrl:
-      'https://www.musicnotes.com/now/wp-content/uploads/Piano-Fingerings.png',
-    id: 3,
-  },
-];
-
-function Featured({ posts = mockDBdata, buttonText }: FeaturedProps) {
-  // REPLACE POSTS=MOCKDBDATA WHEN DB IS CONNECTED
-
+function Featured({ posts, buttonText }: FeaturedProps) {
   // State holds indexes of currently rendered slides (.slides) and keys assigned to them (.keys)
   const [renderedSlides, setRenderedSlides] = useState(
     slideFunctions.initSlides(posts, bufferSlideCount)

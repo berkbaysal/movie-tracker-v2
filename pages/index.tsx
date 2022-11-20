@@ -10,12 +10,34 @@ interface HomeProps {
   trending: TrendingResult[];
 }
 
+const mockDBdata = [
+  {
+    postTitle: '1shaping film through music',
+    backgroundImageUrl:
+      'https://www.musicnotes.com/now/wp-content/uploads/Piano-Fingerings.png',
+    id: 1,
+  },
+  {
+    postTitle: '2shaping film through music',
+    backgroundImageUrl:
+      'https://www.musicnotes.com/now/wp-content/uploads/Piano-Fingerings.png',
+    id: 2,
+  },
+  {
+    postTitle: '3shaping film through music',
+    backgroundImageUrl:
+      'https://www.musicnotes.com/now/wp-content/uploads/Piano-Fingerings.png',
+    id: 3,
+  },
+];
+// MOCKDB DATA TO BE REMOVED WHEN DB IS CONNECTED
+
 export default function Home({ trending }: HomeProps) {
   return (
     <div>
       <Navbar />
       <Trending trending={trending} />
-      <Featured />
+      <Featured posts={mockDBdata} />
     </div>
   );
 }
