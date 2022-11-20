@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
-import Button from './elements/Button';
-import SearchBar from './elements/SearchBar';
-import Logo from '../static/img/logo.svg';
+import Button from '../elements/Button';
+import SearchBar from '../elements/SearchBar';
+import Logo from '../../static/img/logo.svg';
 
 function Navbar() {
   return (

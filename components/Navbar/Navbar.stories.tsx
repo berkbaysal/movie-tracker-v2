@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import '../scss/main.scss';
+import '../../scss/main.scss';
 import Navbar from './Navbar';
 
 export default {

@@ -1,0 +1,77 @@
+import React, { useState } from 'react';
+import { BsChevronLeft } from 'react-icons/bs';
+import config from '../../static/config';
+import slideFunctions, { Post } from './featuredFunctions';
+
+// Load number of buffer slides on each side, default to 2
+const bufferSlideCount = config.FEAUTRED_BUFFER_SLIDES
+  ? config.FEAUTRED_BUFFER_SLIDES
+  : 2;
+
+interface FeaturedProps {
+  posts: Post[];
+  buttonText?: string;
+}
+
+const mockDBdata = [
+  {
+    postTitle: '1shaping film through music',
+    backgroundImageUrl:
+      'https://www.musicnotes.com/now/wp-content/uploads/Piano-Fingerings.png',
+    id: 1,
+  },
+  {
+    postTitle: '2shaping film through music',
+    backgroundImageUrl:
+      'https://www.musicnotes.com/now/wp-content/uploads/Piano-Fingerings.png',
+    id: 2,
+  },
+  {
+    postTitle: '3shaping film through music',
+    backgroundImageUrl:
+      'https://www.musicnotes.com/now/wp-content/uploads/Piano-Fingerings.png',
+    id: 3,
+  },
+];
+
+function Featured({ posts = mockDBdata, buttonText }: FeaturedProps) {
+  // REPLACE POSTS=MOCKDBDATA WHEN DB IS CONNECTED
+
+  // State holds indexes of currently rendered slides (.slides) and keys assigned to them (.keys)
+  const [renderedSlides, setRenderedSlides] = useState(
+    slideFunctions.initSlides(posts, bufferSlideCount)
+  );
+
+  function slide(direction: 'left' | 'right') {
+    setRenderedSlides((oldRenderedSlides) =>
+      slideFunctions.slide(oldRenderedSlides, posts, direction)
+    );
+  }
+
+  return (
+    <div className="container-fluid u-padding-none c-featured">
+      {slideFunctions.createSlides(
+        renderedSlides,
+        posts,
+        bufferSlideCount,
+        buttonText
+      )}
+      <div className="container c-featured__control-overlay">
+        <BsChevronLeft
+          className="c-featured__slide-control c-featured__slide-control--left"
+          onClick={() => slide('left')}
+        />
+        <BsChevronLeft
+          className="c-featured__slide-control c-featured__slide-control--right"
+          onClick={() => slide('right')}
+        />
+      </div>
+    </div>
+  );
+}
+
+Featured.defaultProps = {
+  buttonText: 'Read more',
+};
+
+export default Featured;

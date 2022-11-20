@@ -1,7 +1,9 @@
 .c-featured {
   position: relative;
+  overflow: hidden;
   height: px-to-rem(175px);
   margin-bottom: 50rem;
+  background-color: $color-secondary;
 
   @include media-breakpoint-up(sm) {
     height: px-to-rem(250px);

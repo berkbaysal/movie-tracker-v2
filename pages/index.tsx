@@ -1,10 +1,10 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
-import Trending from '../components/Trending';
+import Navbar from '../components/Navbar/Navbar';
+import Trending from '../components/Trending/Trending';
 import { siteURL } from '../static/resources';
 import config from '../static/config';
 import { TrendingResult } from '../static/interfacesApp';
-import Featured from '../components/Featured';
+import Featured from '../components/Featured/Featured';
 
 interface HomeProps {
   trending: TrendingResult[];

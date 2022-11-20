@@ -1,6 +1,6 @@
 import React from 'react';
-import { TrendingResult } from '../static/interfacesApp';
-import TrendingUnit from './elements/TrendingUnit';
+import { TrendingResult } from '../../static/interfacesApp';
+import TrendingUnit from '../elements/TrendingUnit';
 
 interface TrendingProps {
   trending: TrendingResult[];
