@@ -1,9 +1,9 @@
 import React from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import Trending from '../components/Trending/Trending';
-import { siteURL } from '../static/resources';
-import config from '../static/config';
-import { TrendingResult } from '../static/interfacesApp';
+import { siteURL } from '../util/resources';
+import config from '../util/config';
+import { TrendingResult } from '../util/interfacesApp';
 import Featured from '../components/Featured/Featured';
 
 interface HomeProps {

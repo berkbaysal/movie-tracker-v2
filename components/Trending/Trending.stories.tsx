@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Trending from './Trending';
 import '../../scss/main.scss';
-import { TrendingResult } from '../../static/interfacesApp';
+import { TrendingResult } from '../../util/interfacesApp';
 
 // Mock API answer
 const mockProps: TrendingResult[] = [

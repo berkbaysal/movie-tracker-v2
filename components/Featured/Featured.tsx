@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BsChevronLeft } from 'react-icons/bs';
-import config from '../../static/config';
+import config from '../../util/config';
 import slideFunctions, { Post } from './featuredFunctions';
 
 // Load number of buffer slides on each side, default to 2

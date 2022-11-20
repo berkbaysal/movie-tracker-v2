@@ -1,12 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import dotenv from 'dotenv';
-import { apiURL } from '../../static/resources';
+import { apiURL } from '../../util/resources';
 import {
   MovieListResult,
   PersonListResult,
   TVListResult,
-} from '../../static/interfacesAPI';
-import { TrendingResult } from '../../static/interfacesApp';
+} from '../../util/interfacesAPI';
+import { TrendingResult } from '../../util/interfacesApp';
 
 dotenv.config();
 

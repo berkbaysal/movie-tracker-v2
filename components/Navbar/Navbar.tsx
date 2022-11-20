@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import Button from '../elements/Button/Button';
 import SearchBar from '../elements/SearchBar/SearchBar';
-import Logo from '../../static/img/logo.svg';
+import Logo from '../../public/img/logo.svg';
 
 function Navbar() {
   return (
