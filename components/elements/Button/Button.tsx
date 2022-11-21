@@ -5,7 +5,7 @@ interface ButtonProps {
   label: string;
 }
 
-function Button({ label, variant }: ButtonProps) {
+function Button({ label, variant = 'default' }: ButtonProps) {
   return (
     <button
       type="button"
@@ -15,9 +15,5 @@ function Button({ label, variant }: ButtonProps) {
     </button>
   );
 }
-
-Button.defaultProps = {
-  variant: 'default',
-};
 
 export default Button;

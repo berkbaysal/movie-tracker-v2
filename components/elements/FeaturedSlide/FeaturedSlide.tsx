@@ -12,8 +12,8 @@ interface FeaturedSlideProps {
 function FeaturedSlide({
   postTitle,
   backgroundImageUrl,
-  buttonText,
-  swipeHandler,
+  buttonText = 'Read more',
+  swipeHandler = undefined,
 }: FeaturedSlideProps) {
   return (
     <div
@@ -29,16 +29,11 @@ function FeaturedSlide({
       <div className="container c-featured-slide__content">
         <div className="c-featured-slide__post-title">{postTitle}</div>
         <div className="c-featured-slide__read-more-button">
-          <Button>{buttonText}</Button>
+          <Button label={buttonText} />
         </div>
       </div>
     </div>
   );
 }
-
-FeaturedSlide.defaultProps = {
-  buttonText: 'Read more',
-  swipeHandler: undefined,
-};
 
 export default FeaturedSlide;

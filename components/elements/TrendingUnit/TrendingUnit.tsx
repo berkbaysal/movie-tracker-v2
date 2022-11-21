@@ -13,9 +13,9 @@ interface TrendingUnitProps {
 function TrendingUnit({
   title,
   posterPath,
-  width,
-  height,
-  variant,
+  width = posterSize.large.width,
+  height = posterSize.large.height,
+  variant = 'default',
 }: TrendingUnitProps) {
   const [hovering, setHovering] = useState<boolean>(false);
 
@@ -40,11 +40,5 @@ function TrendingUnit({
     </div>
   );
 }
-
-TrendingUnit.defaultProps = {
-  width: posterSize.large.width,
-  height: posterSize.large.height,
-  variant: 'default',
-};
 
 export default TrendingUnit;

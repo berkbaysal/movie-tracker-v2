@@ -14,7 +14,7 @@ interface FeaturedProps {
   buttonText?: string;
 }
 
-function Featured({ posts, buttonText }: FeaturedProps) {
+function Featured({ posts, buttonText = 'Read more' }: FeaturedProps) {
   // State holds indexes of currently rendered slides (.slides) and keys assigned to them (.keys)
   const [renderedSlides, setRenderedSlides] = useState(
     slideFunctions.initSlides(posts, bufferSlideCount)
@@ -54,9 +54,5 @@ function Featured({ posts, buttonText }: FeaturedProps) {
     </div>
   );
 }
-
-Featured.defaultProps = {
-  buttonText: 'Read more',
-};
 
 export default Featured;
