@@ -7,11 +7,12 @@ interface ButtonProps {
 
 function Button({ children, variant }: ButtonProps) {
   return (
-    <div
+    <button
+      type="button"
       className={`c-button ${variant === 'reverse' ? 'c-button--reverse' : ''}`}
     >
       {children}
-    </div>
+    </button>
   );
 }
 
