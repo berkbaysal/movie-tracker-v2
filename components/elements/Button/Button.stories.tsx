@@ -7,7 +7,7 @@ export default {
   title: 'Elements/Button',
   component: Button,
   argTypes: {
-    children: {
+    label: {
       control: 'text',
       name: 'Label',
       defaultValue: 'click me',
