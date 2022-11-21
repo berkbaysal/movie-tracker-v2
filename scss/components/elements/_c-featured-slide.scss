@@ -68,7 +68,11 @@
     margin-left: auto;
 
     @include media-breakpoint-up(md) {
-      margin-right: unset;
+      margin-right: 3rem;
+    }
+
+    @include media-breakpoint-up(lg) {
+      margin-right: 5rem;
     }
   }
 }
