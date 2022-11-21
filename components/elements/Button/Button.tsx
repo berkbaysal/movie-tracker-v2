@@ -2,16 +2,16 @@ import React from 'react';
 
 interface ButtonProps {
   variant?: 'default' | 'reverse';
-  children: React.ReactNode;
+  label: string;
 }
 
-function Button({ children, variant }: ButtonProps) {
+function Button({ label, variant }: ButtonProps) {
   return (
     <button
       type="button"
       className={`c-button ${variant === 'reverse' ? 'c-button--reverse' : ''}`}
     >
-      {children}
+      {label}
     </button>
   );
 }
