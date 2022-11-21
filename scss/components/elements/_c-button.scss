@@ -15,8 +15,9 @@
   transition: $g-transition-duration;
 
   @include media-breakpoint-down(sm) {
-    width: 6rem;
+    min-width: 6rem;
     height: 1.5rem;
+    padding: 0 0.5rem;
     border-radius: $g-ui-border-radius/2;
     font-size: 0.75rem;
   }
