@@ -19,6 +19,17 @@
       }
     },
     {
+      // Allow dev dependencies to be imported for test files.
+      "files": ["*.test.tsx"],
+      "rules": {
+        "import/no-extraneous-dependencies": [
+          "error",
+          { "devDependencies": true }
+        ]
+      }
+    },
+    {
+      // Allow prop spreading and ES6 functional component definitions for stories
       "files": ["*.stories.*"],
       "rules": {
         "react/function-component-definition": "off",
