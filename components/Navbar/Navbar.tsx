@@ -13,7 +13,7 @@ function Navbar() {
             <Image src={Logo} alt="logo" className="c-navbar__logo" />
             <div className="c-navbar__menu">
               <SearchBar />
-              <Button>Log In</Button>
+              <Button label="Log In" />
             </div>
           </div>
         </div>
