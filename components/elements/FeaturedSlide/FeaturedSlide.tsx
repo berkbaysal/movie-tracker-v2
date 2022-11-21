@@ -1,23 +1,24 @@
 import React from 'react';
+import { SwipeableHandlers } from 'react-swipeable/es/types';
 import Button from '../Button/Button';
 
 interface FeaturedSlideProps {
   postTitle: string;
   backgroundImageUrl: string;
   buttonText?: string;
-  style?: React.CSSProperties;
+  swipeHandler?: SwipeableHandlers | undefined;
 }
 
 function FeaturedSlide({
   postTitle,
   backgroundImageUrl,
   buttonText,
-  style,
+  swipeHandler,
 }: FeaturedSlideProps) {
   return (
     <div
       className={`c-featured-slide c-featured-slide--${'position'}Slide-left`}
-      style={style}
+      ref={swipeHandler?.ref}
     >
       <img
         src={backgroundImageUrl}
@@ -37,7 +38,7 @@ function FeaturedSlide({
 
 FeaturedSlide.defaultProps = {
   buttonText: 'Read more',
-  style: {},
+  swipeHandler: undefined,
 };
 
 export default FeaturedSlide;

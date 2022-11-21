@@ -23,12 +23,15 @@ export default {
       name: 'Button text',
       defaultValue: 'Read more',
     },
+    swipeHandler: {
+      table: { disable: true },
+    },
   },
 } as ComponentMeta<typeof FeaturedSlide>;
 
 const Template: ComponentStory<typeof FeaturedSlide> = (args) => (
   <div className="c-featured">
-    <FeaturedSlide {...args} />
+    <FeaturedSlide {...args} swipeHandler={undefined} />
   </div>
 );
 

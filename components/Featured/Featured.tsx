@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BsChevronLeft } from 'react-icons/bs';
+import { useSwipeable } from 'react-swipeable';
 import config from '../../util/config';
 import slideFunctions, { Post } from './featuredFunctions';
 
@@ -25,12 +26,19 @@ function Featured({ posts, buttonText }: FeaturedProps) {
     );
   }
 
+  const swipeHandler = useSwipeable({
+    onSwipedLeft: () => slide('right'),
+    onSwipedRight: () => slide('left'),
+    preventScrollOnSwipe: true,
+  });
+
   return (
     <div className="container-fluid u-padding-none c-featured">
       {slideFunctions.createSlides(
         renderedSlides,
         posts,
         bufferSlideCount,
+        swipeHandler,
         buttonText
       )}
       <div className="container c-featured__control-overlay">

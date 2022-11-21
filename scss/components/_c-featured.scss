@@ -35,9 +35,11 @@
     justify-content: center;
     margin: 0 0.5rem;
     color: $color-text-reverse;
+    cursor: pointer;
     font-size: 2rem;
     pointer-events: auto;
     transform: translateY(-50%);
+    transition: $g-transition-duration;
 
     @include media-breakpoint-up(sm) {
       font-size: 2.5rem;

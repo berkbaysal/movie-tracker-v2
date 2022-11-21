@@ -1,4 +1,5 @@
 import React from 'react';
+import { SwipeableHandlers } from 'react-swipeable/es/types';
 import FeaturedSlide from '../elements/FeaturedSlide/FeaturedSlide';
 
 export interface Post {
@@ -50,6 +51,7 @@ const slideFunctions = {
     renderedSlides: { slides: number[]; keys: number[] },
     posts: Post[],
     bufferSlideCount: number,
+    swipeHandler: SwipeableHandlers,
     buttonText = 'Read more'
   ) {
     const { slides, keys } = renderedSlides;
@@ -69,6 +71,9 @@ const slideFunctions = {
             backgroundImageUrl={post.backgroundImageUrl}
             buttonText={buttonText}
             key={post.id}
+            swipeHandler={
+              renderIndex === bufferSlideCount ? swipeHandler : undefined
+            }
           />
         </div>
       );
