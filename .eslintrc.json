@@ -19,13 +19,16 @@
       }
     },
     {
-      // Allow dev dependencies to be imported for test files.
+      // Rule changes for test files.
       "files": ["*.test.tsx"],
       "rules": {
+        // Allow dev dependencies to be imported for test files.
         "import/no-extraneous-dependencies": [
           "error",
           { "devDependencies": true }
-        ]
+        ],
+        // Allow prop spreading to in tests to mock props easier.
+        "react/jsx-props-no-spreading": "off"
       }
     },
     {
