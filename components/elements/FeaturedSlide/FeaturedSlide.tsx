@@ -28,7 +28,7 @@ function FeaturedSlide({
       />
       <div className="c-featured-slide__image-overlay" />
       <div className="container c-featured-slide__content">
-        <div className="c-featured-slide__post-title">{postTitle}</div>
+        <h2 className="c-featured-slide__post-title">{postTitle}</h2>
         <div className="c-featured-slide__read-more-button">
           <Button label={buttonText} />
         </div>
