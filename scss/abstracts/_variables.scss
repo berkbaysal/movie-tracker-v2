@@ -173,8 +173,10 @@ $grid-gutter-width: px-to-rem(32px) !default;
 //
 //  Global `z-index` values should be defined below
 // -------------------------
-$g-z-index-front: 3;
-$g-z-index-middle: 2;
-$g-z-index-back: -1;
+$g-z-index-above-all: 99;
+$g-z-index-front: 2;
+$g-z-index-middle: 1;
+$g-z-index-back: 0;
+$g-z-index-behind: -1;
 //Custom variables
 $g-ui-border-radius: px-to-rem(6) !default;
