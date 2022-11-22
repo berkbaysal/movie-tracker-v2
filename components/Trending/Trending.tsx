@@ -19,10 +19,13 @@ function Trending({ trending }: TrendingProps) {
   });
 
   return (
-    <div className="container-fluid o-background-container c-trending u-padding-right-none@sm-down">
+    <section
+      aria-label="Trending films"
+      className="container-fluid o-background-container c-trending u-padding-right-none@sm-down"
+    >
       <div className="container u-padding-right-none@sm-down">
         <div className="row">
-          <div className="col c-trending__section-title">Trending Today</div>
+          <h2 className="col c-trending__section-title">Trending Today</h2>
         </div>
         {/* Tablet & Desktop Layout */}
         <div className="row c-trending__content u-display-none@sm-down">
@@ -38,7 +41,7 @@ function Trending({ trending }: TrendingProps) {
           <div className="c-trending__scrollbox">{trendingGrid}</div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

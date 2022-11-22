@@ -33,25 +33,36 @@ function Featured({ posts, buttonText = 'Read more' }: FeaturedProps) {
   });
 
   return (
-    <div className="container-fluid u-padding-none c-featured">
-      {slideFunctions.createSlides(
-        renderedSlides,
-        posts,
-        bufferSlideCount,
-        swipeHandler,
-        buttonText
-      )}
+    <section
+      aria-label="featured posts"
+      className="container-fluid u-padding-none c-featured"
+    >
       <div className="container c-featured__control-overlay">
         <BsChevronLeft
+          role="button"
+          tabIndex={0}
+          aria-label="previous post"
           className="c-featured__slide-control c-featured__slide-control--left"
           onClick={() => slide('left')}
         />
         <BsChevronLeft
+          role="button"
+          tabIndex={0}
+          aria-label="next post"
           className="c-featured__slide-control c-featured__slide-control--right"
           onClick={() => slide('right')}
         />
       </div>
-    </div>
+      <ul>
+        {slideFunctions.createSlides(
+          renderedSlides,
+          posts,
+          bufferSlideCount,
+          swipeHandler,
+          buttonText
+        )}
+      </ul>
+    </section>
   );
 }
 

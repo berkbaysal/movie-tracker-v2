@@ -17,6 +17,7 @@
 
   &__slide-wrapper {
     position: absolute;
+    top: 0;
     width: 100%;
     height: 100%;
     transition: $g-transition-duration;
@@ -24,6 +25,7 @@
 
   &__control-overlay {
     position: relative;
+    z-index: $g-z-index-above-all;
     height: 100%;
     pointer-events: none;
   }

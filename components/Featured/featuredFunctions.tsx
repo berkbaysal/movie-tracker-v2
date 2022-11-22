@@ -60,11 +60,13 @@ const slideFunctions = {
       const slideStyle = {
         transform: `translateX(${(renderIndex - bufferSlideCount) * 100}%)`,
       };
+      const currentlyDisplayed = renderIndex - bufferSlideCount === 0;
       return (
-        <div
+        <li
           className="c-featured__slide-wrapper"
           style={slideStyle}
           key={keys[renderIndex]}
+          aria-hidden={currentlyDisplayed ? 'false' : 'true'} // Hide off screen slides from accessability tools
         >
           <FeaturedSlide
             postTitle={post.postTitle}
@@ -75,7 +77,7 @@ const slideFunctions = {
               renderIndex === bufferSlideCount ? swipeHandler : undefined
             }
           />
-        </div>
+        </li>
       );
     });
   },

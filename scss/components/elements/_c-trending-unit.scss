@@ -5,7 +5,7 @@ $trending-hover-animation: ease-out $g-transition-duration;
   display: flex;
   overflow: hidden;
   height: 100%;
-  flex-direction: column;
+  flex-direction: column-reverse;
   color: $color-text-reverse;
   cursor: pointer;
   line-height: 1.25;
@@ -32,6 +32,7 @@ $trending-hover-animation: ease-out $g-transition-duration;
 
   &__title {
     position: static;
+    z-index: $g-z-index-front;
     width: 100%;
     padding-top: pad(2xsmall);
     padding-right: pad(2xsmall);

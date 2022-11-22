@@ -21,6 +21,13 @@ function TrendingUnit({
 
   return (
     <div className="c-trending-unit">
+      <h3
+        className={`c-trending-unit__title ${
+          variant === 'large' ? 'c-trending-unit__title--top-trending' : ''
+        } ${hovering ? 'c-trending-unit__title--slide-up' : ''}`}
+      >
+        {title}
+      </h3>
       <Image
         src={`${imgURL}/${posterSize.large.url}/${posterPath}`}
         alt={`${title} film poster`}
@@ -30,13 +37,6 @@ function TrendingUnit({
         onMouseEnter={() => setHovering(true)}
         onMouseLeave={() => setHovering(false)}
       />
-      <div
-        className={`c-trending-unit__title ${
-          variant === 'large' ? 'c-trending-unit__title--top-trending' : ''
-        } ${hovering ? 'c-trending-unit__title--slide-up' : ''}`}
-      >
-        {title}
-      </div>
     </div>
   );
 }

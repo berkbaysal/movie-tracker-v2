@@ -16,23 +16,23 @@ function FeaturedSlide({
   swipeHandler = undefined,
 }: FeaturedSlideProps) {
   return (
-    <div
-      className="c-featured-slide"
-      ref={swipeHandler?.ref}
-      data-testid="featured-slide"
-    >
+    <div className="c-featured-slide" ref={swipeHandler?.ref}>
+      <div className="container c-featured-slide__content">
+        <h3 className="c-featured-slide__post-title">{postTitle}</h3>
+        <div className="c-featured-slide__read-more-button">
+          <Button
+            label={buttonText}
+            role="link"
+            disabled={swipeHandler === undefined} // Used to prevent focusing off screen
+          />
+        </div>
+      </div>
       <img
         src={backgroundImageUrl}
         alt={`${postTitle} cover`}
         className="c-featured-slide__cover-image"
       />
       <div className="c-featured-slide__image-overlay" />
-      <div className="container c-featured-slide__content">
-        <h2 className="c-featured-slide__post-title">{postTitle}</h2>
-        <div className="c-featured-slide__read-more-button">
-          <Button label={buttonText} />
-        </div>
-      </div>
     </div>
   );
 }
