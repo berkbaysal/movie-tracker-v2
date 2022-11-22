@@ -17,8 +17,9 @@ function FeaturedSlide({
 }: FeaturedSlideProps) {
   return (
     <div
-      className={`c-featured-slide c-featured-slide--${'position'}Slide-left`}
+      className="c-featured-slide"
       ref={swipeHandler?.ref}
+      data-testid="featured-slide"
     >
       <img
         src={backgroundImageUrl}
