@@ -27,3 +27,7 @@ button {
   -moz-osx-font-smoothing: grayscale; // 3
   text-rendering: optimizeLegibility; // 1
 }
+
+input::-webkit-search-cancel-button {
+  display: none;
+}
