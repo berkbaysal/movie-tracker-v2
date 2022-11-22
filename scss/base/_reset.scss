@@ -31,3 +31,11 @@ button {
 input::-webkit-search-cancel-button {
   display: none;
 }
+
+li,
+ul {
+  display: block;
+  list-style-type: none;
+  margin-block: unset;
+  padding-inline: unset;
+}
