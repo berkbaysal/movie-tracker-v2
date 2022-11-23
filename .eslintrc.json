@@ -15,7 +15,9 @@
           "WithStatement"
         ],
         //use defaultArguments over defaultProps for functional components (defaultProps will be deprecated)
-        "react/require-default-props": [2, { "functions": "defaultArguments" }]
+        "react/require-default-props": [2, { "functions": "defaultArguments" }],
+        //ignore prop spreading rule for HTML elements to allow extending certain elements
+        "react/jsx-props-no-spreading": [2, { "html": "ignore" }]
       }
     },
     {
