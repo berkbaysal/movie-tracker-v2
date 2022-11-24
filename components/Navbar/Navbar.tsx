@@ -15,10 +15,10 @@ function Navbar() {
               alt="Movie tracker logo"
               className="c-navbar__logo"
             />
-            <menu className="c-navbar__menu">
+            <div className="c-navbar__menu">
               <SearchBar />
               <Button label="Log In" role="link" />
-            </menu>
+            </div>
           </div>
         </div>
       </div>
