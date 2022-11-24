@@ -43,6 +43,16 @@ describe('Featured Slide Functionality', () => {
   });
 
   test('Slide button has correct label', () => {
+    render(
+      <FeaturedSlide
+        postTitle={testProps.postTitle}
+        backgroundImageUrl={testProps.backgroundImageUrl}
+      />
+    );
+    expect(screen.getByRole('link')).toHaveTextContent('Read more');
+  });
+
+  test('Slide button defaults to correct label', () => {
     render(<FeaturedSlide {...testProps} />);
     expect(screen.getByRole('link')).toHaveTextContent('Slide button');
   });
