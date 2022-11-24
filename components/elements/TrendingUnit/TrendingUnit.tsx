@@ -5,8 +5,8 @@ import { imgURL, posterSize } from '../../../util/resources';
 interface TrendingUnitProps {
   title: string;
   posterPath: string | null;
-  width?: number;
-  height?: number;
+  width?: number; // Expected original image size, used by Next to optimize layout, does not impact actual image size
+  height?: number; // -----------------------------------------------------------------------------------------------
   variant?: 'default' | 'large';
 }
 
