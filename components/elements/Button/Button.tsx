@@ -1,24 +1,28 @@
 import React from 'react';
 
-interface ButtonProps {
+interface ButtonProps extends React.InputHTMLAttributes<HTMLButtonElement> {
   label: string;
   variant?: 'default' | 'reverse';
   role?: 'button' | 'link';
-  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 function Button({
   label,
   variant = 'default',
   role = 'button',
-  disabled = false,
+  type = 'button',
+  ...props
 }: ButtonProps) {
   return (
     <button
-      type="button"
-      role={role}
       className={`c-button ${variant === 'reverse' ? 'c-button--reverse' : ''}`}
-      disabled={disabled}
+      {...props}
+      // Lint rule for disallowing dynamic types has been disabled as the variable in this case is limited by type and assigned a default value.
+      // Read more about this at: https://github.com/jsx-eslint/eslint-plugin-react/issues/1555
+      // eslint-disable-next-line react/button-has-type
+      type={type} // Overwrite type
+      role={role}
     >
       {label}
     </button>
