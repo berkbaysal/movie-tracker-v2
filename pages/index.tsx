@@ -13,21 +13,21 @@ interface HomeProps {
 
 const mockDBdata = [
   {
-    postTitle: '1shaping film through music',
+    postTitle: 'Shaping film through music',
     backgroundImageUrl:
       'https://www.musicnotes.com/now/wp-content/uploads/Piano-Fingerings.png',
     id: 1,
   },
   {
-    postTitle: '2shaping film through music',
+    postTitle: 'Filmmaking equipment for aspiring directors',
     backgroundImageUrl:
-      'https://www.musicnotes.com/now/wp-content/uploads/Piano-Fingerings.png',
+      'https://images.unsplash.com/photo-1619099619226-f96e319e3732?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZmlsbSUyMGNhbWVyYXxlbnwwfHwwfHw%3D&w=1000&q=80',
     id: 2,
   },
   {
-    postTitle: '3shaping film through music',
+    postTitle: 'How COVID changed movie theater business',
     backgroundImageUrl:
-      'https://www.musicnotes.com/now/wp-content/uploads/Piano-Fingerings.png',
+      'https://img.freepik.com/free-photo/happy-family-sitting-cinema_23-2148202053.jpg',
     id: 3,
   },
 ];
