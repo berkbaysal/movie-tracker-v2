@@ -15,8 +15,8 @@ describe('Test Button Functionality', () => {
   });
 });
 
-describe('Test Button Style', () => {
-  test('Button has correct class', () => {
+describe('Test Button Variants', () => {
+  test('Default button has correct class', () => {
     render(<Button label="Test button" />);
     expect(screen.getByRole('button')).toHaveClass('c-button');
     expect(screen.getByRole('button')).not.toHaveClass('c-button--reverse');
