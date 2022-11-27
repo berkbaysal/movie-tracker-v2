@@ -20,6 +20,11 @@ function TrendingUnit({
   priority = false,
 }: TrendingUnitProps) {
   const [hovering, setHovering] = useState<boolean>(false);
+
+  const sizes =
+    variant === 'default'
+      ? '(max-width: 544px) 40wv, 25vw'
+      : '(max-width: 544px) 10wv, 25vw';
   return (
     <div className="c-trending-unit">
       <h3
@@ -34,6 +39,7 @@ function TrendingUnit({
         src={`${imgURL}/${posterSize.large.url}${posterPath}`}
         alt={`${title} film poster`}
         className="c-trending-unit__trending-poster"
+        sizes={sizes}
         width={width}
         height={height}
         onMouseEnter={() => setHovering(true)}
