@@ -8,6 +8,7 @@ interface TrendingUnitProps {
   width?: number; // Expected original image size, used by Next to optimize layout, does not impact actual image size
   height?: number; // -----------------------------------------------------------------------------------------------
   variant?: 'default' | 'large';
+  priority: boolean;
 }
 
 function TrendingUnit({
@@ -16,6 +17,7 @@ function TrendingUnit({
   width = posterSize.large.width,
   height = posterSize.large.height,
   variant = 'default',
+  priority = false,
 }: TrendingUnitProps) {
   const [hovering, setHovering] = useState<boolean>(false);
   return (
@@ -36,6 +38,7 @@ function TrendingUnit({
         height={height}
         onMouseEnter={() => setHovering(true)}
         onMouseLeave={() => setHovering(false)}
+        priority
       />
     </div>
   );

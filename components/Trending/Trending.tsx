@@ -14,6 +14,7 @@ function Trending({ trending }: TrendingProps) {
         posterPath={item.posterPath}
         key={item.title}
         variant={index === 0 ? 'large' : 'default'}
+        priority={index === 0}
       />
     );
   });
