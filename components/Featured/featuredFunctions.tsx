@@ -38,7 +38,10 @@ const slideFunctions = {
     const keys: number[] = [];
     /* i refers to slide position, 0 being displayed ex: -2 -1 0 1 2 */
     for (let i = -bufferSlideCount; i <= bufferSlideCount; i += 1) {
-      const index = (posts.length + i) % posts.length;
+      let index = (posts.length + i) % posts.length;
+      while (index < 0) {
+        index += posts.length;
+      }
       slides.push(index);
       // Ensure no duplicate keys if there are less than 5 posts
       keys.push(this.getFreshKey(keys, posts[index].id));
