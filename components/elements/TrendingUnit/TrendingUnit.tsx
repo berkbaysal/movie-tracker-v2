@@ -38,7 +38,7 @@ function TrendingUnit({
         height={height}
         onMouseEnter={() => setHovering(true)}
         onMouseLeave={() => setHovering(false)}
-        priority
+        priority={priority}
       />
     </div>
   );
