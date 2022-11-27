@@ -18,7 +18,6 @@ function TrendingUnit({
   variant = 'default',
 }: TrendingUnitProps) {
   const [hovering, setHovering] = useState<boolean>(false);
-
   return (
     <div className="c-trending-unit">
       <h3
@@ -28,8 +27,9 @@ function TrendingUnit({
       >
         {title}
       </h3>
+
       <Image
-        src={`${imgURL}/${posterSize.large.url}/${posterPath}`}
+        src={`${imgURL}/${posterSize.large.url}${posterPath}`}
         alt={`${title} film poster`}
         className="c-trending-unit__trending-poster"
         width={width}
