@@ -5,7 +5,7 @@ import config from '../../util/config';
 import slideFunctions, { Post } from './featuredFunctions';
 
 // Load number of buffer slides on each side, default to 2
-const bufferSlideCount = config.FEAUTRED_BUFFER_SLIDES || 2;
+const bufferSlideCount = config.FEAUTRED_BUFFER_SLIDES;
 
 interface FeaturedProps {
   posts: Post[];
