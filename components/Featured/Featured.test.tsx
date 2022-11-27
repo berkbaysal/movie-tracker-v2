@@ -30,16 +30,6 @@ const testProps = {
 
 const mockSlide = jest.spyOn(slideFunctions, 'slide');
 
-jest.mock('../../util/config', () => {
-  return {
-    __esModule: true,
-    default: {
-      TRENDING_DISPLAY_AMOUNT: '9',
-      FEAUTRED_BUFFER_SLIDES: 2,
-    },
-  };
-});
-
 describe('Featured Section Functionality', () => {
   test('Featured section renders', () => {
     render(<Featured {...testProps} />);
@@ -61,6 +51,16 @@ describe('Featured Section Functionality', () => {
     expect(screen.getByLabelText('next post')).toHaveFocus();
     await userEvent.tab();
     expect(screen.getByRole('link')).toHaveFocus();
+  });
+
+  test('Button text defaults to read more', () => {
+    render(<Featured {...testProps} />);
+    expect(screen.getByRole('link')).toHaveTextContent('Read more');
+  });
+
+  test('Button text can be overwritten with props', () => {
+    render(<Featured {...testProps} buttonText="test button" />);
+    expect(screen.getByRole('link')).toHaveTextContent('test button');
   });
 
   test('There is one button with link role on the screen', () => {
@@ -133,5 +133,17 @@ describe('Featured Section Functionality', () => {
       expect.anything(),
       'right'
     );
+  });
+
+  test('Slides are correctly duplicated if there are less post than slides', () => {
+    const { slides, keys } = slideFunctions.initSlides(testProps.posts, 5);
+    const findDuplicates = (arr: number[]) => {
+      return arr.filter((item, index) => arr.indexOf(item) === index);
+    };
+    expect(slides).toHaveLength(11);
+    expect(keys).toHaveLength(11);
+    expect(slides).toStrictEqual([1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]);
+    expect(findDuplicates(keys)).toHaveLength(11);
+    expect(findDuplicates(slides)).not.toHaveLength(11);
   });
 });
