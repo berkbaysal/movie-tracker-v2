@@ -55,7 +55,7 @@ const slideFunctions = {
     posts: Post[],
     bufferSlideCount: number,
     swipeHandler: SwipeableHandlers,
-    buttonText = 'Read more'
+    buttonText: string
   ) {
     const { slides, keys } = renderedSlides;
     return slides.map((slideIndex, renderIndex) => {
@@ -91,7 +91,7 @@ const slideFunctions = {
     posts: Post[],
     side: 'left' | 'right'
   ) {
-    const { slides, keys } = oldRenderedSlides;
+    let { slides, keys } = oldRenderedSlides;
     const size = slides.length;
 
     if (side === 'right') {
@@ -100,21 +100,16 @@ const slideFunctions = {
         posts.length
       );
       const newSlideKey = this.getFreshKey(keys, posts[newSlideIndex].id);
-      return {
-        slides: [...slides.slice(1, size), newSlideIndex],
-        keys: [...keys.slice(1, size), newSlideKey],
-      };
+      slides = [...slides.slice(1, size), newSlideIndex];
+      keys = [...keys.slice(1, size), newSlideKey];
     }
     if (side === 'left') {
       const newSlideIndex = this.getPrevSlideIndex(slides[0], posts.length);
       const newSlideKey = this.getFreshKey(keys, posts[newSlideIndex].id);
-      return {
-        slides: [newSlideIndex, ...slides.slice(0, size - 1)],
-        keys: [newSlideKey, ...keys.slice(0, size - 1)],
-      };
+      slides = [newSlideIndex, ...slides.slice(0, size - 1)];
+      keys = [newSlideKey, ...keys.slice(0, size - 1)];
     }
-    // Default return old values
-    return oldRenderedSlides;
+    return { slides, keys };
   },
 };
 
