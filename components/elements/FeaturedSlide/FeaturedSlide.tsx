@@ -31,6 +31,8 @@ function FeaturedSlide({
         src={backgroundImage}
         alt={`${postTitle} cover`}
         className="c-featured-slide__cover-image"
+        quality={15}
+        priority
       />
       <div className="c-featured-slide__image-overlay" />
     </div>
