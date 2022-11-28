@@ -5,8 +5,6 @@ import { imgURL, posterSize } from '../../../util/resources';
 interface TrendingUnitProps {
   title: string;
   posterPath: string | null;
-  width?: number; // Expected original image size, used by Next to optimize layout, does not impact actual image size
-  height?: number; // -----------------------------------------------------------------------------------------------
   variant?: 'default' | 'large';
   priority: boolean;
 }
@@ -14,12 +12,18 @@ interface TrendingUnitProps {
 function TrendingUnit({
   title,
   posterPath,
-  width = posterSize.large.width,
-  height = posterSize.large.height,
   variant = 'default',
   priority = false,
 }: TrendingUnitProps) {
   const [hovering, setHovering] = useState<boolean>(false);
+
+  const optimalImageSize =
+    variant === 'large' ? posterSize.large : posterSize.medium;
+  const sizes =
+    variant === 'large'
+      ? '(max-width: 760px) 50vw, 25vw'
+      : '(max-width: 760px) 50vw, 15vw';
+
   return (
     <div className="c-trending-unit">
       <h3
@@ -31,14 +35,16 @@ function TrendingUnit({
       </h3>
 
       <Image
-        src={`${imgURL}/${posterSize.large.url}${posterPath}`}
+        src={`${imgURL}/${optimalImageSize.url}${posterPath}`}
         alt={`${title} film poster`}
+        sizes={sizes}
         className="c-trending-unit__trending-poster"
-        width={width}
-        height={height}
+        width={optimalImageSize.width}
+        height={optimalImageSize.height}
         onMouseEnter={() => setHovering(true)}
         onMouseLeave={() => setHovering(false)}
         priority={priority}
+        placeholder="empty"
       />
     </div>
   );
