@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { render, screen, fireEvent } from '@testing-library/react';
+import testImage from '../../public/img/piano-fingers.jpg';
 import Featured from './Featured';
 import slideFunctions from './featuredFunctions';
 import '@testing-library/jest-dom';
@@ -9,20 +10,17 @@ const testProps = {
   posts: [
     {
       postTitle: 'Slide one demo title',
-      backgroundImageUrl:
-        'https://www.musicnotes.com/now/wp-content/uploads/Piano-Fingerings.png',
+      backgroundImage: testImage,
       id: 1,
     },
     {
       postTitle: 'Slide two demo title',
-      backgroundImageUrl:
-        'https://images.unsplash.com/photo-1619099619226-f96e319e3732?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZmlsbSUyMGNhbWVyYXxlbnwwfHwwfHw%3D&w=1000&q=80',
+      backgroundImage: testImage,
       id: 2,
     },
     {
       postTitle: 'Slide three demo title',
-      backgroundImageUrl:
-        'https://img.freepik.com/free-photo/happy-family-sitting-cinema_23-2148202053.jpg',
+      backgroundImage: testImage,
       id: 3,
     },
   ],

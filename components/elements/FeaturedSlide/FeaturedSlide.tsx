@@ -1,17 +1,17 @@
 import React from 'react';
+import Image from 'next/image';
 import { SwipeableHandlers } from 'react-swipeable/es/types';
+import { Post } from '../../../util/interfacesApp';
 import Button from '../Button/Button';
 
-interface FeaturedSlideProps {
-  postTitle: string;
-  backgroundImageUrl: string;
+interface FeaturedSlideProps extends Post {
   buttonText?: string;
   swipeHandler?: SwipeableHandlers | undefined;
 }
 
 function FeaturedSlide({
   postTitle,
-  backgroundImageUrl,
+  backgroundImage,
   buttonText = 'Read more',
   swipeHandler = undefined,
 }: FeaturedSlideProps) {
@@ -27,10 +27,12 @@ function FeaturedSlide({
           />
         </div>
       </div>
-      <img
-        src={backgroundImageUrl}
+      <Image
+        src={backgroundImage}
         alt={`${postTitle} cover`}
         className="c-featured-slide__cover-image"
+        quality={15}
+        priority
       />
       <div className="c-featured-slide__image-overlay" />
     </div>

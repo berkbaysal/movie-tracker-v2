@@ -1,12 +1,11 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import dotenv from 'dotenv';
-import { apiURL } from '../../util/resources';
+import { apiURL } from '../util/resources';
 import {
   MovieListResult,
   PersonListResult,
   TVListResult,
-} from '../../util/interfacesAPI';
-import { TrendingResult } from '../../util/interfacesApp';
+} from '../util/interfacesAPI';
+import { TrendingResult } from '../util/interfacesApp';
 
 dotenv.config();
 
@@ -15,29 +14,28 @@ interface TrendingResponse {
   results: MovieListResult[] | TVListResult[] | PersonListResult[];
 }
 
-// Optional query to limit result count
-interface TrendingRequest extends NextApiRequest {
-  query: { maxResults?: string };
+interface GetTrendingListParameters {
+  limit?: number;
+  period?: 'week' | 'day';
 }
 
-export default async function getMovie(
-  req: TrendingRequest,
-  res: NextApiResponse
-) {
-  // Check if a result limit is passed, default to 20 if not.
-  let maxResults = parseInt(
-    req.query.maxResults ? req.query.maxResults : '20',
-    10
-  );
-  // Overwrite result limit to 50 if its bigger than 50.
-  if (maxResults > 50) maxResults = 50;
+export default async function getTrendingList({
+  limit = 20,
+  period = 'week',
+}: GetTrendingListParameters = {}) {
+  // Overwrite result limit to 20 if its bigger than 20.
+  const maxResults = limit <= 20 ? limit : 20;
+
+  // Define fetch parameters
   const params = {
     api_key: process.env.MOVIE_DB_API_KEY,
     language: 'en-US',
+    period,
   };
+
   // Fetch results from Movie DB API
   const fetchRes = await fetch(
-    `${apiURL}/trending/all/week?api_key=${params.api_key}`
+    `${apiURL}/trending/all/${params.period}?api_key=${params.api_key}`
   );
   const json: TrendingResponse = await fetchRes.json();
   // Filter results to only include TV Shows and Films, format and trim to fit custom interface
@@ -60,5 +58,5 @@ export default async function getMovie(
     if (formattedResults.length === maxResults) break;
   }
 
-  res.status(200).json(formattedResults);
+  return formattedResults;
 }

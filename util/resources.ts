@@ -7,7 +7,9 @@ export const apiURL = 'https://api.themoviedb.org/3';
 
 export const imgURL = 'https://image.tmdb.org/t/p';
 
-export const posterSize = {
+export const posterSize: {
+  [key: string]: { url: string; width: number; height: number };
+} = {
   thumbnail: { url: 'w92', width: 92, height: 138 },
   xsmall: { url: 'w154', width: 154, height: 231 },
   small: { url: 'w185', width: 185, height: 277 },

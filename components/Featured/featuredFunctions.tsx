@@ -1,12 +1,8 @@
 import React from 'react';
 import { SwipeableHandlers } from 'react-swipeable/es/types';
+import { Post } from '../../util/interfacesApp';
 import FeaturedSlide from '../elements/FeaturedSlide/FeaturedSlide';
 
-export interface Post {
-  postTitle: string;
-  backgroundImageUrl: string;
-  id: number;
-}
 const slideFunctions = {
   // Generates an unused key to make React treat an element as new
   getFreshKey(keys: number[], id: number) {
@@ -73,7 +69,8 @@ const slideFunctions = {
         >
           <FeaturedSlide
             postTitle={post.postTitle}
-            backgroundImageUrl={post.backgroundImageUrl}
+            backgroundImage={post.backgroundImage}
+            id={post.id}
             buttonText={buttonText}
             key={post.id}
             swipeHandler={

@@ -1,14 +1,15 @@
 import React from 'react';
 import { render, screen, renderHook, fireEvent } from '@testing-library/react';
 import { useSwipeable } from 'react-swipeable';
+import testImage from '../../../public/img/piano-fingers.jpg';
 import FeaturedSlide from './FeaturedSlide';
 import '@testing-library/jest-dom';
 
 const testProps = {
   postTitle: 'This is a test title',
-  backgroundImageUrl:
-    'https://www.musicnotes.com/now/wp-content/uploads/Piano-Fingerings.png',
+  backgroundImage: testImage,
   buttonText: 'Slide button',
+  id: 1,
   swipeHandler: undefined,
 };
 
@@ -46,7 +47,8 @@ describe('Featured Slide Functionality', () => {
     render(
       <FeaturedSlide
         postTitle={testProps.postTitle}
-        backgroundImageUrl={testProps.backgroundImageUrl}
+        backgroundImage={testProps.backgroundImage}
+        id={testProps.id}
       />
     );
     expect(screen.getByRole('link')).toHaveTextContent('Read more');

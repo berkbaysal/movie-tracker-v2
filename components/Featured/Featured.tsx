@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { BsChevronLeft } from 'react-icons/bs';
 import { useSwipeable } from 'react-swipeable';
+import { Post } from '../../util/interfacesApp';
 import config from '../../util/config';
-import slideFunctions, { Post } from './featuredFunctions';
+import slideFunctions from './featuredFunctions';
 
 // Load number of buffer slides on each side, default to 2
 const bufferSlideCount = config.FEAUTRED_BUFFER_SLIDES;
