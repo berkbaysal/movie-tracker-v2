@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Navbar from '../components/Navbar/Navbar';
 import Trending from '../components/Trending/Trending';
-import getTrendingList from '../services/trending';
+import getTrendingList from '../services/getTrendingList';
 import config from '../util/config';
 import { TrendingResult } from '../util/interfacesApp';
 import Featured from '../components/Featured/Featured';
@@ -30,6 +30,8 @@ export default function Home({ trending }: HomeProps) {
 
 export async function getServerSideProps() {
   const props: { trending: TrendingResult[] } = { trending: [] };
-  props.trending = await getTrendingList(config.TRENDING_DISPLAY_AMOUNT);
+  props.trending = await getTrendingList({
+    limit: config.TRENDING_DISPLAY_AMOUNT,
+  });
   return { props };
 }
