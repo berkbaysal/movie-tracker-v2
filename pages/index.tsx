@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Navbar from '../components/Navbar/Navbar';
 import Trending from '../components/Trending/Trending';
-import { siteURL } from '../util/resources';
+import getTrendingList from '../services/trending';
 import config from '../util/config';
 import { TrendingResult } from '../util/interfacesApp';
 import Featured from '../components/Featured/Featured';
@@ -30,13 +30,6 @@ export default function Home({ trending }: HomeProps) {
 
 export async function getServerSideProps() {
   const props: { trending: TrendingResult[] } = { trending: [] };
-  await fetch(
-    `${siteURL}/api/trending?maxResults=${config.TRENDING_DISPLAY_AMOUNT}`
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      props.trending = data;
-    });
-
+  props.trending = await getTrendingList(config.TRENDING_DISPLAY_AMOUNT);
   return { props };
 }
