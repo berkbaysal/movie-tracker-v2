@@ -6,7 +6,7 @@ interface TrendingUnitProps {
   title: string;
   posterPath: string | null;
   variant?: 'default' | 'large';
-  priority: boolean;
+  priority?: boolean;
 }
 
 function TrendingUnit({
