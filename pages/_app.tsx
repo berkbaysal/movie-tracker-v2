@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <meta name="keywords" content="film , movie, tv shows, tv series" />
       </Head>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </>
   );
 }
