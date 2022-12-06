@@ -2,6 +2,14 @@
   background-color: $color-primary;
   color: $color-text-reverse;
 
+  a {
+    color: inherit;
+
+    &:hover {
+      color: inherit;
+    }
+  }
+
   &__content-wrapper {
     display: flex;
     flex-direction: column;
@@ -48,12 +56,6 @@
     @include media-breakpoint-up(md) {
       justify-content: space-between;
     }
-  }
-
-  &__info {
-    display: flex;
-    height: 100%;
-    align-items: flex-end;
   }
 
   &__scroll-to-top {

@@ -13,10 +13,10 @@ function Footer() {
       <div className="container">
         <div className="c-footer__content-wrapper">
           <div className="c-footer__links">
-            <div className="c-footer__scroll-to-top">
+            <a className="c-footer__scroll-to-top" href="#top">
               Back to Top
               <span className="c-footer__scroll-to-top-icon">▲</span>
-            </div>
+            </a>
             <div className="c-footer__socials">
               <AiOutlineInstagram className="c-footer__social-media-icon" />
               <AiOutlineTwitter className="c-footer__social-media-icon" />
@@ -26,7 +26,8 @@ function Footer() {
           <div className="c-footer__info">
             The Movie Tracker
             <br />
-            Powered by themoviedb.org API
+            Powered by <a href="https://www.themoviedb.org/">themoviedb.org</a>
+            &nbsp;API
           </div>
 
           <div className="c-footer__logo-wrapper">
