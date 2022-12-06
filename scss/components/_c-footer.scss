@@ -1,0 +1,96 @@
+.c-footer {
+  background-color: $color-primary;
+  color: $color-text-reverse;
+
+  &__content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    text-align: center;
+
+    @include media-breakpoint-up(md) {
+      height: 6rem;
+      flex-direction: row-reverse;
+      align-items: flex-end;
+      text-align: left;
+    }
+
+    > :not(:last-child) {
+      margin-bottom: 1.5rem;
+
+      @include media-breakpoint-up(md) {
+        margin-bottom: unset;
+        margin-left: 4rem;
+      }
+    }
+  }
+
+  &__logo-wrapper {
+    display: flex;
+    height: 100%;
+  }
+
+  &__logo {
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  &__links {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+
+    @include media-breakpoint-up(md) {
+      justify-content: space-between;
+    }
+  }
+
+  &__info {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+  }
+
+  &__scroll-to-top {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    font-weight: 800;
+
+    @include media-breakpoint-up(md) {
+      justify-content: flex-end;
+    }
+  }
+
+  &__scroll-to-top-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+    font-size: 0.5rem;
+  }
+
+  &__socials {
+    display: flex;
+    width: 100%;
+    margin-top: 1.5rem;
+
+    @include media-breakpoint-up(md) {
+      justify-content: flex-end;
+      margin-top: 0.5rem;
+    }
+  }
+
+  &__social-media-icon {
+    margin: 0 0.5rem;
+    font-size: 2rem;
+    @include media-breakpoint-up(md) {
+      font-size: 1.5rem;
+    }
+  }
+}
