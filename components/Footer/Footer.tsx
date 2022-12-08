@@ -13,17 +13,20 @@ function Footer() {
       <div className="container">
         <div className="c-footer__content-wrapper">
           <div className="c-footer__links">
-            <a className="c-footer__scroll-to-top" href="#top">
-              Back to Top
-              <span className="c-footer__scroll-to-top-icon">▲</span>
-            </a>
-            <div className="c-footer__socials">
+            <div className="c-footer__links-top-row">
+              <a className="c-footer__scroll-to-top" href="#top">
+                Back to Top
+                <span className="c-footer__scroll-to-top-icon">▲</span>
+              </a>
+            </div>
+            <div className="c-footer__links-bottom-row">
               <a
                 href="https://www.instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <AiOutlineInstagram className="c-footer__social-media-icon" />
+                <span className="u-visually-hidden">Instagram</span>
               </a>
               <a
                 href="https://www.twitter.com"
@@ -31,6 +34,7 @@ function Footer() {
                 rel="noopener noreferrer"
               >
                 <AiOutlineTwitter className="c-footer__social-media-icon" />
+                <span className="u-visually-hidden">Twitter</span>
               </a>
               <a
                 href="https://www.youtube.com"
@@ -38,6 +42,7 @@ function Footer() {
                 rel="noopener noreferrer"
               >
                 <AiFillYoutube className="c-footer__social-media-icon" />
+                <span className="u-visually-hidden">Youtube</span>
               </a>
             </div>
           </div>
@@ -50,6 +55,7 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
+              {/* TO-DO: This link on non-mobie sizes has an unintuitive order for tab focus. This is caused by reverse-flex display on desktop. Bringing its tab order to be before social media icons for desktop only will improve natural flow of tabbing. */}
               themoviedb.org
             </a>{' '}
             API
