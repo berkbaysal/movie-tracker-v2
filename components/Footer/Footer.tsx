@@ -18,16 +18,41 @@ function Footer() {
               <span className="c-footer__scroll-to-top-icon">▲</span>
             </a>
             <div className="c-footer__socials">
-              <AiOutlineInstagram className="c-footer__social-media-icon" />
-              <AiOutlineTwitter className="c-footer__social-media-icon" />
-              <AiFillYoutube className="c-footer__social-media-icon" />
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <AiOutlineInstagram className="c-footer__social-media-icon" />
+              </a>
+              <a
+                href="https://www.twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <AiOutlineTwitter className="c-footer__social-media-icon" />
+              </a>
+              <a
+                href="https://www.youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <AiFillYoutube className="c-footer__social-media-icon" />
+              </a>
             </div>
           </div>
           <div className="c-footer__info">
             The Movie Tracker
             <br />
-            Powered by <a href="https://www.themoviedb.org/">themoviedb.org</a>
-            &nbsp;API
+            Powered by{' '}
+            <a
+              href="https://www.themoviedb.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              themoviedb.org
+            </a>{' '}
+            API
           </div>
 
           <div className="c-footer__logo-wrapper">
