@@ -13,12 +13,14 @@ function Footer() {
       <div className="container">
         <div className="c-footer__content-wrapper">
           <div className="c-footer__links">
+            {/* Scroll to top */}
             <div className="c-footer__links-top-row">
               <a className="c-footer__scroll-to-top" href="#top">
                 Back to Top
                 <span className="c-footer__scroll-to-top-icon">▲</span>
               </a>
             </div>
+            {/* Social media icons */}
             <div className="c-footer__links-bottom-row">
               <a
                 href="https://www.instagram.com"
@@ -46,6 +48,7 @@ function Footer() {
               </a>
             </div>
           </div>
+          {/* Info Text with API link */}
           <div className="c-footer__info">
             The Movie Tracker
             <br />
@@ -60,7 +63,7 @@ function Footer() {
             </a>{' '}
             API
           </div>
-
+          {/* Logo */}
           <div className="c-footer__logo-wrapper">
             <Image
               src={Logo}
