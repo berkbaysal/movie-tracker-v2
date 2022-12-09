@@ -12,6 +12,7 @@
 
 html {
   box-sizing: border-box; // 1
+  scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent; // 2
 }
 

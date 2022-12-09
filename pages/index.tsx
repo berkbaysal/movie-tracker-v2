@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import Navbar from '../components/Navbar/Navbar';
 import Trending from '../components/Trending/Trending';
 import getTrendingList from '../services/getTrendingList';
 import config from '../util/config';
@@ -20,7 +19,6 @@ export default function Home({ trending }: HomeProps) {
       <Head>
         <title key="title">Movie Tracker Home Page</title>
       </Head>
-      <Navbar />
       <h1 className="u-visually-hidden">Movie Tracker Home Page</h1>
       <Trending trending={trending} />
       <Featured posts={mockPostsData} />
