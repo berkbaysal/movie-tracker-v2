@@ -10,3 +10,10 @@ export interface Post {
   backgroundImage: string | StaticImageData;
   id: number;
 }
+
+export interface EditorsPick {
+  title: string;
+  posterPath: string | null;
+  year: string;
+  id: number;
+}

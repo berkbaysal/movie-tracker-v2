@@ -1,7 +1,7 @@
 import imgSlideOne from '../public/img/piano-fingers.jpg';
 import imgSlideTwo from '../public/img/movie-camera.jpg';
 import imgSlideThree from '../public/img/movie-theater.jpg';
-import { TrendingResult } from './interfacesApp';
+import { TrendingResult, EditorsPick } from './interfacesApp';
 
 export const mockPostsData = [
   {
@@ -427,3 +427,30 @@ export const mockTrendingApiData = {
   total_pages: 1000,
   total_results: 20000,
 };
+
+export const mockEditorsPicks: EditorsPick[] = [
+  {
+    title: 'Good Bye Lenin!',
+    posterPath: '/2xv7MuQFxJMK1ZV0r5fFI0FzdG0.jpg',
+    year: '2003',
+    id: 338,
+  },
+  {
+    title: 'La La Land',
+    posterPath: '/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg',
+    year: '2016',
+    id: 313369,
+  },
+  {
+    title: 'Rush',
+    posterPath: '/5akKFgS7eeXUw9rKTEujryKrH17.jpg',
+    year: '2013',
+    id: 96721,
+  },
+  {
+    title: '2001: A Space Odyssey',
+    posterPath: '/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg',
+    year: '1973',
+    id: 62,
+  },
+];

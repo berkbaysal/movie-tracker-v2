@@ -5,7 +5,8 @@ import getTrendingList from '../services/getTrendingList';
 import config from '../util/config';
 import { TrendingResult } from '../util/interfacesApp';
 import Featured from '../components/Featured/Featured';
-import { mockPostsData } from '../util/mockData';
+import { mockPostsData, mockEditorsPicks } from '../util/mockData';
+import EditorsPicks from '../components/EditorsPicks/EditorsPicks';
 
 interface HomeProps {
   trending: TrendingResult[];
@@ -22,6 +23,7 @@ export default function Home({ trending }: HomeProps) {
       <h1 className="u-visually-hidden">Movie Tracker Home Page</h1>
       <Trending trending={trending} />
       <Featured posts={mockPostsData} />
+      <EditorsPicks editorsPicks={mockEditorsPicks} />
     </div>
   );
 }
