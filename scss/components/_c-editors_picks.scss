@@ -1,0 +1,14 @@
+.c-editors-picks {
+  padding-top: 0.5rem;
+  color: $color-text;
+
+  &__content-list {
+    padding-top: pad(2xsmall);
+    padding-bottom: pad(2xsmall);
+
+    @include media-breakpoint-up(lg) {
+      padding-top: pad(small);
+      padding-bottom: pad(small);
+    }
+  }
+}

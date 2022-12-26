@@ -26,7 +26,7 @@ function Trending({ trending }: TrendingProps) {
     >
       <div className="container u-padding-right-none@sm-down">
         <div className="row">
-          <h2 className="col c-trending__section-title">Trending Today</h2>
+          <h2 className="col o-homepage-section-title">Trending Today</h2>
         </div>
         {/* Tablet & Desktop Layout */}
         <div className="row c-trending__content u-display-none@sm-down">

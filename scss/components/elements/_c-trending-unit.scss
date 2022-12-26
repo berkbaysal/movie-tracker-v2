@@ -1,5 +1,3 @@
-$trending-hover-animation: ease-out $g-transition-duration;
-
 .c-trending-unit {
   position: relative;
   display: flex;
@@ -20,7 +18,7 @@ $trending-hover-animation: ease-out $g-transition-duration;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: $trending-hover-animation;
+    transition: $g-poster-hover-transition;
 
     @include media-breakpoint-up(md) {
       &:hover {
@@ -40,7 +38,7 @@ $trending-hover-animation: ease-out $g-transition-duration;
     padding-left: pad(2xsmall);
     background-color: $color-secondary;
     font-size: 0.75rem;
-    transition: $trending-hover-animation;
+    transition: $g-poster-hover-transition;
 
     @include media-breakpoint-up(md) {
       position: absolute;

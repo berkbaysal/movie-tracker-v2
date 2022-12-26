@@ -1,7 +1,6 @@
 .o-background-container {
   padding-top: pad(xsmall);
   padding-bottom: pad(xsmall);
-  border-bottom: px-to-rem(4px) solid $color-primary;
 
   @include media-breakpoint-down(md) {
     padding-top: pad(2xsmall);

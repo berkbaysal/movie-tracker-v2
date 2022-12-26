@@ -1,0 +1,9 @@
+.o-homepage-section-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+
+  @include media-breakpoint-up(lg) {
+    font-size: 2rem;
+  }
+}

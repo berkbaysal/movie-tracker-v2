@@ -1,5 +1,24 @@
 .c-editors-picks-unit {
+  margin-bottom: 0.5rem;
+
+  &__poster-wrapper {
+    overflow: hidden;
+  }
+
+  &__poster {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: $g-poster-hover-transition;
+
+    &:hover {
+      filter: brightness(0.6);
+      transform: scale(1.05);
+    }
+  }
+
   &__title {
+    min-height: 3rem;
     margin-top: 1rem;
     font-weight: 600;
   }

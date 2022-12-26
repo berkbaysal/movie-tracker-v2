@@ -2,16 +2,6 @@
   background-color: $color-primary;
   color: $color-text-reverse;
 
-  &__section-title {
-    font-size: 1.25rem;
-    font-weight: 900;
-    text-transform: uppercase;
-
-    @include media-breakpoint-up(lg) {
-      font-size: 2rem;
-    }
-  }
-
   &__content {
     padding-top: pad(2xsmall);
     padding-bottom: pad(2xsmall);
