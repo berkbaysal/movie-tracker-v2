@@ -22,6 +22,10 @@ export default {
       name: 'Year',
       defaultValue: '2016',
     },
+    id: {
+      table: { disable: true },
+      defaultValue: 313369,
+    },
   },
 } as ComponentMeta<typeof EditorsPicksUnit>;
 

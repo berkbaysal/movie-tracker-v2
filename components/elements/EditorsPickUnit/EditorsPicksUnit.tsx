@@ -23,7 +23,7 @@ function EditorsPicksUnit({ title, posterPath, year }: EditorsPick) {
           placeholder="empty"
         />
       </div>
-      <div className="c-editors-picks-unit__title">{`${title} (${year})`}</div>
+      <h3 className="c-editors-picks-unit__title">{`${title} (${year})`}</h3>
     </div>
   );
 }
