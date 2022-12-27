@@ -18,7 +18,10 @@ function EditorsPicks({ editorsPicks }: EditorsPicksProps) {
     </li>
   ));
   return (
-    <section className="c-editors-picks container-fluid o-background-container">
+    <section
+      aria-label="Editors Picks"
+      className="c-editors-picks container-fluid o-background-container"
+    >
       <div className="container">
         <div className="row">
           <h2 className="col o-homepage-section-title">
