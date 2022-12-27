@@ -15,7 +15,7 @@ export default {
     posterPath: {
       control: 'text',
       name: 'TMDB Poster Image Path (relative)',
-      defaultValue: 'ekZobS8isE6mA53RAiGDG93hBxL.jpg',
+      defaultValue: '/ekZobS8isE6mA53RAiGDG93hBxL.jpg',
     },
     variant: {
       control: 'select',

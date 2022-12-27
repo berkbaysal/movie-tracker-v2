@@ -1,4 +1,5 @@
 .c-navbar {
+  border-bottom: px-to-rem(4px) solid $color-primary;
   background-color: #fff;
 
   &__logo {
