@@ -6,7 +6,7 @@ import Footer from '../components/Footer/Footer';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <div className="o-page-content-cotainer">
       <Head>
         <meta charSet="UTF-8" />
         <meta name="application-name" content="movie-tracker" />
@@ -17,8 +17,10 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="keywords" content="film , movie, tv shows, tv series" />
       </Head>
       <Navbar />
-      <Component {...pageProps} />
+      <div className="o-page-content-cotainer__body">
+        <Component {...pageProps} />
+      </div>
       <Footer />
-    </>
+    </div>
   );
 }

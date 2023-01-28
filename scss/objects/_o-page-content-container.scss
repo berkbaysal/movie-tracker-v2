@@ -1,0 +1,13 @@
+.o-page-content-cotainer {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  > * {
+    width: 100%;
+  }
+
+  &__body {
+    flex-grow: 1;
+  }
+}
