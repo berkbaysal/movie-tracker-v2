@@ -8,7 +8,7 @@ interface EditorsPicksProps {
 
 function EditorsPicks({ editorsPicks }: EditorsPicksProps) {
   const editorsPicksList = editorsPicks.map((pick) => (
-    <li className="col col--xs-6 col--lg-3">
+    <li className="col col--xs-6 col--lg-3" key={pick.id}>
       <EditorsPicksUnit
         title={pick.title}
         posterPath={pick.posterPath}
