@@ -1,4 +1,4 @@
-import getTrendingList from '../getTrendingList';
+import { getTrendingList } from '../apiServices';
 import '@testing-library/jest-dom';
 import { mockTrendingApiData } from '../../util/mockData';
 

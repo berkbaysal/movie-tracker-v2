@@ -1,7 +1,22 @@
+import { NextPageContext } from 'next';
 import React from 'react';
 
-function MoviePage() {
-  return <div>a</div>;
+interface IMoviePageProps {
+  id: number;
+}
+
+function MoviePage({ id }: IMoviePageProps) {
+  return <div>{id}</div>;
 }
 
 export default MoviePage;
+
+export async function getServerSideProps(context: IMoviePageContext) {
+  return { props: { id: context.params.id } };
+}
+
+interface IMoviePageContext extends NextPageContext {
+  params: {
+    id: number;
+  };
+}

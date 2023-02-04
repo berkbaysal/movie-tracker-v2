@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Trending from '../components/Trending/Trending';
-import getTrendingList from '../services/getTrendingList';
+import { getTrendingList } from '../services/apiServices';
 import config from '../util/config';
 import { TrendingResult } from '../util/interfacesApp';
 import Featured from '../components/Featured/Featured';

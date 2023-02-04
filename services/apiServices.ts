@@ -19,7 +19,7 @@ interface GetTrendingListParameters {
   period?: 'week' | 'day';
 }
 
-export default async function getTrendingList({
+export async function getTrendingList({
   limit = 20,
   period = 'week',
 }: GetTrendingListParameters = {}) {
@@ -59,4 +59,8 @@ export default async function getTrendingList({
   }
 
   return formattedResults;
+}
+
+export async function getMovieInfo(id: number) {
+  return id;
 }
