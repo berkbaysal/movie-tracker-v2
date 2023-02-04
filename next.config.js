@@ -10,6 +10,15 @@ const nextConfig = {
     locales: ['en'],
     defaultLocale: 'en',
   },
+  redirects: async () => {
+    return [
+      {
+        source: '/movie',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
