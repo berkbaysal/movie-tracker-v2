@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { mockPostsData } from '@utilities/mockData';
 import FeaturedSlide from './FeaturedSlide';
-import { mockPostsData } from '../../../util/mockData';
-import '../../../scss/main.scss';
+import '@styles';
 
 export default {
   title: 'Elements/FeaturedSlide',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import '../../scss/main.scss';
-import { mockEditorsPicks } from '../../util/mockData';
+import '@styles';
+import { mockEditorsPicks } from '@utilities/mockData';
 import EditorsPicks from './EditorsPicks';
 
 export default {

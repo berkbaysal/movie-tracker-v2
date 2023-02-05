@@ -1,6 +1,6 @@
-import imgSlideOne from '../public/img/piano-fingers.jpg';
-import imgSlideTwo from '../public/img/movie-camera.jpg';
-import imgSlideThree from '../public/img/movie-theater.jpg';
+import imgSlideOne from '@public/img/piano-fingers.jpg';
+import imgSlideTwo from '@public/img/movie-camera.jpg';
+import imgSlideThree from '@public/img/movie-theater.jpg';
 import { TrendingResult, EditorsPick } from './interfacesApp';
 
 export const mockPostsData = [

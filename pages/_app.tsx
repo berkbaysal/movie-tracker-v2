@@ -1,8 +1,7 @@
 import Head from 'next/head';
-import '../scss/main.scss';
+import '@styles';
 import type { AppProps } from 'next/app';
-import Navbar from '../components/Navbar/Navbar';
-import Footer from '../components/Footer/Footer';
+import { Navbar, Footer } from '@components';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

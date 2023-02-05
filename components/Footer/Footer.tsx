@@ -5,7 +5,7 @@ import {
   AiOutlineTwitter,
   AiFillYoutube,
 } from 'react-icons/ai';
-import Logo from '../../public/img/logo-reverse.svg';
+import Logo from '@public/img/logo-reverse.svg';
 
 function Footer() {
   return (

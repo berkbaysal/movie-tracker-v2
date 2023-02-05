@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { mockEditorsPicks } from '@utilities/mockData';
 import EditorsPicks from './EditorsPicks';
 import '@testing-library/jest-dom';
-import { mockEditorsPicks } from '../../util/mockData';
 
 const testProps = mockEditorsPicks;
 

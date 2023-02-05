@@ -1,7 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen, fireEvent } from '@testing-library/react';
-import testImage from '../../public/img/piano-fingers.jpg';
+import testImage from '@public/img/piano-fingers.jpg';
 import Featured from './Featured';
 import slideFunctions from './featuredFunctions';
 import '@testing-library/jest-dom';

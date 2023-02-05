@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, renderHook, fireEvent } from '@testing-library/react';
 import { useSwipeable } from 'react-swipeable';
-import testImage from '../../../public/img/piano-fingers.jpg';
+import testImage from '@public/img/piano-fingers.jpg';
 import FeaturedSlide from './FeaturedSlide';
 import '@testing-library/jest-dom';
 

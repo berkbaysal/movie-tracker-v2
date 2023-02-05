@@ -1,12 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
-import Trending from '../components/Trending/Trending';
-import { getTrendingList } from '../services/apiServices';
-import config from '../util/config';
-import { TrendingResult } from '../util/interfacesApp';
-import Featured from '../components/Featured/Featured';
-import { mockPostsData, mockEditorsPicks } from '../util/mockData';
-import EditorsPicks from '../components/EditorsPicks/EditorsPicks';
+import { Featured, Trending, EditorsPicks } from '@components';
+import { getTrendingList } from '@services/apiServices';
+import config from '@utilities/config';
+import { TrendingResult } from '@utilities/interfacesApp';
+import { mockPostsData, mockEditorsPicks } from '@utilities/mockData';
 
 interface HomeProps {
   trending: TrendingResult[];

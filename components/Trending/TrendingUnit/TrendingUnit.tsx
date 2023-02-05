@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { imgURL, posterSize } from '../../../util/resources';
+import { imgURL, posterSize } from '@utilities/resources';
 
 interface TrendingUnitProps {
   title: string;

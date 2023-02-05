@@ -1,6 +1,6 @@
-import { getTrendingList } from '../apiServices';
 import '@testing-library/jest-dom';
-import { mockTrendingApiData } from '../../util/mockData';
+import { getTrendingList } from '@services/apiServices';
+import { mockTrendingApiData } from '@utilities/mockData';
 
 // Mock fetch to track API calls
 global.fetch = jest.fn(() =>

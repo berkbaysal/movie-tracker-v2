@@ -1,11 +1,11 @@
 import dotenv from 'dotenv';
-import { apiURL } from '../util/resources';
+import { apiURL } from '@utilities/resources';
 import {
   MovieListResult,
   PersonListResult,
   TVListResult,
-} from '../util/interfacesAPI';
-import { TrendingResult } from '../util/interfacesApp';
+} from '@utilities/interfacesAPI';
+import { TrendingResult } from '@utilities/interfacesApp';
 
 dotenv.config();
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import { EditorsPick } from '../../../util/interfacesApp';
-import { imgURL, posterSize } from '../../../util/resources';
+import { EditorsPick } from '@utilities/interfacesApp';
+import { imgURL, posterSize } from '@utilities/resources';
 
 function EditorsPicksUnit({ title, posterPath, year }: EditorsPick) {
   // Could be changed for optimization of desing alters

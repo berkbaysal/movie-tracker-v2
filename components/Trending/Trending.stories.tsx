@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { mockTrendingResults } from '@utilities/mockData';
 import Trending from './Trending';
-import '../../scss/main.scss';
-import { mockTrendingResults } from '../../util/mockData';
+import '@styles';
 
 export default {
   title: 'Components/Trending',

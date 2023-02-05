@@ -1,6 +1,6 @@
 import React from 'react';
-import EditorsPicksUnit from '../elements/EditorsPickUnit/EditorsPicksUnit';
-import { EditorsPick } from '../../util/interfacesApp';
+import { EditorsPick } from '@utilities/interfacesApp';
+import EditorsPicksUnit from './EditorsPickUnit/EditorsPicksUnit';
 
 interface EditorsPicksProps {
   editorsPicks: EditorsPick[];

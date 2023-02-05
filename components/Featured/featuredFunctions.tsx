@@ -1,7 +1,7 @@
 import React from 'react';
 import { SwipeableHandlers } from 'react-swipeable/es/types';
-import { Post } from '../../util/interfacesApp';
-import FeaturedSlide from '../elements/FeaturedSlide/FeaturedSlide';
+import { Post } from '@utilities/interfacesApp';
+import FeaturedSlide from './FeaturedSlide/FeaturedSlide';
 
 const slideFunctions = {
   // Generates an unused key to make React treat an element as new

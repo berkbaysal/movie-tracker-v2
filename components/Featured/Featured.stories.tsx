@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import '../../scss/main.scss';
+import { mockPostsData } from '@utilities/mockData';
+import '@styles';
 import Featured from './Featured';
-import { mockPostsData } from '../../util/mockData';
 
 export default {
   title: 'Components/ Featured',

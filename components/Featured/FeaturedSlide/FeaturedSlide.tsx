@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { SwipeableHandlers } from 'react-swipeable/es/types';
-import { Post } from '../../../util/interfacesApp';
-import Button from '../Button/Button';
+import { Post } from '@utilities/interfacesApp';
+import { Button } from '@elements';
 
 interface FeaturedSlideProps extends Post {
   buttonText?: string;
