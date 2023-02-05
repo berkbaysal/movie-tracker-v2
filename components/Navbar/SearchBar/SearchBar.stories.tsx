@@ -4,7 +4,7 @@ import '@styles';
 import SearchBar from './SearchBar';
 
 export default {
-  title: 'Elements/Search Bar',
+  title: 'Sub-Components/Search Bar',
   component: SearchBar,
 } as ComponentMeta<typeof SearchBar>;
 

@@ -4,7 +4,7 @@ import '@styles';
 import TrendingUnit from './TrendingUnit';
 
 export default {
-  title: 'Elements/TrendingUnit',
+  title: 'Sub-Components/TrendingUnit',
   component: TrendingUnit,
   argTypes: {
     title: {

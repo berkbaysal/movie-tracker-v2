@@ -5,7 +5,7 @@ import FeaturedSlide from './FeaturedSlide';
 import '@styles';
 
 export default {
-  title: 'Elements/FeaturedSlide',
+  title: 'Sub-Components/FeaturedSlide',
   component: FeaturedSlide,
   parameters: {
     controls: {

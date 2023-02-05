@@ -4,7 +4,7 @@ import '@styles';
 import EditorsPicksUnit from './EditorsPicksUnit';
 
 export default {
-  title: 'Elements/EditorsPicksUnit',
+  title: 'Sub-Components/EditorsPicksUnit',
   component: EditorsPicksUnit,
   argTypes: {
     title: {
