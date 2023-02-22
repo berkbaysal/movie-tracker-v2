@@ -6,6 +6,7 @@ import {
   TVListResult,
 } from '@utilities/interfacesAPI';
 import { TrendingResult } from '@utilities/interfacesApp';
+import axios from 'axios';
 
 dotenv.config();
 
@@ -22,7 +23,7 @@ interface GetTrendingListParameters {
 export async function getTrendingList({
   limit = 20,
   period = 'week',
-}: GetTrendingListParameters = {}) {
+}: GetTrendingListParameters = {}): Promise<TrendingResult[]> {
   // Overwrite result limit to 20 if its bigger than 20.
   const maxResults = limit <= 20 ? limit : 20;
 
@@ -30,18 +31,15 @@ export async function getTrendingList({
   const params = {
     api_key: process.env.MOVIE_DB_API_KEY,
     language: 'en-US',
-    period,
   };
 
-  // Fetch results from Movie DB API
-  const fetchRes = await fetch(
-    `${apiURL}/trending/all/${params.period}?api_key=${params.api_key}`
-  );
-  const json: TrendingResponse = await fetchRes.json();
+  const fetchRes = await axios
+    .get<TrendingResponse>(`${apiURL}/trending/all/${period}`, { params })
+    .then((res) => res.data);
   // Filter results to only include TV Shows and Films, format and trim to fit custom interface
   const formattedResults: TrendingResult[] = [];
 
-  for (const result of json.results) {
+  for (const result of fetchRes.results) {
     // Filter
     if (result.media_type === 'movie') {
       formattedResults.push({
@@ -61,6 +59,14 @@ export async function getTrendingList({
   return formattedResults;
 }
 
-export async function getMovieInfo(id: number) {
-  return id;
+export async function getMovieInfo(id: number): Promise<MovieListResult> {
+  const params = {
+    api_key: process.env.MOVIE_DB_API_KEY,
+    language: 'en-US',
+  };
+  const fetchRes = await axios
+    .get<MovieListResult>(`${apiURL}/movie/${id}`, { params })
+    .then((res) => res.data);
+
+  return fetchRes;
 }
