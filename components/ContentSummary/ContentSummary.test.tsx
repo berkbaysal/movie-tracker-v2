@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import MovieDetails from './MovieDetails';
+import ContentSummary from './ContentSummary';
 import '@testing-library/jest-dom';
 
 describe('Footer Functionality', () => {
-  test('Footer renders', () => {
-    render(<MovieDetails />);
+  test('Content Summary renders', () => {
+    render(<ContentSummary />);
     expect(screen.getByRole('region')).toBeInTheDocument();
   });
 });
