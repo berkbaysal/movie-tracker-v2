@@ -1,0 +1,74 @@
+.c-content-summary {
+  height: px-to-rem(544);
+  background-color: $color-secondary;
+
+  &__container {
+    display: flex;
+    height: 100%;
+  }
+
+  &__poster {
+    width: auto;
+    height: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+  }
+
+  &__info-container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    padding: 0.5rem 2rem;
+    color: $color-text-reverse;
+
+    > :not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &__content-title {
+    font-size: 2rem;
+    font-weight: 700;
+
+    &--date {
+      color: $color-text-reverse-faded;
+    }
+  }
+
+  &__content-overview {
+    font-weight: 600;
+
+    &--tagline {
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    &--runtime {
+      color: $color-text-reverse-faded;
+    }
+  }
+
+  &__content-creators {
+    font-weight: 800;
+
+    &--creator-names {
+      font-weight: 600;
+    }
+  }
+
+  &__overview {
+    flex-grow: 1;
+
+    &--title {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    &--summary {
+      display: -webkit-box; /* stylelint-disable-line value-no-vendor-prefix */
+      overflow: hidden;
+      -webkit-box-orient: vertical; /* stylelint-disable-line value-no-vendor-prefix */
+      -webkit-line-clamp: 5;
+    }
+  }
+}

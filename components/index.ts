@@ -6,3 +6,6 @@ export { default as EditorsPicks } from './EditorsPicks/EditorsPicks';
 // Layout
 export { default as Navbar } from './Navbar/Navbar';
 export { default as Footer } from './Footer/Footer';
+
+// Content Pages
+export { default as ContentSummary } from './ContentSummary/ContentSummary';

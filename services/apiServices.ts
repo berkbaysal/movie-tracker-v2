@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { apiURL } from '@utilities/resources';
 import {
+  MovieCredits,
   MovieListResult,
   PersonListResult,
   TVListResult,
@@ -66,6 +67,18 @@ export async function getMovieInfo(id: number): Promise<MovieListResult> {
   };
   const fetchRes = await axios
     .get<MovieListResult>(`${apiURL}/movie/${id}`, { params })
+    .then((res) => res.data);
+
+  return fetchRes;
+}
+
+export async function getMovieCredits(id: number): Promise<MovieCredits> {
+  const params = {
+    api_key: process.env.MOVIE_DB_API_KEY,
+    language: 'en-US',
+  };
+  const fetchRes = await axios
+    .get(`${apiURL}/movie/${id}/credits`, { params })
     .then((res) => res.data);
 
   return fetchRes;
