@@ -30,8 +30,9 @@
     font-size: 2rem;
     font-weight: 700;
 
-    &--date {
+    &--date-and-time {
       color: $color-text-reverse-faded;
+      font-size: 1rem;
     }
   }
 

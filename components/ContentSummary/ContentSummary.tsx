@@ -34,18 +34,19 @@ function ContentSummary({ contentInfo, credits }: IContentSumamryProps) {
         />
 
         <div className="c-content-summary__info-container">
-          <h1 className="c-content-summary__content-title">
-            {contentInfo.title}
-            <span className="c-content-summary__content-title--date">{` (${new Date(
+          <div className="c-content-summary__title-container">
+            <h1 className="c-content-summary__content-title">
+              {contentInfo.title}
+            </h1>
+            <div className="c-content-summary__content-title--date-and-time">{` ${new Date(
               contentInfo.release_date
-            ).getFullYear()})`}</span>
-          </h1>
+            ).getFullYear()} •  ${contentInfo.runtime} min `}</div>
+          </div>
           <div className="c-content-summary__content-overview">
             <div className="c-content-summary__content-overview--tagline">
               {contentInfo.tagline || <br />}
             </div>
             {contentInfo.genres.map((genre) => genre.name).join(', ')}
-            <span className="c-content-summary__content-overview--runtime">{` • ${contentInfo.runtime} min`}</span>
           </div>
           <div>
             {findCrewWithJob('director').length > 0 ? (
