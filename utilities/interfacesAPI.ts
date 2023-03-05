@@ -3,12 +3,10 @@ export interface MovieListResult extends ContentListResult {
   release_date: string;
   original_title: string;
   video: boolean;
-  media_type: 'movie';
   runtime: number | null;
 }
 
 export interface TVListResult extends ContentListResult {
-  media_type: 'tv';
   first_air_date: string;
   origin_country: string[];
   original_name: string;

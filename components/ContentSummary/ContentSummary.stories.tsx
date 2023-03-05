@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import '@styles';
+import { mockMovieContentSummary } from '@utilities/mockData';
 import ContentSummary from './ContentSummary';
 
 export default {
@@ -9,7 +10,10 @@ export default {
 } as ComponentMeta<typeof ContentSummary>;
 
 const Template: ComponentStory<typeof ContentSummary> = () => (
-  <ContentSummary />
+  <ContentSummary
+    contentInfo={mockMovieContentSummary.contentInfo}
+    credits={mockMovieContentSummary.credits}
+  />
 );
 
-export const Default = Template.bind({});
+export const Movie = Template.bind({});
