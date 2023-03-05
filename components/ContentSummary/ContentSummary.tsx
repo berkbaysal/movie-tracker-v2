@@ -21,7 +21,7 @@ function ContentSummary({ contentInfo, credits }: IContentSumamryProps) {
       aria-label="Details section"
       className="container-fluid o-background-container c-content-summary"
     >
-      <div className="container c-content-summary__container u-padding-ends-xsmall">
+      <div className="container c-content-summary__container u-padding-ends-xsmall u-padding-ends-2xsmall@md-down">
         <Image
           src={`${imgURL}/${posterSize.large.url}${contentInfo.poster_path}`}
           alt={`${contentInfo.title} poster`}
@@ -80,6 +80,12 @@ function ContentSummary({ contentInfo, credits }: IContentSumamryProps) {
             </p>
           </div>
         </div>
+      </div>
+      <div className="c-content-summary__overview--separated u-padding-2xsmall">
+        <h2 className="c-content-summary__overview--title">Overview:</h2>
+        <p className="c-content-summary__overview--summary">
+          {contentInfo.overview}
+        </p>
       </div>
     </section>
   );

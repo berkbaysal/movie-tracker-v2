@@ -1,10 +1,24 @@
 .c-content-summary {
   height: px-to-rem(544);
   background-color: $color-secondary;
+  color: $color-text-reverse;
+
+  @include media-breakpoint-down(lg) {
+    font-size: 0.9rem;
+  }
+
+  @include media-breakpoint-down(sm) {
+    height: auto;
+  }
 
   &__container {
     display: flex;
     height: 100%;
+
+    @include media-breakpoint-down(xs) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   &__poster {
@@ -12,6 +26,15 @@
     height: 100%;
     border-radius: 1rem;
     object-fit: cover;
+
+    @include media-breakpoint-down(sm) {
+      max-height: px-to-rem(300px);
+    }
+
+    @include media-breakpoint-down(xs) {
+      width: 100%;
+      max-height: unset;
+    }
   }
 
   &__info-container {
@@ -19,10 +42,17 @@
     height: 100%;
     flex-direction: column;
     padding: 0.5rem 2rem;
-    color: $color-text-reverse;
+
+    @include media-breakpoint-down(xs) {
+      padding: 1rem 0.5rem;
+    }
 
     > :not(:last-child) {
       margin-bottom: 1.5rem;
+
+      @include media-breakpoint-down(md) {
+        margin-bottom: 1rem;
+      }
     }
   }
 
@@ -30,9 +60,17 @@
     font-size: 2rem;
     font-weight: 700;
 
+    @include media-breakpoint-down(lg) {
+      font-size: 1.5rem;
+    }
+
     &--date-and-time {
       color: $color-text-reverse-faded;
       font-size: 1rem;
+
+      @include media-breakpoint-down(lg) {
+        font-size: 0.8rem;
+      }
     }
   }
 
@@ -60,6 +98,13 @@
   &__overview {
     flex-grow: 1;
 
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+    @include media-breakpoint-down(xs) {
+      display: block;
+    }
+
     &--title {
       font-size: 1.5rem;
       font-weight: 700;
@@ -70,6 +115,24 @@
       overflow: hidden;
       -webkit-box-orient: vertical; /* stylelint-disable-line value-no-vendor-prefix */
       -webkit-line-clamp: 5;
+
+      @include media-breakpoint-down(md) {
+        -webkit-line-clamp: 8;
+      }
+      @include media-breakpoint-down(sm) {
+        -webkit-line-clamp: unset;
+      }
+    }
+
+    &--separated {
+      display: none;
+
+      @include media-breakpoint-down(sm) {
+        display: block;
+      }
+      @include media-breakpoint-down(xs) {
+        display: none;
+      }
     }
   }
 }
