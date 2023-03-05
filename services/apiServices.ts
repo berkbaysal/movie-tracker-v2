@@ -3,22 +3,44 @@ import { apiURL } from '@utilities/resources';
 import {
   MovieCredits,
   MovieListResult,
-  PersonListResult,
-  TVListResult,
+  TrendingResponse,
 } from '@utilities/interfacesAPI';
 import { TrendingResult } from '@utilities/interfacesApp';
 import axios from 'axios';
 
 dotenv.config();
 
-interface TrendingResponse {
-  page: number;
-  results: MovieListResult[] | TVListResult[] | PersonListResult[];
-}
-
 interface GetTrendingListParameters {
   limit?: number;
   period?: 'week' | 'day';
+}
+
+export function filterTrendingResults(
+  fetchRes: TrendingResponse,
+  maxResults: number
+): TrendingResult[] {
+  const formattedResults: TrendingResult[] = [];
+  for (const result of fetchRes.results) {
+    // Filter
+    if (result.media_type === 'movie') {
+      formattedResults.push({
+        title: result.title,
+        posterPath: result.poster_path,
+        mediaType: 'movie',
+        id: result.id,
+      });
+    } else if (result.media_type === 'tv') {
+      formattedResults.push({
+        title: result.original_name,
+        posterPath: result.poster_path,
+        mediaType: 'tv',
+        id: result.id,
+      });
+    }
+    // Stop if maxResults is reached
+    if (formattedResults.length === maxResults) break;
+  }
+  return formattedResults;
 }
 
 export async function getTrendingList({
@@ -38,26 +60,7 @@ export async function getTrendingList({
     .get<TrendingResponse>(`${apiURL}/trending/all/${period}`, { params })
     .then((res) => res.data);
   // Filter results to only include TV Shows and Films, format and trim to fit custom interface
-  const formattedResults: TrendingResult[] = [];
-
-  for (const result of fetchRes.results) {
-    // Filter
-    if (result.media_type === 'movie') {
-      formattedResults.push({
-        title: result.title,
-        posterPath: result.poster_path,
-      });
-    } else if (result.media_type === 'tv') {
-      formattedResults.push({
-        title: result.original_name,
-        posterPath: result.poster_path,
-      });
-    }
-    // Stop if maxResults is reached
-    if (formattedResults.length === maxResults) break;
-  }
-
-  return formattedResults;
+  return filterTrendingResults(fetchRes, maxResults);
 }
 
 export async function getMovieInfo(id: number): Promise<MovieListResult> {

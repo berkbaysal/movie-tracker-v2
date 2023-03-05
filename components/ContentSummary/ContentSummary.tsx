@@ -43,7 +43,10 @@ function ContentSummary({ contentInfo, credits }: IContentSumamryProps) {
             ).getFullYear()} •  ${contentInfo.runtime} min `}</div>
           </div>
           <div className="c-content-summary__content-overview">
-            <div className="c-content-summary__content-overview--tagline">
+            <div
+              className="c-content-summary__content-overview--tagline"
+              data-testid="content-tagline"
+            >
               {contentInfo.tagline || <br />}
             </div>
             {contentInfo.genres.map((genre) => genre.name).join(', ')}

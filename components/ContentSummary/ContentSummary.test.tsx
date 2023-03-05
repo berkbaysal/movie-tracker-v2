@@ -71,4 +71,27 @@ describe('Credits filter functionality', () => {
     );
     expect(screen.queryByText('Screenplay:')).toBeNull();
   });
+  test('Tagline is displayed if provided', () => {
+    render(
+      <ContentSummary
+        contentInfo={mockMovieContentSummary.contentInfo}
+        credits={mockMovieContentSummary.credits}
+      />
+    );
+    expect(screen.queryByText('The Ultimate Trip.')).toBeInTheDocument();
+  });
+  test('Empty line is displayed of tagline is lacking', () => {
+    const modifiedContentInfo = {
+      ...mockMovieContentSummary.contentInfo,
+      tagline: null,
+    };
+
+    render(
+      <ContentSummary
+        contentInfo={modifiedContentInfo}
+        credits={mockMovieContentSummary.credits}
+      />
+    );
+    expect(screen.getByTestId('content-tagline')).toContainHTML('<br />');
+  });
 });

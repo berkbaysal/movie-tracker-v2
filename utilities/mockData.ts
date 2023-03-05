@@ -1,7 +1,8 @@
 import imgSlideOne from '@public/img/piano-fingers.jpg';
 import imgSlideTwo from '@public/img/movie-camera.jpg';
 import imgSlideThree from '@public/img/movie-theater.jpg';
-import { TrendingResult, EditorsPick } from './interfacesApp';
+import { EditorsPick } from './interfacesApp';
+import { TrendingResponse } from './interfacesAPI';
 
 export const mockPostsData = [
   {
@@ -21,46 +22,7 @@ export const mockPostsData = [
   },
 ];
 
-export const mockTrendingResults: TrendingResult[] = [
-  {
-    title: 'Black Panther: Wakanda Forever',
-    posterPath: '/sv1xJUazXeYqALzczSZ3O6nkH75.jpg',
-  },
-  {
-    title: 'Black Adam',
-    posterPath: '/3zXceNTtyj5FLjwQXuPvLYK5YYL.jpg',
-  },
-  {
-    title: 'Smile',
-    posterPath: '/aPqcQwu4VGEewPhagWNncDbJ9Xp.jpg',
-  },
-  {
-    title: 'Enola Holmes 2',
-    posterPath: '/tegBpjM5ODoYoM1NjaiHVLEA0QM.jpg',
-  },
-  {
-    title: 'Amsterdam',
-    posterPath: '/6sJcVzGCwrDCBMV0DU6eRzA2UxM.jpg',
-  },
-  {
-    title: 'All Quiet on the Western Front',
-    posterPath: '/hYqOjJ7Gh1fbqXrxlIao1g8ZehF.jpg',
-  },
-  {
-    title: 'Top Gun: Maverick',
-    posterPath: '/62HCnUTziyWcpDaBO2i1DX17ljH.jpg',
-  },
-  {
-    title: 'Star Wars: Andor',
-    posterPath: '/59SVNwLfoMnZPPB6ukW6dlPxAdI.jpg',
-  },
-  {
-    title: 'Zootopia+',
-    posterPath: '/inzPPPr2BsE92m4rHhQn3sf2yPk.jpg',
-  },
-];
-
-export const mockTrendingApiData = {
+export const mockTrendingApiData: TrendingResponse = {
   page: 1,
   results: [
     {
@@ -434,24 +396,28 @@ export const mockEditorsPicks: EditorsPick[] = [
     posterPath: '/2xv7MuQFxJMK1ZV0r5fFI0FzdG0.jpg',
     year: '2003',
     id: 338,
+    mediaType: 'movie',
   },
   {
     title: 'La La Land',
     posterPath: '/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg',
     year: '2016',
     id: 313369,
+    mediaType: 'movie',
   },
   {
     title: 'Rush',
     posterPath: '/5akKFgS7eeXUw9rKTEujryKrH17.jpg',
     year: '2013',
     id: 96721,
+    mediaType: 'movie',
   },
   {
     title: '2001: A Space Odyssey',
     posterPath: '/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg',
     year: '1973',
     id: 62,
+    mediaType: 'movie',
   },
 ];
 

@@ -13,6 +13,8 @@ function Trending({ trending }: TrendingProps) {
         title={item.title}
         posterPath={item.posterPath}
         key={item.title}
+        mediaType={item.mediaType}
+        id={item.id}
         variant={index === 0 ? 'large' : 'default'}
         priority={index === 0}
       />

@@ -14,6 +14,7 @@ function EditorsPicks({ editorsPicks }: EditorsPicksProps) {
         posterPath={pick.posterPath}
         year={pick.year}
         id={pick.id}
+        mediaType={pick.mediaType}
       />
     </li>
   ));

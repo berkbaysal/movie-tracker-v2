@@ -1,8 +1,11 @@
 import { StaticImageData } from 'next/image';
+import { MediaType } from './interfacesAPI';
 
 export interface TrendingResult {
   title: string;
   posterPath: string | null;
+  mediaType: MediaType;
+  id: number;
 }
 
 export interface Post {
@@ -12,6 +15,7 @@ export interface Post {
 }
 
 export interface EditorsPick {
+  mediaType: MediaType;
   title: string;
   posterPath: string | null;
   year: string;

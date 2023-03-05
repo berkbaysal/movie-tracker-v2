@@ -1,11 +1,14 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { TrendingResult } from '@utilities/interfacesApp';
 import TrendingUnit from './TrendingUnit';
 import '@testing-library/jest-dom';
 
-const testProps = {
+const testProps: TrendingResult = {
   title: 'Test movie title',
   posterPath: 'ekZobS8isE6mA53RAiGDG93hBxL.jpg',
+  id: 123456,
+  mediaType: 'movie',
 };
 
 describe('Trending Unit Functionality', () => {
@@ -32,6 +35,10 @@ describe('Trending Unit Functionality', () => {
     expect(title).toHaveClass('c-trending-unit__title--slide-up');
     fireEvent.mouseLeave(screen.getByRole('img'));
     expect(title).not.toHaveClass('c-trending-unit__title--slide-up');
+  });
+  test('Trending unit has correct link', () => {
+    render(<TrendingUnit {...testProps} />);
+    expect(screen.getByRole('link')).toHaveAttribute('href', '/movie/123456');
   });
 });
 
