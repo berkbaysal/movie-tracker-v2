@@ -1,8 +1,15 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { mockTrendingResults } from '@utilities/mockData';
+import { filterTrendingResults } from '@services/apiServices';
+import { mockTrendingApiData } from '@utilities/mockData';
+import { TrendingResult } from '@utilities/interfacesApp';
 import Trending from './Trending';
 import '@styles';
+
+const mockTrendingResults: TrendingResult[] = filterTrendingResults(
+  mockTrendingApiData,
+  10
+);
 
 export default {
   title: 'Components/Trending',
