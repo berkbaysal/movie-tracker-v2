@@ -1,11 +1,15 @@
+import React from 'react';
 import Head from 'next/head';
-import '@styles';
-import type { AppProps } from 'next/app';
+import '../scss/main.scss';
 import { Navbar, Footer } from '@components';
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <div className="o-page-content-cotainer">
+    <html lang="en">
       <Head>
         <meta charSet="UTF-8" />
         <meta name="application-name" content="movie-tracker" />
@@ -15,11 +19,11 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <meta name="keywords" content="film , movie, tv shows, tv series" />
       </Head>
-      <Navbar />
-      <div className="o-page-content-cotainer__body">
-        <Component {...pageProps} />
-      </div>
-      <Footer />
-    </div>
+      <body className="o-page-content-cotainer">
+        <Navbar />
+        <div className="o-page-content-cotainer__body">{children}</div>
+        <Footer />
+      </body>
+    </html>
   );
 }

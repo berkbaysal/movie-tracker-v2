@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    appDir: true,
+  },
   swcMinify: true,
   images: {
     domains: ['www.themoviedb.org', 'image.tmdb.org', 'img.youtube.com'],

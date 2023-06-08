@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { BsChevronLeft } from 'react-icons/bs';
 import { useSwipeable } from 'react-swipeable';
