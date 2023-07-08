@@ -1,14 +1,13 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { filterTrendingResults } from '@services/apiServices';
 import { mockTrendingApiData } from '@utilities/mockData';
 import { TrendingResult } from '@utilities/interfacesApp';
-import Trending from './Trending';
+import { Trending } from '@components';
 import '@styles';
+import { Meta, StoryObj } from '@storybook/react';
 
 const mockTrendingResults: TrendingResult[] = filterTrendingResults(
   mockTrendingApiData,
-  10
+  9
 );
 
 export default {
@@ -19,10 +18,8 @@ export default {
       table: { disable: true },
     },
   },
-} as ComponentMeta<typeof Trending>;
+} as Meta<typeof Trending>;
 
-const Template: ComponentStory<typeof Trending> = () => (
-  <Trending trending={mockTrendingResults} />
-);
-
-export const Default = Template.bind({});
+export const Default: StoryObj<typeof Trending> = {
+  args: { trending: mockTrendingResults },
+};

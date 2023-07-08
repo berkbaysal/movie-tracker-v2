@@ -1,6 +1,5 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Button from './Button';
+import { Meta, StoryObj } from '@storybook/react';
+import { Button } from '@elements';
 import '@styles';
 
 export default {
@@ -13,12 +12,14 @@ export default {
       defaultValue: 'click me',
     },
   },
-} as ComponentMeta<typeof Button>;
+} as Meta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
-
-export const Default = Template.bind({});
-export const Reverse = Template.bind({});
-
-Default.args = { variant: 'default' };
-Reverse.args = { variant: 'reverse' };
+export const Default: StoryObj<typeof Button> = {
+  args: { variant: 'default', label: 'click me' },
+};
+export const Reverse: StoryObj<typeof Button> = {
+  args: {
+    ...Default.args,
+    variant: 'reverse',
+  },
+};

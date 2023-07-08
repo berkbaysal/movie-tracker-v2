@@ -1,8 +1,7 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import '@styles';
 import { mockEditorsPicks } from '@utilities/mockData';
-import EditorsPicks from './EditorsPicks';
+import { EditorsPicks } from '@components';
 
 export default {
   title: 'Components/ EditorsPicks',
@@ -12,10 +11,8 @@ export default {
       table: { disable: true },
     },
   },
-} as ComponentMeta<typeof EditorsPicks>;
+} as Meta<typeof EditorsPicks>;
 
-const Template: ComponentStory<typeof EditorsPicks> = () => (
-  <EditorsPicks editorsPicks={mockEditorsPicks} />
-);
-
-export const Default = Template.bind({});
+export const Default: StoryObj<typeof EditorsPicks> = {
+  args: { editorsPicks: mockEditorsPicks },
+};

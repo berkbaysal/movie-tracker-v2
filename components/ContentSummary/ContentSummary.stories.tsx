@@ -1,19 +1,24 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import '@styles';
 import { mockMovieContentSummary } from '@utilities/mockData';
-import ContentSummary from './ContentSummary';
+import { ContentSummary } from '@components';
 
 export default {
   title: 'Components/ContentSummary',
   component: ContentSummary,
-} as ComponentMeta<typeof ContentSummary>;
+  argTypes: {
+    contentInfo: {
+      table: { disable: true },
+    },
+    credits: {
+      table: { disable: true },
+    },
+  },
+} as Meta<typeof ContentSummary>;
 
-const Template: ComponentStory<typeof ContentSummary> = () => (
-  <ContentSummary
-    contentInfo={mockMovieContentSummary.contentInfo}
-    credits={mockMovieContentSummary.credits}
-  />
-);
-
-export const Movie = Template.bind({});
+export const Movie: StoryObj<typeof ContentSummary> = {
+  args: {
+    contentInfo: mockMovieContentSummary.contentInfo,
+    credits: mockMovieContentSummary.credits,
+  },
+};

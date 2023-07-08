@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import '@styles';
 import EditorsPicksUnit from './EditorsPicksUnit';
 
@@ -27,14 +27,25 @@ export default {
       defaultValue: 313369,
     },
   },
-} as ComponentMeta<typeof EditorsPicksUnit>;
+} as Meta<typeof EditorsPicksUnit>;
 
-const Template: ComponentStory<typeof EditorsPicksUnit> = (args) => {
-  return (
+export const Default: StoryObj<typeof EditorsPicksUnit> = {
+  args: {
+    title: 'La La Land',
+    posterPath: '/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg',
+    year: '2016',
+    mediaType: 'movie',
+    id: 313369,
+  },
+  render: ({ title, posterPath, year, id }) => (
     <div style={{ width: 'min(22vw, 300px)' }}>
-      <EditorsPicksUnit {...args} />
+      <EditorsPicksUnit
+        title={title}
+        posterPath={posterPath}
+        year={year}
+        mediaType="movie"
+        id={id}
+      />
     </div>
-  );
+  ),
 };
-
-export const Default = Template.bind({});

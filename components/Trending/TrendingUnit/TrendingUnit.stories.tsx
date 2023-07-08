@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import '@styles';
 import TrendingUnit from './TrendingUnit';
 
@@ -7,45 +7,42 @@ export default {
   title: 'Sub-Components/TrendingUnit',
   component: TrendingUnit,
   argTypes: {
-    title: {
-      control: 'text',
-      name: 'Film Title',
-      defaultValue: 'Film Title',
-    },
-    posterPath: {
-      control: 'text',
-      name: 'TMDB Poster Image Path (relative)',
-      defaultValue: '/ekZobS8isE6mA53RAiGDG93hBxL.jpg',
-    },
-    variant: {
-      control: 'select',
-      name: 'Variant',
-    },
-    width: {
+    id: {
       table: { disable: true },
     },
-    height: {
+    mediaType: {
+      table: { disable: true },
+    },
+    priority: {
       table: { disable: true },
     },
   },
-} as ComponentMeta<typeof TrendingUnit>;
+} as Meta<typeof TrendingUnit>;
 
-const Template: ComponentStory<typeof TrendingUnit> = (args) => {
-  const { variant } = args;
-  return (
-    <div
-      style={{
-        width: variant === 'default' ? '200px' : '350px',
-        position: 'relative',
-      }}
-    >
-      <TrendingUnit {...args} />
-    </div>
-  );
+export const Default: StoryObj<typeof TrendingUnit> = {
+  args: {
+    variant: 'default',
+    title: 'Film Title',
+    posterPath: '/ekZobS8isE6mA53RAiGDG93hBxL.jpg',
+    mediaType: 'movie',
+    id: 1,
+  },
+  render: ({ variant, title, posterPath, mediaType, id }) => {
+    return (
+      <div
+        style={{
+          width: variant === 'default' ? '200px' : '350px',
+          position: 'relative',
+        }}
+      >
+        <TrendingUnit
+          variant={variant}
+          title={title}
+          posterPath={posterPath}
+          mediaType={mediaType}
+          id={id}
+        />
+      </div>
+    );
+  },
 };
-
-export const Default = Template.bind({});
-export const Large = Template.bind({});
-
-Default.args = { variant: 'default' };
-Large.args = { variant: 'large' };

@@ -1,13 +1,10 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 import '@styles';
-import Navbar from './Navbar';
+import { Navbar } from '@components';
+import { Meta, StoryObj } from '@storybook/react';
 
 export default {
   title: 'Components/ Navbar',
   component: Navbar,
-} as ComponentMeta<typeof Navbar>;
+} as Meta<typeof Navbar>;
 
-const Template: ComponentStory<typeof Navbar> = () => <Navbar />;
-
-export const Default = Template.bind({});
+export const Default: StoryObj<typeof Navbar> = {};
