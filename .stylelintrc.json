@@ -1,3 +1,6 @@
 {
-  "extends": ["@atolye15/stylelint-config"]
+  "extends": ["@atolye15/stylelint-config"],
+  "rules": {
+    "declaration-colon-newline-after": null
+  }
 }
