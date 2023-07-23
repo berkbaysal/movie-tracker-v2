@@ -80,11 +80,7 @@ describe('Featured Section Functionality', () => {
     });
     fireEvent.touchEnd(featuredSection);
     expect(mockSlide).toBeCalledTimes(1);
-    expect(mockSlide).toBeCalledWith(
-      expect.anything(),
-      expect.anything(),
-      'right'
-    );
+    expect(mockSlide).toBeCalledWith(expect.anything(), expect.anything(), 'right');
   });
 
   test('Swipe left triggers correct callback', () => {
@@ -100,11 +96,7 @@ describe('Featured Section Functionality', () => {
     });
     fireEvent.touchEnd(featuredSection);
     expect(mockSlide).toBeCalledTimes(1);
-    expect(mockSlide).toBeCalledWith(
-      expect.anything(),
-      expect.anything(),
-      'left'
-    );
+    expect(mockSlide).toBeCalledWith(expect.anything(), expect.anything(), 'left');
   });
 
   test('Previous post button triggers correct callback', async () => {
@@ -113,11 +105,7 @@ describe('Featured Section Functionality', () => {
     const prevButton = screen.getByLabelText('previous post');
     await userEvent.click(prevButton);
     expect(mockSlide).toBeCalledTimes(1);
-    expect(mockSlide).toBeCalledWith(
-      expect.anything(),
-      expect.anything(),
-      'left'
-    );
+    expect(mockSlide).toBeCalledWith(expect.anything(), expect.anything(), 'left');
   });
 
   test('Next post button triggers correct callback', async () => {
@@ -126,11 +114,7 @@ describe('Featured Section Functionality', () => {
     const prevButton = screen.getByLabelText('next post');
     await userEvent.click(prevButton);
     expect(mockSlide).toBeCalledTimes(1);
-    expect(mockSlide).toBeCalledWith(
-      expect.anything(),
-      expect.anything(),
-      'right'
-    );
+    expect(mockSlide).toBeCalledWith(expect.anything(), expect.anything(), 'right');
   });
 
   test('Slides are correctly duplicated if there are less post than slides', () => {

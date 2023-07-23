@@ -11,16 +11,11 @@ interface IContentSumamryProps {
 
 function ContentSummary({ contentInfo, credits }: IContentSumamryProps) {
   const findCrewWithJob = (job: string) => {
-    return credits.crew
-      .filter((crew) => crew.job.toLowerCase() === job.toLowerCase())
-      .map((entry) => entry.name);
+    return credits.crew.filter((crew) => crew.job.toLowerCase() === job.toLowerCase()).map((entry) => entry.name);
   };
 
   return (
-    <section
-      aria-label="Details section"
-      className="container-fluid o-background-container c-content-summary"
-    >
+    <section aria-label="Details section" className="container-fluid o-background-container c-content-summary">
       <div className="container c-content-summary__container u-padding-ends-xsmall u-padding-ends-2xsmall@md-down">
         <Image
           src={`${imgURL}/${posterSize.large.url}${contentInfo.poster_path}`}
@@ -35,18 +30,13 @@ function ContentSummary({ contentInfo, credits }: IContentSumamryProps) {
 
         <div className="c-content-summary__info-container">
           <div className="c-content-summary__title-container">
-            <h1 className="c-content-summary__content-title">
-              {contentInfo.title}
-            </h1>
+            <h1 className="c-content-summary__content-title">{contentInfo.title}</h1>
             <div className="c-content-summary__content-title--date-and-time">{` ${new Date(
               contentInfo.release_date
             ).getFullYear()} •  ${contentInfo.runtime} min `}</div>
           </div>
           <div className="c-content-summary__content-overview">
-            <div
-              className="c-content-summary__content-overview--tagline"
-              data-testid="content-tagline"
-            >
+            <div className="c-content-summary__content-overview--tagline" data-testid="content-tagline">
               {contentInfo.tagline || <br />}
             </div>
             {contentInfo.genres.map((genre) => genre.name).join(', ')}
@@ -78,17 +68,13 @@ function ContentSummary({ contentInfo, credits }: IContentSumamryProps) {
           </div>
           <div className="c-content-summary__overview">
             <h2 className="c-content-summary__overview--title">Overview:</h2>
-            <p className="c-content-summary__overview--summary">
-              {contentInfo.overview}
-            </p>
+            <p className="c-content-summary__overview--summary">{contentInfo.overview}</p>
           </div>
         </div>
       </div>
       <div className="c-content-summary__overview--separated u-padding-2xsmall">
         <h2 className="c-content-summary__overview--title">Overview:</h2>
-        <p className="c-content-summary__overview--summary">
-          {contentInfo.overview}
-        </p>
+        <p className="c-content-summary__overview--summary">{contentInfo.overview}</p>
       </div>
     </section>
   );

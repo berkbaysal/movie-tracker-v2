@@ -7,13 +7,7 @@ interface ButtonProps extends React.InputHTMLAttributes<HTMLButtonElement> {
   type?: 'button' | 'submit' | 'reset';
 }
 
-function Button({
-  label,
-  variant = 'default',
-  role = 'button',
-  type = 'button',
-  ...props
-}: ButtonProps) {
+function Button({ label, variant = 'default', role = 'button', type = 'button', ...props }: ButtonProps) {
   return (
     <button
       className={`c-button ${variant === 'reverse' ? 'c-button--reverse' : ''}`}

@@ -39,13 +39,7 @@ export const Default: StoryObj<typeof EditorsPicksUnit> = {
   },
   render: ({ title, posterPath, year, id }) => (
     <div style={{ width: 'min(22vw, 300px)' }}>
-      <EditorsPicksUnit
-        title={title}
-        posterPath={posterPath}
-        year={year}
-        mediaType="movie"
-        id={id}
-      />
+      <EditorsPicksUnit title={title} posterPath={posterPath} year={year} mediaType="movie" id={id} />
     </div>
   ),
 };

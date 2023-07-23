@@ -6,10 +6,7 @@ import { filterTrendingResults } from '@services/apiServices';
 import Trending from './Trending';
 import '@testing-library/jest-dom';
 
-const mockTrendingResults: TrendingResult[] = filterTrendingResults(
-  mockTrendingApiData,
-  10
-);
+const mockTrendingResults: TrendingResult[] = filterTrendingResults(mockTrendingApiData, 10);
 
 describe('Trending Section Functionality', () => {
   test('Trending section renders', () => {

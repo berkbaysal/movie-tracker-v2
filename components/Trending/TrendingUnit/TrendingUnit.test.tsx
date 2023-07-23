@@ -45,15 +45,11 @@ describe('Trending Unit Functionality', () => {
 describe('Trending Unit Variants', () => {
   test('Modifier class is NOT applied to title when deafult variant is selected', () => {
     render(<TrendingUnit {...testProps} variant="default" />);
-    expect(screen.getByRole('heading')).not.toHaveClass(
-      'c-trending-unit__title--top-trending'
-    );
+    expect(screen.getByRole('heading')).not.toHaveClass('c-trending-unit__title--top-trending');
   });
 
   test('Modifier class is applied to title when large variant is selected', () => {
     render(<TrendingUnit {...testProps} variant="large" />);
-    expect(screen.getByRole('heading')).toHaveClass(
-      'c-trending-unit__title--top-trending'
-    );
+    expect(screen.getByRole('heading')).toHaveClass('c-trending-unit__title--top-trending');
   });
 });

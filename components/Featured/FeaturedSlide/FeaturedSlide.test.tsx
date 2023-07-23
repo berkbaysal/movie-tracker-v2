@@ -33,9 +33,7 @@ describe('Featured Slide Functionality', () => {
         <FeaturedSlide {...testProps} swipeHandler={swipeHook} />
       </div>
     );
-    expect(
-      screen.getByTestId('featured-slide').childNodes[0]
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('featured-slide').childNodes[0]).toBeInTheDocument();
   });
 
   test('Slide has button', () => {
@@ -45,11 +43,7 @@ describe('Featured Slide Functionality', () => {
 
   test('Slide button has correct label', () => {
     render(
-      <FeaturedSlide
-        postTitle={testProps.postTitle}
-        backgroundImage={testProps.backgroundImage}
-        id={testProps.id}
-      />
+      <FeaturedSlide postTitle={testProps.postTitle} backgroundImage={testProps.backgroundImage} id={testProps.id} />
     );
     expect(screen.getByRole('link')).toHaveTextContent('Read more');
   });
@@ -61,9 +55,7 @@ describe('Featured Slide Functionality', () => {
 
   test('Slide has correct title', () => {
     render(<FeaturedSlide {...testProps} />);
-    expect(screen.getByRole('heading')).toHaveTextContent(
-      'This is a test title'
-    );
+    expect(screen.getByRole('heading')).toHaveTextContent('This is a test title');
   });
 
   test('Slide button is disabled if swipeHandler is not defined', () => {

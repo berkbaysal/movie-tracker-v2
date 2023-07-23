@@ -32,12 +32,8 @@ function Trending({ trending }: TrendingProps) {
         </div>
         {/* Tablet & Desktop Layout */}
         <div className="row c-trending__content u-display-none@sm-down">
-          <div className="col col--sm-4 u-padding-right-2xsmall">
-            {trendingGrid[0]}
-          </div>
-          <div className="col col--sm-8 c-trending__poster-grid u-padding-left-2xsmall">
-            {trendingGrid.slice(1)}
-          </div>
+          <div className="col col--sm-4 u-padding-right-2xsmall">{trendingGrid[0]}</div>
+          <div className="col col--sm-8 c-trending__poster-grid u-padding-left-2xsmall">{trendingGrid.slice(1)}</div>
         </div>
         {/* Moblie Layout */}
         <div className="c-trending__content u-display-none@md-up">

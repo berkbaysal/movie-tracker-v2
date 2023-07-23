@@ -5,10 +5,7 @@ import { Trending } from '@components';
 import '@styles';
 import { Meta, StoryObj } from '@storybook/react';
 
-const mockTrendingResults: TrendingResult[] = filterTrendingResults(
-  mockTrendingApiData,
-  9
-);
+const mockTrendingResults: TrendingResult[] = filterTrendingResults(mockTrendingApiData, 9);
 
 export default {
   title: 'Components/Trending',

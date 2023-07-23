@@ -17,14 +17,10 @@ interface FeaturedProps {
 
 function Featured({ posts, buttonText = 'Read more' }: FeaturedProps) {
   // State holds indexes of currently rendered slides (.slides) and keys assigned to them (.keys)
-  const [renderedSlides, setRenderedSlides] = useState(
-    slideFunctions.initSlides(posts, bufferSlideCount)
-  );
+  const [renderedSlides, setRenderedSlides] = useState(slideFunctions.initSlides(posts, bufferSlideCount));
 
   function slide(direction: 'left' | 'right') {
-    setRenderedSlides((oldRenderedSlides) =>
-      slideFunctions.slide(oldRenderedSlides, posts, direction)
-    );
+    setRenderedSlides((oldRenderedSlides) => slideFunctions.slide(oldRenderedSlides, posts, direction));
   }
 
   const swipeHandler = useSwipeable({
@@ -34,10 +30,7 @@ function Featured({ posts, buttonText = 'Read more' }: FeaturedProps) {
   });
 
   return (
-    <section
-      aria-label="featured posts"
-      className="container-fluid u-padding-none c-featured"
-    >
+    <section aria-label="featured posts" className="container-fluid u-padding-none c-featured">
       <div className="container c-featured__control-overlay">
         <BsChevronLeft
           role="button"
@@ -54,15 +47,7 @@ function Featured({ posts, buttonText = 'Read more' }: FeaturedProps) {
           onClick={() => slide('right')}
         />
       </div>
-      <ul>
-        {slideFunctions.createSlides(
-          renderedSlides,
-          posts,
-          bufferSlideCount,
-          swipeHandler,
-          buttonText
-        )}
-      </ul>
+      <ul>{slideFunctions.createSlides(renderedSlides, posts, bufferSlideCount, swipeHandler, buttonText)}</ul>
     </section>
   );
 }

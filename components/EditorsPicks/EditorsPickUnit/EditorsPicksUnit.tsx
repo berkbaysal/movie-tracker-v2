@@ -4,13 +4,7 @@ import { EditorsPick } from '@utilities/interfacesApp';
 import { imgURL, posterSize } from '@utilities/resources';
 import Link from 'next/link';
 
-function EditorsPicksUnit({
-  title,
-  posterPath,
-  year,
-  mediaType,
-  id,
-}: EditorsPick) {
+function EditorsPicksUnit({ title, posterPath, year, mediaType, id }: EditorsPick) {
   // Could be changed for optimization of desing alters
   const optimalImageSize = posterSize.medium;
 

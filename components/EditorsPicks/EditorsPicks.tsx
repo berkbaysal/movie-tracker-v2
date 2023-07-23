@@ -19,19 +19,12 @@ function EditorsPicks({ editorsPicks }: EditorsPicksProps) {
     </li>
   ));
   return (
-    <section
-      aria-label="Editors Picks"
-      className="c-editors-picks container-fluid o-background-container"
-    >
+    <section aria-label="Editors Picks" className="c-editors-picks container-fluid o-background-container">
       <div className="container">
         <div className="row">
-          <h2 className="col o-homepage-section-title">
-            Handpicked by our editors
-          </h2>
+          <h2 className="col o-homepage-section-title">Handpicked by our editors</h2>
         </div>
-        <ul className="row  c-editors-picks__content-list">
-          {editorsPicksList}
-        </ul>
+        <ul className="row  c-editors-picks__content-list">{editorsPicksList}</ul>
       </div>
     </section>
   );

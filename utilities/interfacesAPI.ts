@@ -119,10 +119,7 @@ interface TrendingPersonResponse extends TrendingBaseResponse {
   known_for_department: string[];
 }
 
-type TrendingResponseResults =
-  | TrendingMovieResponse
-  | TrendingPersonResponse
-  | TrendingTVResponse;
+type TrendingResponseResults = TrendingMovieResponse | TrendingPersonResponse | TrendingTVResponse;
 
 export interface TrendingResponse {
   page: number;

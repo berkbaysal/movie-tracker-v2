@@ -10,11 +10,7 @@ function Navbar() {
       <div className="container">
         <div className="row">
           <div className="col  u-display-flex">
-            <Image
-              src={Logo}
-              alt="Movie tracker logo"
-              className="c-navbar__logo"
-            />
+            <Image src={Logo} alt="Movie tracker logo" className="c-navbar__logo" />
             <div className="c-navbar__menu">
               <SearchBar />
               <Button label="Log In" role="link" />

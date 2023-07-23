@@ -15,10 +15,7 @@ function SearchBar() {
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <AiOutlineSearch
-        className="c-search-bar__search-icon u-display-none@md-up"
-        role="button"
-      />
+      <AiOutlineSearch className="c-search-bar__search-icon u-display-none@md-up" role="button" />
     </div>
   );
 }

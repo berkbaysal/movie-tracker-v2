@@ -7,10 +7,7 @@ import '@testing-library/jest-dom';
 describe('Footer Functionality', () => {
   test('Content Summary renders', () => {
     render(
-      <ContentSummary
-        contentInfo={mockMovieContentSummary.contentInfo}
-        credits={mockMovieContentSummary.credits}
-      />
+      <ContentSummary contentInfo={mockMovieContentSummary.contentInfo} credits={mockMovieContentSummary.credits} />
     );
     expect(screen.getByRole('region')).toBeInTheDocument();
   });
@@ -19,25 +16,15 @@ describe('Footer Functionality', () => {
 describe('Credits filter functionality', () => {
   test('Credits is correctly filtered for directing', () => {
     render(
-      <ContentSummary
-        contentInfo={mockMovieContentSummary.contentInfo}
-        credits={mockMovieContentSummary.credits}
-      />
+      <ContentSummary contentInfo={mockMovieContentSummary.contentInfo} credits={mockMovieContentSummary.credits} />
     );
-    expect(screen.getByText('Directing:')).toHaveTextContent(
-      'Directing: Stanley Kubrick'
-    );
+    expect(screen.getByText('Directing:')).toHaveTextContent('Directing: Stanley Kubrick');
   });
   test('Credits is correctly filtered for screenplay', () => {
     render(
-      <ContentSummary
-        contentInfo={mockMovieContentSummary.contentInfo}
-        credits={mockMovieContentSummary.credits}
-      />
+      <ContentSummary contentInfo={mockMovieContentSummary.contentInfo} credits={mockMovieContentSummary.credits} />
     );
-    expect(screen.getByText('Screenplay:')).toHaveTextContent(
-      'Screenplay: Stanley Kubrick, Arthur C. Clarke'
-    );
+    expect(screen.getByText('Screenplay:')).toHaveTextContent('Screenplay: Stanley Kubrick, Arthur C. Clarke');
   });
   test('Credits is correctly filtered for directing', () => {
     const filteredCrew = mockMovieContentSummary.credits.crew.filter(
@@ -47,12 +34,7 @@ describe('Credits filter functionality', () => {
       ...mockMovieContentSummary.credits,
       crew: filteredCrew,
     };
-    render(
-      <ContentSummary
-        contentInfo={mockMovieContentSummary.contentInfo}
-        credits={filteredCredits}
-      />
-    );
+    render(<ContentSummary contentInfo={mockMovieContentSummary.contentInfo} credits={filteredCredits} />);
     expect(screen.queryByText('Directing:')).toBeNull();
   });
   test('Credits is correctly filtered for screenplay', () => {
@@ -63,20 +45,12 @@ describe('Credits filter functionality', () => {
       ...mockMovieContentSummary.credits,
       crew: filteredCrew,
     };
-    render(
-      <ContentSummary
-        contentInfo={mockMovieContentSummary.contentInfo}
-        credits={filteredCredits}
-      />
-    );
+    render(<ContentSummary contentInfo={mockMovieContentSummary.contentInfo} credits={filteredCredits} />);
     expect(screen.queryByText('Screenplay:')).toBeNull();
   });
   test('Tagline is displayed if provided', () => {
     render(
-      <ContentSummary
-        contentInfo={mockMovieContentSummary.contentInfo}
-        credits={mockMovieContentSummary.credits}
-      />
+      <ContentSummary contentInfo={mockMovieContentSummary.contentInfo} credits={mockMovieContentSummary.credits} />
     );
     expect(screen.queryByText('The Ultimate Trip.')).toBeInTheDocument();
   });
@@ -86,12 +60,7 @@ describe('Credits filter functionality', () => {
       tagline: null,
     };
 
-    render(
-      <ContentSummary
-        contentInfo={modifiedContentInfo}
-        credits={mockMovieContentSummary.credits}
-      />
-    );
+    render(<ContentSummary contentInfo={modifiedContentInfo} credits={mockMovieContentSummary.credits} />);
     expect(screen.getByTestId('content-tagline')).toContainHTML('<br />');
   });
 });

@@ -35,13 +35,7 @@ export const Default: StoryObj<typeof TrendingUnit> = {
           position: 'relative',
         }}
       >
-        <TrendingUnit
-          variant={variant}
-          title={title}
-          posterPath={posterPath}
-          mediaType={mediaType}
-          id={id}
-        />
+        <TrendingUnit variant={variant} title={title} posterPath={posterPath} mediaType={mediaType} id={id} />
       </div>
     );
   },

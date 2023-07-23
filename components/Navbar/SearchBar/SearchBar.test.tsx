@@ -12,10 +12,7 @@ describe('Search Bar Functionality', () => {
 
   test('Search bar has placeholder text', () => {
     render(<SearchBar />);
-    expect(screen.getByRole('searchbox')).toHaveProperty(
-      'placeholder',
-      'Search...'
-    );
+    expect(screen.getByRole('searchbox')).toHaveProperty('placeholder', 'Search...');
   });
 
   test('Correct utility classes are applied for rendering search UI separately on mobile', () => {

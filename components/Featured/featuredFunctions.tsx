@@ -73,9 +73,7 @@ const slideFunctions = {
             id={post.id}
             buttonText={buttonText}
             key={post.id}
-            swipeHandler={
-              renderIndex === bufferSlideCount ? swipeHandler : undefined
-            }
+            swipeHandler={renderIndex === bufferSlideCount ? swipeHandler : undefined}
           />
         </li>
       );
@@ -83,19 +81,12 @@ const slideFunctions = {
   },
 
   // Slides in a direction based on input
-  slide(
-    oldRenderedSlides: { slides: number[]; keys: number[] },
-    posts: Post[],
-    side: 'left' | 'right'
-  ) {
+  slide(oldRenderedSlides: { slides: number[]; keys: number[] }, posts: Post[], side: 'left' | 'right') {
     let { slides, keys } = oldRenderedSlides;
     const size = slides.length;
 
     if (side === 'right') {
-      const newSlideIndex = this.getNextSlideIndex(
-        slides[size - 1],
-        posts.length
-      );
+      const newSlideIndex = this.getNextSlideIndex(slides[size - 1], posts.length);
       const newSlideKey = this.getFreshKey(keys, posts[newSlideIndex].id);
       slides = [...slides.slice(1, size), newSlideIndex];
       keys = [...keys.slice(1, size), newSlideKey];
