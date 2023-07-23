@@ -9,3 +9,4 @@ export { default as Footer } from './Footer/Footer';
 
 // Content Pages
 export { default as ContentSummary } from './ContentSummary/ContentSummary';
+export { default as CastSlider } from './CastSlider/CastSlider';
