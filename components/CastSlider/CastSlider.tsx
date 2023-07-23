@@ -1,6 +1,8 @@
 'use client';
 
 import { MovieCastCredit } from '@utilities/interfacesAPI';
+import { imgURL, posterSize } from '@utilities/resources';
+import Image from 'next/image';
 import React, { useState, useEffect, useRef } from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
@@ -81,10 +83,10 @@ function CastSlider({ cast }: ICastSliderProps) {
       setSliderState(INITIAL_SLIDE_STATE);
     }
 
-    document.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      document.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -92,46 +94,58 @@ function CastSlider({ cast }: ICastSliderProps) {
     <section aria-label="Cast" className="container-fluid o-background-container">
       <div className="container">
         <div className="row">
-          <div className="col u-background-color-success">
-            <div>
-              <div className="c-cast-slider" ref={slider}>
-                <div
-                  className="c-cast-slider__slider-frame"
-                  ref={sliderFrame}
-                  style={{ transform: `translateX(-${sliderState.currentOffset}px)` }}
-                >
-                  {cast.map((castMember) => (
-                    <div className="c-cast-slider__cast-image">{castMember.name}</div>
-                  ))}
-                </div>
+          <div className="col">
+            <div className="c-cast-slider" ref={slider}>
+              <div
+                className="c-cast-slider__slider-frame"
+                ref={sliderFrame}
+                style={{ transform: `translateX(-${sliderState.currentOffset}px)` }}
+              >
+                {cast.map((castMember) => (
+                  <div className="c-cast-slider__cast-member">
+                    <div className="c-cast-slider__cast-image-wrapper">
+                      <Image
+                        src={`${imgURL}/${posterSize.medium.url}${castMember.profile_path}`}
+                        width={posterSize.medium.width}
+                        height={posterSize.medium.height}
+                        alt={`${castMember.name} profile image`}
+                        className="c-cast-slider__cast-image"
+                      />
+                    </div>
+                    <div className="c-cast-slider__cast-info">
+                      <div className="c-cast-slider__cast-name">{castMember.name}</div>
+                      <div className="c-cast-slider__character-name">{castMember.character}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
-              {sliderState.edgeVisible !== 'left' && (
-                <div
-                  className="c-cast-slider__slider-control-overlay c-cast-slider__slider-control-overlay--left"
-                  ref={leftControl}
-                >
-                  <BsChevronLeft
-                    className="c-cast-slider__slider-control"
-                    onClick={() => {
-                      handleSlide('left');
-                    }}
-                  />
-                </div>
-              )}
-              {sliderState.edgeVisible !== 'right' && (
-                <div
-                  className="c-cast-slider__slider-control-overlay c-cast-slider__slider-control-overlay--right"
-                  ref={rightControl}
-                >
-                  <BsChevronRight
-                    className="c-cast-slider__slider-control"
-                    onClick={() => {
-                      handleSlide('right');
-                    }}
-                  />
-                </div>
-              )}
             </div>
+            {sliderState.edgeVisible !== 'left' && (
+              <div
+                className="c-cast-slider__slider-control-overlay c-cast-slider__slider-control-overlay--left"
+                ref={leftControl}
+              >
+                <BsChevronLeft
+                  className="c-cast-slider__slider-control"
+                  onClick={() => {
+                    handleSlide('left');
+                  }}
+                />
+              </div>
+            )}
+            {sliderState.edgeVisible !== 'right' && (
+              <div
+                className="c-cast-slider__slider-control-overlay c-cast-slider__slider-control-overlay--right"
+                ref={rightControl}
+              >
+                <BsChevronRight
+                  className="c-cast-slider__slider-control"
+                  onClick={() => {
+                    handleSlide('right');
+                  }}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
