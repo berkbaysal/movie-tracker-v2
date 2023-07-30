@@ -1,46 +1,56 @@
-$cast-member-image-aspect-ratio: 92/138;
-$cast-member-image-height: 15rem;
-
 .c-cast-slider {
-  overflow: hidden;
+  position: relative;
+  display: grid;
+
+  grid-template-columns: 3rem auto 3rem;
+
+  &__slider-wrapper {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 1;
+  }
 
   &__slider-frame {
     position: relative;
     display: flex;
+    width: 100%;
     height: 100%;
-    gap: 1rem;
+    gap: 0.5rem;
     transition: $g-transition-duration ease-in-out;
   }
 
   &__cast-image {
     width: 100%;
     height: 100%;
-    aspect-ratio: $cast-member-image-aspect-ratio;
     object-fit: cover;
   }
 
   &__cast-image-wrapper {
     overflow: hidden;
-    height: $cast-member-image-height;
-    aspect-ratio: $cast-member-image-aspect-ratio;
+    width: 100%;
+    aspect-ratio: 92/138;
     border-radius: 0.5rem;
   }
 
   &__cast-member {
+    position: relative;
     display: flex;
-    width: calc($cast-member-image-height * $cast-member-image-aspect-ratio);
     height: 100%;
     flex-direction: column;
   }
 
   &__cast-info {
+    bottom: 0;
+    left: 0;
     display: flex;
-    width: calc($cast-member-image-height * $cast-member-image-aspect-ratio);
     height: 3rem;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-align: center;
     white-space: nowrap;
   }
@@ -61,29 +71,22 @@ $cast-member-image-height: 15rem;
   }
 
   &__slider-control-overlay {
-    position: absolute;
-    top: 50%;
     display: flex;
     width: 3rem;
     height: 100%;
     align-items: center;
-    transform: translateY(-50%);
-
-    &--right {
-      right: 0;
-      justify-content: flex-end;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%);
-    }
-
-    &--left {
-      left: 0;
-      justify-content: flex-start;
-      background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%);
-    }
+    justify-content: center;
+    background-color: $color-text-reverse;
+    color: $color-text-reverse;
   }
 
   &__slider-control {
     color: $color-text;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    transition: $g-transition-duration ease-in-out;
+
+    &:hover {
+      color: $color-primary;
+    }
   }
 }
