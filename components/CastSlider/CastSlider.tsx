@@ -89,62 +89,66 @@ function CastSlider({ cast }: ICastSliderProps) {
   }, [slider.current?.clientWidth]);
 
   return (
-    <section
-      aria-label="Cast"
-      className="container-fluid o-background-container c-cast-slider__ignores-bounds-on-touch"
-    >
-      <div className="container c-cast-slider__ignores-bounds-on-touch">
-        <div className="row c-cast-slider__ignores-bounds-on-touch">
-          <div className="col  u-position-relative c-cast-slider__ignores-bounds-on-touch">
-            <div className="c-cast-slider">
-              <div className="c-cast-slider__slider-control-overlay">
-                <BsChevronLeft
-                  className="c-cast-slider__slider-control"
-                  style={sliderState.edgeVisible === 'right' ? inactiveButtonStyle : activeButtonStyle}
-                  role="button"
-                  onClick={() => {
-                    handleScroll('left');
-                  }}
-                />
-              </div>
-              <div className="c-cast-slider__slider-wrapper" ref={slider}>
-                <div
-                  className="c-cast-slider__slider-frame"
-                  ref={sliderFrame}
-                  style={{ transform: `translateX(-${sliderState.currentOffset}px)` }}
-                >
-                  {cast.map((castMember) => (
-                    <div className="c-cast-slider__cast-member" key={castMember.cast_id}>
-                      <div className="c-cast-slider__cast-image-wrapper" style={{ width: `${castPictureWidth}px` }}>
-                        <Image
-                          src={
-                            castMember.profile_path
-                              ? `${imgURL}/${posterSize.medium.url}${castMember.profile_path}`
-                              : PlaceholderAvatar
-                          }
-                          width={posterSize.medium.width}
-                          height={posterSize.medium.height}
-                          alt={`${castMember.name} profile image`}
-                          className="c-cast-slider__cast-image"
-                        />
-                      </div>
-                      <div className="c-cast-slider__cast-info" style={{ width: `${castPictureWidth}px` }}>
-                        <div className="c-cast-slider__cast-name">{castMember.name}</div>
-                        <div className="c-cast-slider__character-name">{castMember.character}</div>
-                      </div>
-                    </div>
-                  ))}
+    <section aria-label="Cast">
+      <div className="container-fluid o-background-container">
+        <div className="container">
+          <h2 className="c-cast-slider__title">Cast:</h2>
+        </div>
+      </div>
+      <div className="container-fluid o-background-container c-cast-slider__ignores-bounds-on-touch">
+        <div className="container c-cast-slider__ignores-bounds-on-touch">
+          <div className="row c-cast-slider__ignores-bounds-on-touch">
+            <div className="col  u-position-relative c-cast-slider__ignores-bounds-on-touch">
+              <div className="c-cast-slider">
+                <div className="c-cast-slider__slider-control-overlay">
+                  <BsChevronLeft
+                    className="c-cast-slider__slider-control"
+                    style={sliderState.edgeVisible === 'right' ? inactiveButtonStyle : activeButtonStyle}
+                    role="button"
+                    onClick={() => {
+                      handleScroll('left');
+                    }}
+                  />
                 </div>
-              </div>
-              <div className="c-cast-slider__slider-control-overlay">
-                <BsChevronRight
-                  className="c-cast-slider__slider-control"
-                  style={sliderState.edgeVisible === 'left' ? inactiveButtonStyle : activeButtonStyle}
-                  role="button"
-                  onClick={() => {
-                    handleScroll('right');
-                  }}
-                />
+                <div className="c-cast-slider__slider-wrapper" ref={slider}>
+                  <div
+                    className="c-cast-slider__slider-frame"
+                    ref={sliderFrame}
+                    style={{ transform: `translateX(-${sliderState.currentOffset}px)` }}
+                  >
+                    {cast.map((castMember) => (
+                      <div className="c-cast-slider__cast-member" key={castMember.cast_id}>
+                        <div className="c-cast-slider__cast-image-wrapper" style={{ width: `${castPictureWidth}px` }}>
+                          <Image
+                            src={
+                              castMember.profile_path
+                                ? `${imgURL}/${posterSize.medium.url}${castMember.profile_path}`
+                                : PlaceholderAvatar
+                            }
+                            width={posterSize.medium.width}
+                            height={posterSize.medium.height}
+                            alt={`${castMember.name} profile image`}
+                            className="c-cast-slider__cast-image"
+                          />
+                        </div>
+                        <div className="c-cast-slider__cast-info" style={{ width: `${castPictureWidth}px` }}>
+                          <div className="c-cast-slider__cast-name">{castMember.name}</div>
+                          <div className="c-cast-slider__character-name">{castMember.character}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="c-cast-slider__slider-control-overlay">
+                  <BsChevronRight
+                    className="c-cast-slider__slider-control"
+                    style={sliderState.edgeVisible === 'left' ? inactiveButtonStyle : activeButtonStyle}
+                    role="button"
+                    onClick={() => {
+                      handleScroll('right');
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
