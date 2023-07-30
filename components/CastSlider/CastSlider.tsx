@@ -1,5 +1,6 @@
 'use client';
 
+import PlaceholderAvatar from '@public/img/placeholder_avatar.png';
 import { MovieCastCredit } from '@utilities/interfacesAPI';
 import { imgURL, posterSize } from '@utilities/resources';
 import Image from 'next/image';
@@ -75,7 +76,7 @@ function CastSlider({ cast }: ICastSliderProps) {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [slider.current?.clientWidth]);
 
   return (
     <section aria-label="Cast" className="container-fluid o-background-container">
@@ -103,7 +104,11 @@ function CastSlider({ cast }: ICastSliderProps) {
                     <div className="c-cast-slider__cast-member" key={castMember.cast_id}>
                       <div className="c-cast-slider__cast-image-wrapper" style={{ width: `${castPictureWidth}px` }}>
                         <Image
-                          src={`${imgURL}/${posterSize.medium.url}${castMember.profile_path}`}
+                          src={
+                            castMember.profile_path
+                              ? `${imgURL}/${posterSize.medium.url}${castMember.profile_path}`
+                              : PlaceholderAvatar
+                          }
                           width={posterSize.medium.width}
                           height={posterSize.medium.height}
                           alt={`${castMember.name} profile image`}
