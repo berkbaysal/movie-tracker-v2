@@ -12,7 +12,20 @@ export const INITIAL_SLIDE_STATE: ICastSliderState = {
   edgeVisible: 'right',
 };
 
-export const SLIDES_PER_PAGE = 7;
+export function getSlidesPerPage(sliderSize: number) {
+  switch (true) {
+    case sliderSize < 400:
+      return 2;
+    case sliderSize < 768:
+      return 4;
+    case sliderSize < 800:
+      return 5;
+    case sliderSize < 1000:
+      return 6;
+    default:
+      return 7;
+  }
+}
 
 export const activeButtonStyle = { opacity: 1, cursor: 'pointer' };
 export const inactiveButtonStyle = { opacity: 0, cursor: 'default', pointerEvents: 'none' };

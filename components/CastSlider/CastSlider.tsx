@@ -11,7 +11,7 @@ import {
   ICastSliderState,
   inactiveButtonStyle,
   INITIAL_SLIDE_STATE,
-  SLIDES_PER_PAGE,
+  getSlidesPerPage,
 } from './castSliderConfig';
 
 interface ICastSliderProps {
@@ -27,19 +27,28 @@ function CastSlider({ cast }: ICastSliderProps) {
   function setCastPictureSize() {
     if (!sliderFrame.current || !slider.current) return;
     const sliderWidth = slider.current.clientWidth ?? 0;
+    const slidesPerPage = getSlidesPerPage(sliderWidth);
     const styleGap = parseFloat(getComputedStyle(sliderFrame.current).gap);
     const gapWidth = Number.isNaN(styleGap) ? 0 : styleGap;
-    const targetWidth = (sliderWidth - (SLIDES_PER_PAGE - 1) * gapWidth) / SLIDES_PER_PAGE;
+    let targetWidth = 0;
+    if (matchMedia('(hover: none)').matches) {
+      const targetSlides = slidesPerPage + 0.5;
+      targetWidth = (sliderWidth - (targetSlides - 1) * gapWidth) / targetSlides;
+    } else {
+      targetWidth = (sliderWidth - (slidesPerPage - 1) * gapWidth) / slidesPerPage;
+    }
     setCastPictureWidth(targetWidth);
   }
 
   function handleScroll(slide: 'left' | 'right') {
     if (!sliderFrame.current || !slider.current) return;
-    const totalPages = Math.ceil(cast.length / SLIDES_PER_PAGE);
+    const sliderWidth = slider.current.clientWidth ?? 0;
+    const slidesPerPage = getSlidesPerPage(sliderWidth);
+    const totalPages = Math.ceil(cast.length / slidesPerPage);
     const styleGap = parseFloat(getComputedStyle(sliderFrame.current).gap);
     const gapWidth = Number.isNaN(styleGap) ? 0 : styleGap;
-    let leftOver = (cast.length % SLIDES_PER_PAGE) * (castPictureWidth + gapWidth);
-    const pageOffset = (castPictureWidth + gapWidth) * SLIDES_PER_PAGE;
+    let leftOver = (cast.length % slidesPerPage) * (castPictureWidth + gapWidth);
+    const pageOffset = (castPictureWidth + gapWidth) * slidesPerPage;
     if (leftOver === 0) leftOver = pageOffset;
     const maxOffset = (totalPages - 1) * pageOffset + leftOver - slider.current.clientWidth - gapWidth;
     if (slide === 'left') {
@@ -69,6 +78,7 @@ function CastSlider({ cast }: ICastSliderProps) {
     setCastPictureSize();
     function handleResize() {
       setSliderState(INITIAL_SLIDE_STATE);
+      slider.current?.scrollTo(0, 0);
       setCastPictureSize();
     }
     window.addEventListener('resize', handleResize);
@@ -79,10 +89,13 @@ function CastSlider({ cast }: ICastSliderProps) {
   }, [slider.current?.clientWidth]);
 
   return (
-    <section aria-label="Cast" className="container-fluid o-background-container">
-      <div className="container">
-        <div className="row">
-          <div className="col  u-position-relative">
+    <section
+      aria-label="Cast"
+      className="container-fluid o-background-container c-cast-slider__ignores-bounds-on-touch"
+    >
+      <div className="container c-cast-slider__ignores-bounds-on-touch">
+        <div className="row c-cast-slider__ignores-bounds-on-touch">
+          <div className="col  u-position-relative c-cast-slider__ignores-bounds-on-touch">
             <div className="c-cast-slider">
               <div className="c-cast-slider__slider-control-overlay">
                 <BsChevronLeft
