@@ -1,10 +1,6 @@
 import dotenv from 'dotenv';
 import { apiURL } from '@utilities/resources';
-import {
-  MovieCredits,
-  MovieListResult,
-  TrendingResponse,
-} from '@utilities/interfacesAPI';
+import { MovieCredits, MovieListResult, TrendingResponse } from '@utilities/interfacesAPI';
 import { TrendingResult } from '@utilities/interfacesApp';
 import axios from 'axios';
 
@@ -15,10 +11,7 @@ interface GetTrendingListParameters {
   period?: 'week' | 'day';
 }
 
-export function filterTrendingResults(
-  fetchRes: TrendingResponse,
-  maxResults: number
-): TrendingResult[] {
+export function filterTrendingResults(fetchRes: TrendingResponse, maxResults: number): TrendingResult[] {
   const formattedResults: TrendingResult[] = [];
   for (const result of fetchRes.results) {
     // Filter
@@ -43,10 +36,9 @@ export function filterTrendingResults(
   return formattedResults;
 }
 
-export async function getTrendingList({
-  limit = 20,
-  period = 'week',
-}: GetTrendingListParameters = {}): Promise<TrendingResult[]> {
+export async function getTrendingList({ limit = 20, period = 'week' }: GetTrendingListParameters = {}): Promise<
+  TrendingResult[]
+> {
   // Overwrite result limit to 20 if its bigger than 20.
   const maxResults = limit <= 20 ? limit : 20;
 
@@ -68,9 +60,7 @@ export async function getMovieInfo(id: number): Promise<MovieListResult> {
     api_key: process.env.MOVIE_DB_API_KEY,
     language: 'en-US',
   };
-  const fetchRes = await axios
-    .get<MovieListResult>(`${apiURL}/movie/${id}`, { params })
-    .then((res) => res.data);
+  const fetchRes = await axios.get<MovieListResult>(`${apiURL}/movie/${id}`, { params }).then((res) => res.data);
 
   return fetchRes;
 }
@@ -80,9 +70,7 @@ export async function getMovieCredits(id: number): Promise<MovieCredits> {
     api_key: process.env.MOVIE_DB_API_KEY,
     language: 'en-US',
   };
-  const fetchRes = await axios
-    .get(`${apiURL}/movie/${id}/credits`, { params })
-    .then((res) => res.data);
+  const fetchRes = await axios.get(`${apiURL}/movie/${id}/credits`, { params }).then((res) => res.data);
 
   return fetchRes;
 }
