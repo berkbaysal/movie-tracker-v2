@@ -92,7 +92,7 @@ function CastSlider({ cast }: ICastSliderProps) {
     <section aria-label="Cast">
       <div className="container-fluid o-background-container">
         <div className="container">
-          <h2 className="c-cast-slider__title">Cast:</h2>
+          <h2 className="o-detail-page-section-title">Cast:</h2>
         </div>
       </div>
       <div className="container-fluid o-background-container c-cast-slider__ignores-bounds-on-touch">
