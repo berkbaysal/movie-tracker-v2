@@ -7,16 +7,18 @@ interface IRecommendationsProps {
 }
 
 function Recommendations({ recommendations }: IRecommendationsProps) {
+  const limitedRecommendations = recommendations.slice(0, 6);
+
   return (
     <section aria-label="Recommendations" className="container-fluid o-background-container">
       <div className="container">
         <div className="c-recommendations">
-          <RecommendationUnit content={recommendations[0]} />
-          <RecommendationUnit content={recommendations[1]} />
-          <RecommendationUnit content={recommendations[2]} />
-          <RecommendationUnit content={recommendations[3]} />
-          <RecommendationUnit content={recommendations[4]} />
-          <RecommendationUnit content={recommendations[5]} />
+          <h2 className="o-detail-page-section-title">Recommendations:</h2>
+          <div className="c-recommendations__grid">
+            {limitedRecommendations.map((recommendation) => (
+              <RecommendationUnit key={recommendation.id} content={recommendation} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

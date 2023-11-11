@@ -1,16 +1,24 @@
 .c-recommendations {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 2rem;
-  padding: 2rem 0;
-
-  @include media-breakpoint-down(md) {
-    grid-template-columns: repeat(3, 1fr);
-    padding: 2rem 1rem;
-  }
-  @include media-breakpoint-down(sm) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2rem;
     padding: 2rem 0;
+
+    @include media-breakpoint-down(md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include media-breakpoint-down(sm) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  &__title {
+    grid-column: 1 / -1;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 2rem;
   }
 }
