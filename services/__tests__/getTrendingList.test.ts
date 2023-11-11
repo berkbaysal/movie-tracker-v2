@@ -1,18 +1,7 @@
 import '@testing-library/jest-dom';
 import axios from 'axios';
-import {
-  getMovieCredits,
-  getMovieInfo,
-  getTrendingList,
-} from '@services/apiServices';
+import { getMovieCredits, getMovieInfo, getTrendingList } from '@services/apiServices';
 import { mockTrendingApiData } from '@utilities/mockData';
-
-// Mock fetch to track API calls
-// global.fetch = jest.fn(() =>
-//   Promise.resolve({
-//     json: () => Promise.resolve(mockTrendingApiData),
-//   })
-// ) as jest.Mock;
 
 jest.mock('axios');
 
@@ -24,14 +13,11 @@ describe('Trending List API call and interface tests', () => {
   test('API is called with correct parameters', async () => {
     await getTrendingList();
     expect(mockedAxios.get).toBeCalledTimes(1);
-    expect(mockedAxios.get).toBeCalledWith(
-      expect.stringContaining('https://api.themoviedb.org/3/trending/all/'),
-      {
-        params: expect.objectContaining({
-          api_key: expect.any(String),
-        }),
-      }
-    );
+    expect(mockedAxios.get).toBeCalledWith(expect.stringContaining('https://api.themoviedb.org/3/trending/all/'), {
+      params: expect.objectContaining({
+        language: expect.stringMatching('en-US'),
+      }),
+    });
   });
 
   test('API request uses default parameters when there is no override', async () => {
@@ -39,7 +25,7 @@ describe('Trending List API call and interface tests', () => {
     expect(trendingList).toHaveLength(20);
     expect(mockedAxios.get).toBeCalledWith(expect.stringContaining('/week'), {
       params: expect.objectContaining({
-        api_key: expect.any(String),
+        language: expect.stringMatching('en-US'),
       }),
     });
   });
@@ -55,7 +41,7 @@ describe('Trending List API call and interface tests', () => {
     await getTrendingList({ period: 'day' });
     expect(mockedAxios.get).toBeCalledWith(expect.stringContaining('/day'), {
       params: expect.objectContaining({
-        api_key: expect.any(String),
+        language: expect.stringMatching('en-US'),
       }),
     });
   });
@@ -66,14 +52,11 @@ describe('Movie API call and interface tests', () => {
   test('API is called with correct parameters', async () => {
     await getMovieInfo(123);
     expect(mockedAxios.get).toBeCalledTimes(1);
-    expect(mockedAxios.get).toBeCalledWith(
-      expect.stringContaining('https://api.themoviedb.org/3/movie/123'),
-      {
-        params: expect.objectContaining({
-          api_key: expect.any(String),
-        }),
-      }
-    );
+    expect(mockedAxios.get).toBeCalledWith(expect.stringContaining('https://api.themoviedb.org/3/movie/123'), {
+      params: expect.objectContaining({
+        language: expect.stringMatching('en-US'),
+      }),
+    });
   });
 });
 
@@ -82,13 +65,10 @@ describe('Movie Credits API call and interface tests', () => {
   test('API is called with correct parameters', async () => {
     await getMovieCredits(123);
     expect(mockedAxios.get).toBeCalledTimes(1);
-    expect(mockedAxios.get).toBeCalledWith(
-      expect.stringContaining('https://api.themoviedb.org/3/movie/123/credits'),
-      {
-        params: expect.objectContaining({
-          api_key: expect.any(String),
-        }),
-      }
-    );
+    expect(mockedAxios.get).toBeCalledWith(expect.stringContaining('https://api.themoviedb.org/3/movie/123/credits'), {
+      params: expect.objectContaining({
+        language: expect.stringMatching('en-US'),
+      }),
+    });
   });
 });
