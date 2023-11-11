@@ -26,6 +26,12 @@
     @media (hover: none) {
       overflow: scroll;
       padding: 0.5rem 0;
+      -ms-overflow-style: none; /* Internet Explorer 10+ */
+      scrollbar-width: none; /* Firefox */
+
+      &::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+      }
     }
   }
 
