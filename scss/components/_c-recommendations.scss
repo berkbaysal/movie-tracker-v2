@@ -2,4 +2,15 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 2rem;
+  padding: 2rem 0;
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 2rem 1rem;
+  }
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 2rem 0;
+  }
 }

@@ -9,7 +9,7 @@ interface IRecommendationUnitProps {
 }
 
 function RecommendationUnit({ content }: IRecommendationUnitProps) {
-  const sizes = '(max-width: 760px) 50vw, 25vw';
+  const sizes = '(max-width: 760px) 33vw, 17vw';
 
   return (
     <Link href={`/${content.media_type}/${content.id}`}>
