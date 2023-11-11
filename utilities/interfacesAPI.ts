@@ -1,17 +1,11 @@
+// GENERAL TYPES
+
 export type MediaType = 'movie' | 'tv' | 'person';
-
-export interface MovieListResult extends ContentListResult {
-  adult: boolean;
-  release_date: string;
-  original_title: string;
-  video: boolean;
-  runtime: number | null;
-}
-
-export interface TVListResult extends ContentListResult {
-  first_air_date: string;
-  origin_country: string[];
-  original_name: string;
+export interface PaginatedResponse<T> {
+  page: number;
+  results: T[];
+  total_pages: number;
+  total_results: number;
 }
 
 interface ContentListResult {
@@ -33,13 +27,15 @@ interface IGenres {
   name: string;
 }
 
-export interface PersonListResult {
-  profile_path: string | null;
+// MOVIE TYPES
+
+export interface MovieListResult extends ContentListResult {
   adult: boolean;
-  id: number;
-  known_for: Array<MovieListResult | TVListResult>;
-  name: string;
-  popularity: number;
+  media_type: 'movie';
+  release_date: string;
+  original_title: string;
+  video: boolean;
+  runtime: number | null;
 }
 
 interface MovieCredit {
@@ -70,15 +66,40 @@ export interface MovieCredits {
   cast: MovieCastCredit[];
   crew: MovieCrewCredit[];
 }
+// TV TYPES
 
-interface TrendingBaseResponse {
+export interface TVListResult extends ContentListResult {
+  first_air_date: string;
+  origin_country: string[];
+  original_name: string;
+  media_type: 'tv';
+  adult: boolean;
+}
+
+// PERSON TYPES
+
+export interface PersonListResult {
+  profile_path: string | null;
+  adult: boolean;
+  id: number;
+  known_for: Array<MovieListResult | TVListResult>;
+  name: string;
+  popularity: number;
+}
+
+// TRENDING TYPES
+
+export type TrendingResponse = ContentCollectionMovie | ContentCollectionPerson | ContentCollectionTV;
+export type ContentCollectionResponse = ContentCollectionMovie | ContentCollectionTV;
+
+interface ContentCollectionBase {
   adult: boolean;
   id: number;
   popularity: number;
   media_type: MediaType;
 }
 
-interface TrendingMovieResponse extends TrendingBaseResponse {
+interface ContentCollectionMovie extends ContentCollectionBase {
   backdrop_path: string | null;
   title: string;
   original_language: string;
@@ -94,7 +115,7 @@ interface TrendingMovieResponse extends TrendingBaseResponse {
   vote_average: number;
 }
 
-interface TrendingTVResponse extends TrendingBaseResponse {
+interface ContentCollectionTV extends ContentCollectionBase {
   backdrop_path: string | null;
   name: string;
   original_language: string;
@@ -109,7 +130,7 @@ interface TrendingTVResponse extends TrendingBaseResponse {
   origin_country: string[];
 }
 
-interface TrendingPersonResponse extends TrendingBaseResponse {
+interface ContentCollectionPerson extends ContentCollectionBase {
   media_type: 'person';
   name: string;
   original_name: string;
@@ -117,13 +138,4 @@ interface TrendingPersonResponse extends TrendingBaseResponse {
   known_for: Array<MovieListResult | TVListResult>;
   profile_path: string | null;
   known_for_department: string[];
-}
-
-type TrendingResponseResults = TrendingMovieResponse | TrendingPersonResponse | TrendingTVResponse;
-
-export interface TrendingResponse {
-  page: number;
-  results: TrendingResponseResults[];
-  total_pages: number;
-  total_results: number;
 }

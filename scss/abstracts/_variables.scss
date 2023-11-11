@@ -181,3 +181,10 @@ $g-z-index-back: 0;
 $g-z-index-behind: -1;
 //Custom variables
 $g-ui-border-radius: px-to-rem(6) !default;
+
+// Shadows
+$g-shadow-one: 0 0 0.5rem rgba($color-text, 0.8);
+$g-shadow-two: 0 0 1rem rgba($color-text, 0.8);
+$g-shadow-three: 0 0 1.5rem rgba($color-text, 0.8);
+$g-shadow-four: 0 0 2rem rgba($color-text, 0.8);
+$g-shadow-five: 0 0 2.5rem rgba($color-text, 0.8);
