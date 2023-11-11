@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { apiURL } from '@utilities/resources';
-import { MovieCredits, MovieListResult, TrendingResponse } from '@utilities/interfacesAPI';
+import { MovieCredits, MovieListResult, PaginatedResponse, TrendingResponse } from '@utilities/interfacesAPI';
 import { TrendingResult } from '@utilities/interfacesApp';
 import axios from 'axios';
 
@@ -71,6 +71,18 @@ export async function getMovieCredits(id: number): Promise<MovieCredits> {
     language: 'en-US',
   };
   const fetchRes = await axios.get(`${apiURL}/movie/${id}/credits`, { params }).then((res) => res.data);
+
+  return fetchRes;
+}
+
+export async function getMovieRecommendations(id: number): Promise<PaginatedResponse<MovieListResult>> {
+  const params = {
+    api_key: process.env.MOVIE_DB_API_KEY,
+    language: 'en-US',
+  };
+  const fetchRes = await axios
+    .get<PaginatedResponse<MovieListResult>>(`${apiURL}/movie/${id}/recommendations`, { params })
+    .then((res) => res.data);
 
   return fetchRes;
 }
