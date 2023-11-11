@@ -29,7 +29,7 @@ async function MoviePage({ params }: IMoviePageProps) {
     <>
       <ContentSummary contentInfo={movieInfo} credits={credits} />
       <CastSlider cast={credits.cast} />
-      <Recommendations recommendations={recommendations.results} />
+      {recommendations.results.length > 0 && <Recommendations recommendations={recommendations.results} />}
     </>
   );
 }
