@@ -89,16 +89,17 @@ export interface PersonListResult {
 
 // TRENDING TYPES
 
-export type TrendingResponse = TrendingMovieResponse | TrendingPersonResponse | TrendingTVResponse;
+export type TrendingResponse = ContentCollectionMovie | ContentCollectionPerson | ContentCollectionTV;
+export type ContentCollectionResponse = ContentCollectionMovie | ContentCollectionTV;
 
-interface TrendingBaseResponse {
+interface ContentCollectionBase {
   adult: boolean;
   id: number;
   popularity: number;
   media_type: MediaType;
 }
 
-interface TrendingMovieResponse extends TrendingBaseResponse {
+interface ContentCollectionMovie extends ContentCollectionBase {
   backdrop_path: string | null;
   title: string;
   original_language: string;
@@ -114,7 +115,7 @@ interface TrendingMovieResponse extends TrendingBaseResponse {
   vote_average: number;
 }
 
-interface TrendingTVResponse extends TrendingBaseResponse {
+interface ContentCollectionTV extends ContentCollectionBase {
   backdrop_path: string | null;
   name: string;
   original_language: string;
@@ -129,7 +130,7 @@ interface TrendingTVResponse extends TrendingBaseResponse {
   origin_country: string[];
 }
 
-interface TrendingPersonResponse extends TrendingBaseResponse {
+interface ContentCollectionPerson extends ContentCollectionBase {
   media_type: 'person';
   name: string;
   original_name: string;

@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { apiURL } from '@utilities/resources';
-import { MovieCredits, MovieListResult, PaginatedResponse, TrendingResponse } from '@utilities/interfacesAPI';
+import { MovieCredits, MovieListResult, PaginatedResponse, ContentCollectionResponse } from '@utilities/interfacesAPI';
 import { TrendingResult } from '@utilities/interfacesApp';
 import axios from 'axios';
 
@@ -17,7 +17,7 @@ interface GetTrendingListParameters {
 }
 
 export function filterTrendingResults(
-  fetchRes: PaginatedResponse<TrendingResponse>,
+  fetchRes: PaginatedResponse<ContentCollectionResponse>,
   maxResults: number
 ): TrendingResult[] {
   const formattedResults: TrendingResult[] = [];
@@ -53,7 +53,7 @@ export async function getTrendingList({ limit = 20, period = 'week' }: GetTrendi
   // Define fetch parameters
 
   const fetchRes = await axios
-    .get<PaginatedResponse<TrendingResponse>>(`${apiURL}/trending/all/${period}`, { params })
+    .get<PaginatedResponse<ContentCollectionResponse>>(`${apiURL}/trending/all/${period}`, { params })
     .then((res) => res.data);
   // Filter results to only include TV Shows and Films, format and trim to fit custom interface
   return filterTrendingResults(fetchRes, maxResults);

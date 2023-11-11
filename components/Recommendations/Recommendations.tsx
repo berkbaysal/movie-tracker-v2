@@ -1,9 +1,9 @@
-import { MovieListResult } from '@utilities/interfacesAPI';
+import { ContentCollectionResponse } from '@utilities/interfacesAPI';
 import React from 'react';
 import RecommendationUnit from './RecommendationUnit/RecommendationUnit';
 
 interface IRecommendationsProps {
-  recommendations: MovieListResult[];
+  recommendations: ContentCollectionResponse[];
 }
 
 function Recommendations({ recommendations }: IRecommendationsProps) {
@@ -21,7 +21,7 @@ function Recommendations({ recommendations }: IRecommendationsProps) {
                 id={recommendation.id}
                 mediaType={recommendation.media_type}
                 posterPath={recommendation.poster_path}
-                title={recommendation.title}
+                title={recommendation.media_type === 'movie' ? recommendation.title : recommendation.name}
               />
             ))}
           </div>
