@@ -16,7 +16,13 @@ function Recommendations({ recommendations }: IRecommendationsProps) {
           <h2 className="o-detail-page-section-title">Recommendations:</h2>
           <div className="c-recommendations__grid">
             {limitedRecommendations.map((recommendation) => (
-              <RecommendationUnit key={recommendation.id} content={recommendation} />
+              <RecommendationUnit
+                key={recommendation.id}
+                id={recommendation.id}
+                mediaType={recommendation.media_type}
+                posterPath={recommendation.poster_path}
+                title={recommendation.title}
+              />
             ))}
           </div>
         </div>
