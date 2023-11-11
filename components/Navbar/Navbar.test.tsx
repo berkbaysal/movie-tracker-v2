@@ -10,17 +10,26 @@ describe('Navbar Functionality', () => {
     expect(screen.getByRole('navigation')).toBeInTheDocument();
   });
 
+  test('Navbar logo renders and has correct link', () => {
+    render(<Navbar />);
+    expect(screen.getByRole('img').parentElement).toBeInTheDocument();
+    expect(screen.getByRole('img').parentElement).toHaveAttribute('href', '/');
+  });
+
   test('Log in desktop button has correct role', () => {
     render(<Navbar />);
-    expect(screen.getByRole('link')).toBeInTheDocument();
-    expect(screen.getByRole('link')).toHaveTextContent(/log in/i);
+    expect(screen.getByText('Log In')).toBeInTheDocument();
+    expect(screen.getByText('Log In')).toHaveProperty('type', 'button');
+    expect(screen.getByText('Log In')).toHaveAttribute('role', 'link');
   });
 
   test('Navbar has correct tab indexes', async () => {
     render(<Navbar />);
     await userEvent.tab();
+    expect(screen.getByRole('img').parentElement).toHaveFocus();
+    await userEvent.tab();
     expect(screen.getByRole('searchbox')).toHaveFocus();
     await userEvent.tab();
-    expect(screen.getByRole('link')).toHaveFocus();
+    expect(screen.getByText('Log In')).toHaveFocus();
   });
 });
