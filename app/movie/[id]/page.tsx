@@ -1,5 +1,5 @@
-import { getMovieCredits, getMovieInfo } from '@services/apiServices';
-import { ContentSummary, CastSlider } from '@components';
+import { getMovieCredits, getMovieInfo, getMovieRecommendations } from '@services/apiServices';
+import { ContentSummary, CastSlider, Recommendations } from '@components';
 import React from 'react';
 import { Metadata } from 'next';
 
@@ -19,12 +19,17 @@ export async function generateMetadata({ params }: IMoviePageProps): Promise<Met
 }
 
 async function MoviePage({ params }: IMoviePageProps) {
-  const [movieInfo, credits] = await Promise.all([getMovieInfo(params.id), getMovieCredits(params.id)]);
+  const [movieInfo, credits, recommendations] = await Promise.all([
+    getMovieInfo(params.id),
+    getMovieCredits(params.id),
+    getMovieRecommendations(params.id),
+  ]);
 
   return (
     <>
       <ContentSummary contentInfo={movieInfo} credits={credits} />
       <CastSlider cast={credits.cast} />
+      <Recommendations recommendations={recommendations.results} />
     </>
   );
 }
