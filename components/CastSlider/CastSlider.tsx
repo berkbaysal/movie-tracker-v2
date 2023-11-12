@@ -1,7 +1,7 @@
 'use client';
 
 import PlaceholderAvatar from '@public/img/placeholder_avatar.png';
-import { MovieCastCredit } from '@utilities/interfacesAPI';
+import { Cast } from '@utilities/interfacesApp';
 import { imgURL, posterSize } from '@utilities/resources';
 import Image from 'next/image';
 import React, { useState, useEffect, useRef } from 'react';
@@ -15,7 +15,7 @@ import {
 } from './castSliderConfig';
 
 interface ICastSliderProps {
-  cast: MovieCastCredit[];
+  cast: Cast[];
 }
 
 function CastSlider({ cast }: ICastSliderProps) {
@@ -117,12 +117,12 @@ function CastSlider({ cast }: ICastSliderProps) {
                     style={{ transform: `translateX(-${sliderState.currentOffset}px)` }}
                   >
                     {cast.map((castMember) => (
-                      <div className="c-cast-slider__cast-member" key={castMember.cast_id}>
+                      <div className="c-cast-slider__cast-member" key={castMember.id}>
                         <div className="c-cast-slider__cast-image-wrapper" style={{ width: `${castPictureWidth}px` }}>
                           <Image
                             src={
-                              castMember.profile_path
-                                ? `${imgURL}/${posterSize.medium.url}${castMember.profile_path}`
+                              castMember.picturePath
+                                ? `${imgURL}/${posterSize.medium.url}${castMember.picturePath}`
                                 : PlaceholderAvatar
                             }
                             width={posterSize.medium.width}

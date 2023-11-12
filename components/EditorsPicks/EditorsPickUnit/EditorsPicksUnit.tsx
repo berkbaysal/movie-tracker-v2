@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { EditorsPick } from '@utilities/interfacesApp';
+import PlaceholderPoster from '@public/img/placeholder_poster.png';
 import { imgURL, posterSize } from '@utilities/resources';
 import Link from 'next/link';
 
@@ -16,7 +17,7 @@ function EditorsPicksUnit({ title, posterPath, year, mediaType, id }: EditorsPic
         <div className="c-editors-picks-unit__poster-wrapper">
           <Image
             className="c-editors-picks-unit__poster"
-            src={`${imgURL}/${optimalImageSize.url}${posterPath}`}
+            src={posterPath ? `${imgURL}/${optimalImageSize.url}${posterPath}` : PlaceholderPoster}
             alt={`${title} film poster`}
             sizes={sizes}
             width={optimalImageSize.width}

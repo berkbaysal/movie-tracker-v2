@@ -3,19 +3,27 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { imgURL, posterSize } from '@utilities/resources';
+import PlaceholderPoster from '@public/img/placeholder_poster.png';
 import Link from 'next/link';
-import { MediaType } from '@utilities/interfacesAPI';
+import { MediaType } from '@utilities/interfacesApp';
 
 interface TrendingUnitProps {
   title: string;
-  posterPath: string | null;
+  posterPath?: string | null;
   variant?: 'default' | 'large';
   priority?: boolean;
   mediaType: MediaType;
   id: number;
 }
 
-function TrendingUnit({ title, posterPath, mediaType, id, variant = 'default', priority = false }: TrendingUnitProps) {
+function TrendingUnit({
+  title,
+  posterPath = undefined,
+  mediaType,
+  id,
+  variant = 'default',
+  priority = false,
+}: TrendingUnitProps) {
   const [hovering, setHovering] = useState<boolean>(false);
 
   const optimalImageSize = variant === 'large' ? posterSize.large : posterSize.medium;
@@ -33,7 +41,7 @@ function TrendingUnit({ title, posterPath, mediaType, id, variant = 'default', p
         </h3>
 
         <Image
-          src={`${imgURL}/${optimalImageSize.url}${posterPath}`}
+          src={posterPath ? `${imgURL}/${optimalImageSize.url}${posterPath}` : PlaceholderPoster}
           alt={`${title} film poster`}
           sizes={sizes}
           className="c-trending-unit__trending-poster"

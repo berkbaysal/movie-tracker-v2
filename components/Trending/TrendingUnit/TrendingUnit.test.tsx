@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { TrendingResult } from '@utilities/interfacesApp';
+import { MediaType } from '@utilities/interfacesApp';
 import TrendingUnit from './TrendingUnit';
 import '@testing-library/jest-dom';
 
-const testProps: TrendingResult = {
+const testProps = {
   title: 'Test movie title',
   posterPath: 'ekZobS8isE6mA53RAiGDG93hBxL.jpg',
   id: 123456,
-  mediaType: 'movie',
+  mediaType: 'movie' as MediaType,
 };
 
 describe('Trending Unit Functionality', () => {

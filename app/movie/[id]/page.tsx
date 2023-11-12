@@ -1,4 +1,4 @@
-import { getMovieCredits, getMovieInfo, getMovieRecommendations } from '@services/apiServices';
+import { getMovieCredits, getMovieInfo, getMovieRecommendations } from '@services/api';
 import { ContentSummary, CastSlider, Recommendations } from '@components';
 import React from 'react';
 import { Metadata } from 'next';
@@ -29,7 +29,7 @@ async function MoviePage({ params }: IMoviePageProps) {
     <>
       <ContentSummary contentInfo={movieInfo} credits={credits} />
       <CastSlider cast={credits.cast} />
-      {recommendations.results.length > 0 && <Recommendations recommendations={recommendations.results} />}
+      {recommendations.length > 0 && <Recommendations recommendations={recommendations} />}
     </>
   );
 }
