@@ -4,18 +4,25 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import { imgURL, posterSize } from '@utilities/resources';
 import Link from 'next/link';
-import { MediaType } from '@utilities/interfacesAPI';
+import { MediaType } from '@utilities/interfacesApp';
 
 interface TrendingUnitProps {
   title: string;
-  posterPath: string | null;
+  posterPath?: string | null;
   variant?: 'default' | 'large';
   priority?: boolean;
   mediaType: MediaType;
   id: number;
 }
 
-function TrendingUnit({ title, posterPath, mediaType, id, variant = 'default', priority = false }: TrendingUnitProps) {
+function TrendingUnit({
+  title,
+  posterPath = undefined,
+  mediaType,
+  id,
+  variant = 'default',
+  priority = false,
+}: TrendingUnitProps) {
   const [hovering, setHovering] = useState<boolean>(false);
 
   const optimalImageSize = variant === 'large' ? posterSize.large : posterSize.medium;

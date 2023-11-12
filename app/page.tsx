@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { Featured, Trending, EditorsPicks } from '@components';
-import { getTrendingList } from '@services/apiServices';
+import { getTrendingList } from '@services/api';
 import config from '@utilities/config';
 import { mockPostsData, mockEditorsPicks } from '@utilities/mockData';
 

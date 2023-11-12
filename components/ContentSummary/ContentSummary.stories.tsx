@@ -1,7 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
 import '@styles';
-import { mockMovieContentSummary } from '@utilities/mockData';
+
 import { ContentSummary } from '@components';
+import { mockMovieCreditsResponse, mockMovieDetailResponse } from '@services/models/mocks';
+import { mapMovieDetailResponseToMediaContent } from '@utilities/mappers';
 
 export default {
   title: 'Components/ContentSummary',
@@ -18,7 +20,7 @@ export default {
 
 export const Movie: StoryObj<typeof ContentSummary> = {
   args: {
-    contentInfo: mockMovieContentSummary.contentInfo,
-    credits: mockMovieContentSummary.credits,
+    contentInfo: mapMovieDetailResponseToMediaContent(mockMovieDetailResponse),
+    credits: mockMovieCreditsResponse,
   },
 };

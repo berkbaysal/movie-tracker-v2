@@ -1,9 +1,9 @@
-import { ContentCollectionResponse } from '@utilities/interfacesAPI';
+import { MediaContent } from '@utilities/interfacesApp';
 import React from 'react';
 import RecommendationUnit from './RecommendationUnit/RecommendationUnit';
 
 interface IRecommendationsProps {
-  recommendations: ContentCollectionResponse[];
+  recommendations: MediaContent[];
 }
 
 function Recommendations({ recommendations }: IRecommendationsProps) {
@@ -16,13 +16,7 @@ function Recommendations({ recommendations }: IRecommendationsProps) {
           <h2 className="o-detail-page-section-title">Recommendations:</h2>
           <div className="c-recommendations__grid">
             {limitedRecommendations.map((recommendation) => (
-              <RecommendationUnit
-                key={recommendation.id}
-                id={recommendation.id}
-                mediaType={recommendation.media_type}
-                posterPath={recommendation.poster_path}
-                title={recommendation.media_type === 'movie' ? recommendation.title : recommendation.name}
-              />
+              <RecommendationUnit key={recommendation.id} reccomendation={recommendation} />
             ))}
           </div>
         </div>

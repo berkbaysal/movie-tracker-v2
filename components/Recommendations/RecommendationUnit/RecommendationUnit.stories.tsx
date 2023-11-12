@@ -1,6 +1,9 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import '@styles';
+import { mockMovieRecommendationResponse } from '@services/models/mocks';
+import { mapMovieRecommendationResponseToMediaContent } from '@utilities/mappers';
+import { MovieRecommendationResponse } from '@services/models';
 import RecommendationUnit from './RecommendationUnit';
 
 export default {
@@ -26,14 +29,13 @@ export default {
 
 export const Default: StoryObj<typeof RecommendationUnit> = {
   args: {
-    title: 'Oppenheimer',
-    posterPath: '/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
-    mediaType: 'movie',
-    id: 313369,
+    reccomendation: mapMovieRecommendationResponseToMediaContent(
+      mockMovieRecommendationResponse.results as MovieRecommendationResponse[]
+    )[0],
   },
-  render: ({ title, posterPath, id }) => (
+  render: ({ reccomendation }) => (
     <div style={{ width: 'min(22vw, 300px)' }}>
-      <RecommendationUnit title={title} posterPath={posterPath} mediaType="movie" id={id} />
+      <RecommendationUnit reccomendation={reccomendation} />
     </div>
   ),
 };
