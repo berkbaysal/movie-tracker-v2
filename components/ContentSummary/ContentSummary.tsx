@@ -1,6 +1,7 @@
 import { Button } from '@elements';
 import { MediaContentCredits, MediaContentDetails } from '@utilities/interfacesApp';
 import { imgURL, posterSize } from '@utilities/resources';
+import PlaceholderPoster from '@public/img/placeholder_poster.png';
 import Image from 'next/image';
 import React from 'react';
 
@@ -18,7 +19,9 @@ function ContentSummary({ contentInfo, credits }: IContentSumamryProps) {
     <section aria-label="Details section" className="container-fluid o-background-container c-content-summary">
       <div className="container c-content-summary__container u-padding-ends-xsmall u-padding-ends-2xsmall@md-down">
         <Image
-          src={`${imgURL}/${posterSize.large.url}${contentInfo.posterPath}`}
+          src={
+            contentInfo.posterPath ? `${imgURL}/${posterSize.large.url}${contentInfo.posterPath}` : PlaceholderPoster
+          }
           alt={`${contentInfo.title} poster`}
           sizes="(max-width: 760px) 100vw 17vw"
           width={posterSize.large.width}

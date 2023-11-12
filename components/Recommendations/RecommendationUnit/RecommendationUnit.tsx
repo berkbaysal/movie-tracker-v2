@@ -1,5 +1,6 @@
 import { MediaContent } from '@utilities/interfacesApp';
 import { imgURL, posterSize } from '@utilities/resources';
+import PlaceholderPoster from '@public/img/placeholder_poster.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -16,7 +17,11 @@ function RecommendationUnit({ reccomendation }: IRecommendationUnitProps) {
       <div className="c-recommendation-unit">
         <Image
           className="c-recommendation-unit__poster"
-          src={`${imgURL}/${posterSize.medium.url}${reccomendation.posterPath}`}
+          src={
+            reccomendation.posterPath
+              ? `${imgURL}/${posterSize.medium.url}${reccomendation.posterPath}`
+              : PlaceholderPoster
+          }
           alt={`${reccomendation.title} poster`}
           sizes={sizes}
           width={posterSize.medium.width}

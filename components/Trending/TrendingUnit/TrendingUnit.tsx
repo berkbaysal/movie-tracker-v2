@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { imgURL, posterSize } from '@utilities/resources';
+import PlaceholderPoster from '@public/img/placeholder_poster.png';
 import Link from 'next/link';
 import { MediaType } from '@utilities/interfacesApp';
 
@@ -40,7 +41,7 @@ function TrendingUnit({
         </h3>
 
         <Image
-          src={`${imgURL}/${optimalImageSize.url}${posterPath}`}
+          src={posterPath ? `${imgURL}/${optimalImageSize.url}${posterPath}` : PlaceholderPoster}
           alt={`${title} film poster`}
           sizes={sizes}
           className="c-trending-unit__trending-poster"
