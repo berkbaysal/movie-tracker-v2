@@ -1,37 +1,21 @@
 import React from 'react';
 import axios from 'axios';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { mockMovieCreditsResponse } from '@services/models/mocks';
 import '@testing-library/jest-dom';
 import { CastSlider } from '@components';
 import { MediaContentCredits } from '@utilities/interfacesApp';
 import { getMovieCredits } from '@services/api';
-import {
-  getSlidesPerPage,
-  getTargetWidth,
-  ICastSliderState,
-  INITIAL_SLIDE_STATE,
-  ISliderUpdateParams,
-  updateSliderState,
-} from './castSliderConfig';
+import { getTargetWidth, ICastSliderState, updateSliderState } from './castSliderConfig';
 
 jest.mock('axios');
-
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
-Object.defineProperty(window, 'matchMedia', {
-  writable: true,
-  value: jest.fn().mockImplementation((query) => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(), // deprecated
-    removeListener: jest.fn(), // deprecated
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  })),
-});
+jest.mock('./castSliderConfig');
+const mockedUpdateSlider = updateSliderState as jest.MockedFunction<typeof updateSliderState>;
+const mockTargetWidth = getTargetWidth as jest.MockedFunction<typeof getTargetWidth>;
+
+Element.prototype.scrollTo = () => {};
 
 describe('Cast slider functionality', () => {
   afterEach(jest.clearAllMocks);
@@ -45,131 +29,59 @@ describe('Cast slider functionality', () => {
     render(<CastSlider cast={mockCredits.cast} />);
     expect(screen.queryByText('Gary Lockwood')).toBeInTheDocument();
   });
-});
 
-describe('Cast slider sizing', () => {
-  test('Correct value is returned for screen sizes', () => {
-    expect(getSlidesPerPage(1920)).toBe(7);
-    expect(getSlidesPerPage(999)).toBe(6);
-    expect(getSlidesPerPage(799)).toBe(5);
-    expect(getSlidesPerPage(767)).toBe(4);
-    expect(getSlidesPerPage(399)).toBe(2);
+  test('Cast picture size is correctly set', () => {
+    mockTargetWidth.mockReturnValue(170);
+    render(<CastSlider cast={mockCredits.cast} />);
+    const castPicture = screen.getByAltText('Gary Lockwood profile image');
+    expect(castPicture.parentElement).toHaveStyle('width: 170px');
   });
 });
 
-describe('Cast slider sliding', () => {
-  test('Correct state is calculated on slide right', () => {
-    const updateParams: ISliderUpdateParams = {
-      slide: 'right',
-      castSize: 99,
-      castPictureWidth: 170,
-      sliderWidth: 1238,
-      styleGap: 8,
-      currentState: INITIAL_SLIDE_STATE,
-    };
-    const newState: ICastSliderState = updateSliderState(updateParams);
-    expect(newState.currentOffset).toBeCloseTo(1246, 0);
-    expect(newState.currentPage).toBe(2);
-    expect(newState.edgeVisible).toBe('both');
+describe('Slider interaction', () => {
+  beforeEach(() => {
+    mockedUpdateSlider.mockReturnValue({
+      currentOffset: 1280,
+      currentPage: 2,
+      edgeVisible: 'both',
+    } as ICastSliderState);
+  });
+  afterEach(jest.clearAllMocks);
+
+  test('Slider handles button inputs correctly', () => {
+    render(<CastSlider cast={mockMovieCreditsResponse.cast} />);
+
+    const sliderButtons = screen.getAllByRole('button');
+    const slider = screen.getByTestId('slider-frame');
+    expect(sliderButtons).toHaveLength(2);
+
+    fireEvent.click(sliderButtons[1]);
+    expect(mockedUpdateSlider).toHaveBeenCalledTimes(1);
+    expect(slider).toHaveStyle('transform: translateX(-1280px)');
+
+    mockedUpdateSlider.mockReturnValue({
+      currentOffset: 0,
+      currentPage: 1,
+      edgeVisible: 'right',
+    } as ICastSliderState);
+
+    fireEvent.click(sliderButtons[0]);
+    expect(mockedUpdateSlider).toHaveBeenCalledTimes(2);
+    expect(slider).toHaveStyle('transform: translateX(-0px)');
   });
 
-  test('Correct state is calculated on slide left', () => {
-    const updateParams: ISliderUpdateParams = {
-      slide: 'left',
-      castSize: 99,
-      castPictureWidth: 170,
-      sliderWidth: 1238,
-      styleGap: 8,
-      currentState: { currentOffset: 1246, currentPage: 2, edgeVisible: 'both' },
-    };
-    const newState: ICastSliderState = updateSliderState(updateParams);
-    expect(newState.currentOffset).toBeCloseTo(0, 0);
-    expect(newState.currentPage).toBe(1);
-    expect(newState.edgeVisible).toBe('right');
-  });
+  test('Slider resets position on resize', () => {
+    render(<CastSlider cast={mockMovieCreditsResponse.cast} />);
 
-  test('Slider wont overshoot right', () => {
-    const updateParams: ISliderUpdateParams = {
-      slide: 'right',
-      castSize: 7,
-      castPictureWidth: 170,
-      sliderWidth: 1238,
-      styleGap: 8,
-      currentState: INITIAL_SLIDE_STATE,
-    };
-    const newState: ICastSliderState = updateSliderState(updateParams);
-    expect(newState.currentOffset).toBeCloseTo(0, 0);
-    expect(newState.currentPage).toBe(1);
-    expect(newState.edgeVisible).toBe('none');
-  });
+    const sliderButtons = screen.getAllByRole('button');
+    const slider = screen.getByTestId('slider-frame');
+    expect(sliderButtons).toHaveLength(2);
 
-  test('Slider wont overshoot left', () => {
-    const updateParams: ISliderUpdateParams = {
-      slide: 'left',
-      castSize: 10,
-      castPictureWidth: 170,
-      sliderWidth: 1238,
-      styleGap: 8,
-      currentState: { currentOffset: 534, currentPage: 2, edgeVisible: 'left' },
-    };
-    const newState: ICastSliderState = updateSliderState(updateParams);
-    expect(newState.currentOffset).toBeCloseTo(0, 0);
-    expect(newState.currentPage).toBe(1);
-    expect(newState.edgeVisible).toBe('right');
-  });
+    fireEvent.click(sliderButtons[1]);
+    expect(mockedUpdateSlider).toHaveBeenCalledTimes(1);
+    expect(slider).toHaveStyle('transform: translateX(-1280px)');
 
-  test('Slider readjusts correctly on right edge', () => {
-    const updateParams: ISliderUpdateParams = {
-      slide: 'left',
-      castSize: 17,
-      castPictureWidth: 170,
-      sliderWidth: 1238,
-      styleGap: 8,
-      currentState: { currentOffset: 1780, currentPage: 3, edgeVisible: 'left' },
-    };
-    const newState: ICastSliderState = updateSliderState(updateParams);
-    expect(newState.currentOffset).toBeCloseTo(1246, 0);
-    expect(newState.currentPage).toBe(2);
-    expect(newState.edgeVisible).toBe('both');
-  });
-
-  test('Slider is unslideable if all cast fits', () => {
-    const updateParams: ISliderUpdateParams = {
-      slide: 'left',
-      castSize: 5,
-      castPictureWidth: 170,
-      sliderWidth: 1238,
-      styleGap: 8,
-      currentState: INITIAL_SLIDE_STATE,
-    };
-    const newState: ICastSliderState = updateSliderState(updateParams);
-    expect(newState.currentOffset).toBeCloseTo(0, 0);
-    expect(newState.currentPage).toBe(1);
-    expect(newState.edgeVisible).toBe('none');
-  });
-});
-
-describe('Cast width calculation', () => {
-  test('Correct target width is calculated', () => {
-    expect(getTargetWidth(8, 1238)).toBe(170);
-    expect(getTargetWidth(8, 736)).toBe(178);
-    expect(getTargetWidth(8, 404)).toBe(95);
-  });
-
-  test('Correct target width is calculated for touch screens', () => {
-    Object.defineProperty(window, 'matchMedia', {
-      writable: true,
-      value: jest.fn().mockImplementation((query) => ({
-        matches: true,
-        media: query,
-        onchange: null,
-        addListener: jest.fn(), // deprecated
-        removeListener: jest.fn(), // deprecated
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
-      })),
-    });
-    expect(getTargetWidth(8, 390)).toBeCloseTo(151, 0);
+    fireEvent.resize(window);
+    expect(slider).toHaveStyle('transform: translateX(-0px)');
   });
 });

@@ -4,7 +4,7 @@ import PlaceholderAvatar from '@public/img/placeholder_avatar.png';
 import { Cast } from '@utilities/interfacesApp';
 import { imgURL, posterSize } from '@utilities/resources';
 import Image from 'next/image';
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import {
   activeButtonStyle,
@@ -26,23 +26,20 @@ function CastSlider({ cast }: ICastSliderProps) {
   const [sliderState, setSliderState] = useState<ICastSliderState>(INITIAL_SLIDE_STATE);
   const [castPictureWidth, setCastPictureWidth] = useState<number>(0);
 
-  const setCastPictureSize = useCallback(() => {
-    if (!sliderFrame.current || !slider.current) return;
-    const sliderWidth = slider.current.clientWidth ?? 0;
-    const styleGap = parseFloat(getComputedStyle(sliderFrame.current).gap);
+  const isSlideable = useMemo(() => getSlidesPerPage(slider.current?.clientWidth ?? 0) <= cast.length, [cast.length]);
+
+  function setPictureSize() {
+    const sliderWidth = slider.current?.clientWidth ?? 0;
+    const gap = sliderFrame.current ? getComputedStyle(sliderFrame.current).gap : '0';
+    const styleGap = parseFloat(gap);
     const targetWidth = getTargetWidth(styleGap, sliderWidth);
-    const isSlideable = getSlidesPerPage(sliderWidth) <= cast.length;
-    setSliderState({
-      ...INITIAL_SLIDE_STATE,
-      edgeVisible: isSlideable ? 'right' : 'none',
-    });
     setCastPictureWidth(targetWidth);
-  }, [cast.length]);
+  }
 
   function handleScroll(slide: 'left' | 'right') {
-    if (!sliderFrame.current || !slider.current) return;
-    const sliderWidth = slider.current.clientWidth ?? 0;
-    const gap = parseFloat(getComputedStyle(sliderFrame.current).gap);
+    const sliderWidth = slider.current?.clientWidth ?? 0;
+    const gapString = sliderFrame.current ? getComputedStyle(sliderFrame.current).gap : '0';
+    const gap = parseFloat(gapString);
     const styleGap = Number.isNaN(gap) ? 0 : gap;
     const newState = updateSliderState({
       styleGap,
@@ -56,17 +53,21 @@ function CastSlider({ cast }: ICastSliderProps) {
   }
 
   useEffect(() => {
-    setCastPictureSize();
+    setPictureSize();
     function handleResize() {
       slider.current?.scrollTo(0, 0);
-      setCastPictureSize();
+      setPictureSize();
+      setSliderState({
+        ...INITIAL_SLIDE_STATE,
+        edgeVisible: isSlideable ? 'right' : 'none',
+      });
     }
     window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [slider.current?.clientWidth, setCastPictureSize]);
+  }, [slider.current?.clientWidth, isSlideable]);
 
   return (
     <section aria-label="Cast">
@@ -95,6 +96,7 @@ function CastSlider({ cast }: ICastSliderProps) {
                     className="c-cast-slider__slider-frame"
                     ref={sliderFrame}
                     style={{ transform: `translateX(-${sliderState.currentOffset}px)` }}
+                    data-testid="slider-frame"
                   >
                     {cast.map((castMember) => (
                       <div className="c-cast-slider__cast-member" key={castMember.id}>
