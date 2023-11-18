@@ -73,12 +73,20 @@ export function updateSliderState({
       if (newOffset % pageOffset !== 0) {
         newOffset = Math.max(currentState.currentOffset - (newOffset % pageOffset), 0);
       }
-      edgeVisible = newOffset === 0 ? 'right' : 'both';
+      if (castSize <= slidesPerPage) {
+        edgeVisible = 'none';
+      } else {
+        edgeVisible = newOffset === 0 ? 'right' : 'both';
+      }
       break;
     default:
       newOffset = Math.min(currentState.currentOffset + pageOffset, maxOffset);
       newPage = Math.min(currentState.currentPage + 1, totalPages);
-      edgeVisible = newOffset === maxOffset ? 'left' : 'both';
+      if (castSize <= slidesPerPage) {
+        edgeVisible = 'none';
+      } else {
+        edgeVisible = newOffset === maxOffset ? 'left' : 'both';
+      }
       break;
   }
   return { currentOffset: newOffset, currentPage: newPage, edgeVisible };

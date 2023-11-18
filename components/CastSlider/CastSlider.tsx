@@ -31,7 +31,7 @@ function CastSlider({ cast }: ICastSliderProps) {
     const sliderWidth = slider.current.clientWidth ?? 0;
     const styleGap = parseFloat(getComputedStyle(sliderFrame.current).gap);
     const targetWidth = getTargetWidth(styleGap, sliderWidth);
-    const isSlideable = getSlidesPerPage(sliderWidth) < cast.length;
+    const isSlideable = getSlidesPerPage(sliderWidth) <= cast.length;
     setSliderState({
       ...INITIAL_SLIDE_STATE,
       edgeVisible: isSlideable ? 'right' : 'none',
