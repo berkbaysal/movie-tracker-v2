@@ -4,13 +4,15 @@ import PlaceholderAvatar from '@public/img/placeholder_avatar.png';
 import { Cast } from '@utilities/interfacesApp';
 import { imgURL, posterSize } from '@utilities/resources';
 import Image from 'next/image';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import {
   activeButtonStyle,
   ICastSliderState,
   inactiveButtonStyle,
   INITIAL_SLIDE_STATE,
+  getTargetWidth,
+  updateSliderState,
   getSlidesPerPage,
 } from './castSliderConfig';
 
@@ -24,69 +26,48 @@ function CastSlider({ cast }: ICastSliderProps) {
   const [sliderState, setSliderState] = useState<ICastSliderState>(INITIAL_SLIDE_STATE);
   const [castPictureWidth, setCastPictureWidth] = useState<number>(0);
 
-  function setCastPictureSize() {
-    if (!sliderFrame.current || !slider.current) return;
-    const sliderWidth = slider.current.clientWidth ?? 0;
-    const slidesPerPage = getSlidesPerPage(sliderWidth);
-    const styleGap = parseFloat(getComputedStyle(sliderFrame.current).gap);
-    const gapWidth = Number.isNaN(styleGap) ? 0 : styleGap;
-    let targetWidth = 0;
-    if (matchMedia('(hover: none)').matches) {
-      const targetSlides = slidesPerPage + 0.5;
-      targetWidth = (sliderWidth - (targetSlides - 1) * gapWidth) / targetSlides;
-    } else {
-      targetWidth = (sliderWidth - (slidesPerPage - 1) * gapWidth) / slidesPerPage;
-    }
+  const isSlideable = useMemo(() => getSlidesPerPage(slider.current?.clientWidth ?? 0) <= cast.length, [cast.length]);
+
+  function setPictureSize() {
+    const sliderWidth = slider.current?.clientWidth ?? 0;
+    const gap = sliderFrame.current ? getComputedStyle(sliderFrame.current).gap : '0';
+    const styleGap = parseFloat(gap);
+    const targetWidth = getTargetWidth(styleGap, sliderWidth);
     setCastPictureWidth(targetWidth);
   }
 
   function handleScroll(slide: 'left' | 'right') {
-    if (!sliderFrame.current || !slider.current) return;
-    const sliderWidth = slider.current.clientWidth ?? 0;
-    const slidesPerPage = getSlidesPerPage(sliderWidth);
-    const totalPages = Math.ceil(cast.length / slidesPerPage);
-    const styleGap = parseFloat(getComputedStyle(sliderFrame.current).gap);
-    const gapWidth = Number.isNaN(styleGap) ? 0 : styleGap;
-    let leftOver = (cast.length % slidesPerPage) * (castPictureWidth + gapWidth);
-    const pageOffset = (castPictureWidth + gapWidth) * slidesPerPage;
-    if (leftOver === 0) leftOver = pageOffset;
-    const maxOffset = (totalPages - 1) * pageOffset + leftOver - slider.current.clientWidth - gapWidth;
-    if (slide === 'left') {
-      let newOffset = Math.max(sliderState.currentOffset - pageOffset, 0);
-      const newPage = Math.max(sliderState.currentPage - 1, 1);
-      if (newOffset % pageOffset !== 0) {
-        newOffset = Math.max(sliderState.currentOffset - (newOffset % pageOffset), 0);
-      }
-      setSliderState({
-        currentOffset: newOffset,
-        currentPage: newPage,
-        edgeVisible: newOffset === 0 ? 'right' : 'both',
-      });
-    }
-    if (slide === 'right') {
-      const newOffset = Math.min(sliderState.currentOffset + pageOffset, maxOffset);
-      const newPage = Math.min(sliderState.currentPage + 1, totalPages);
-      setSliderState({
-        currentOffset: newOffset,
-        currentPage: newPage,
-        edgeVisible: newOffset === maxOffset ? 'left' : 'both',
-      });
-    }
+    const sliderWidth = slider.current?.clientWidth ?? 0;
+    const gapString = sliderFrame.current ? getComputedStyle(sliderFrame.current).gap : '0';
+    const gap = parseFloat(gapString);
+    const styleGap = Number.isNaN(gap) ? 0 : gap;
+    const newState = updateSliderState({
+      styleGap,
+      sliderWidth,
+      castSize: cast.length,
+      castPictureWidth,
+      currentState: sliderState,
+      slide,
+    });
+    setSliderState(newState);
   }
 
   useEffect(() => {
-    setCastPictureSize();
+    setPictureSize();
     function handleResize() {
-      setSliderState(INITIAL_SLIDE_STATE);
       slider.current?.scrollTo(0, 0);
-      setCastPictureSize();
+      setPictureSize();
+      setSliderState({
+        ...INITIAL_SLIDE_STATE,
+        edgeVisible: isSlideable ? 'right' : 'none',
+      });
     }
     window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [slider.current?.clientWidth]);
+  }, [slider.current?.clientWidth, isSlideable]);
 
   return (
     <section aria-label="Cast">
@@ -103,7 +84,7 @@ function CastSlider({ cast }: ICastSliderProps) {
                 <div className="c-cast-slider__slider-control-overlay">
                   <BsChevronLeft
                     className="c-cast-slider__slider-control"
-                    style={sliderState.edgeVisible === 'right' ? inactiveButtonStyle : activeButtonStyle}
+                    style={['both', 'left'].includes(sliderState.edgeVisible) ? activeButtonStyle : inactiveButtonStyle}
                     role="button"
                     onClick={() => {
                       handleScroll('left');
@@ -115,6 +96,7 @@ function CastSlider({ cast }: ICastSliderProps) {
                     className="c-cast-slider__slider-frame"
                     ref={sliderFrame}
                     style={{ transform: `translateX(-${sliderState.currentOffset}px)` }}
+                    data-testid="slider-frame"
                   >
                     {cast.map((castMember) => (
                       <div className="c-cast-slider__cast-member" key={castMember.id}>
@@ -142,7 +124,9 @@ function CastSlider({ cast }: ICastSliderProps) {
                 <div className="c-cast-slider__slider-control-overlay">
                   <BsChevronRight
                     className="c-cast-slider__slider-control"
-                    style={sliderState.edgeVisible === 'left' ? inactiveButtonStyle : activeButtonStyle}
+                    style={
+                      ['both', 'right'].includes(sliderState.edgeVisible) ? activeButtonStyle : inactiveButtonStyle
+                    }
                     role="button"
                     onClick={() => {
                       handleScroll('right');
