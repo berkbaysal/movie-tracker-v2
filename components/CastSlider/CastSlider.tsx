@@ -11,7 +11,8 @@ import {
   ICastSliderState,
   inactiveButtonStyle,
   INITIAL_SLIDE_STATE,
-  getSlidesPerPage,
+  getTargetWidth,
+  updateSliderState,
 } from './castSliderConfig';
 
 interface ICastSliderProps {
@@ -27,51 +28,25 @@ function CastSlider({ cast }: ICastSliderProps) {
   function setCastPictureSize() {
     if (!sliderFrame.current || !slider.current) return;
     const sliderWidth = slider.current.clientWidth ?? 0;
-    const slidesPerPage = getSlidesPerPage(sliderWidth);
     const styleGap = parseFloat(getComputedStyle(sliderFrame.current).gap);
-    const gapWidth = Number.isNaN(styleGap) ? 0 : styleGap;
-    let targetWidth = 0;
-    if (matchMedia('(hover: none)').matches) {
-      const targetSlides = slidesPerPage + 0.5;
-      targetWidth = (sliderWidth - (targetSlides - 1) * gapWidth) / targetSlides;
-    } else {
-      targetWidth = (sliderWidth - (slidesPerPage - 1) * gapWidth) / slidesPerPage;
-    }
+    const targetWidth = getTargetWidth(styleGap, sliderWidth);
     setCastPictureWidth(targetWidth);
   }
 
   function handleScroll(slide: 'left' | 'right') {
     if (!sliderFrame.current || !slider.current) return;
     const sliderWidth = slider.current.clientWidth ?? 0;
-    const slidesPerPage = getSlidesPerPage(sliderWidth);
-    const totalPages = Math.ceil(cast.length / slidesPerPage);
-    const styleGap = parseFloat(getComputedStyle(sliderFrame.current).gap);
-    const gapWidth = Number.isNaN(styleGap) ? 0 : styleGap;
-    let leftOver = (cast.length % slidesPerPage) * (castPictureWidth + gapWidth);
-    const pageOffset = (castPictureWidth + gapWidth) * slidesPerPage;
-    if (leftOver === 0) leftOver = pageOffset;
-    const maxOffset = (totalPages - 1) * pageOffset + leftOver - slider.current.clientWidth - gapWidth;
-    if (slide === 'left') {
-      let newOffset = Math.max(sliderState.currentOffset - pageOffset, 0);
-      const newPage = Math.max(sliderState.currentPage - 1, 1);
-      if (newOffset % pageOffset !== 0) {
-        newOffset = Math.max(sliderState.currentOffset - (newOffset % pageOffset), 0);
-      }
-      setSliderState({
-        currentOffset: newOffset,
-        currentPage: newPage,
-        edgeVisible: newOffset === 0 ? 'right' : 'both',
-      });
-    }
-    if (slide === 'right') {
-      const newOffset = Math.min(sliderState.currentOffset + pageOffset, maxOffset);
-      const newPage = Math.min(sliderState.currentPage + 1, totalPages);
-      setSliderState({
-        currentOffset: newOffset,
-        currentPage: newPage,
-        edgeVisible: newOffset === maxOffset ? 'left' : 'both',
-      });
-    }
+    const gap = parseFloat(getComputedStyle(sliderFrame.current).gap);
+    const styleGap = Number.isNaN(gap) ? 0 : gap;
+    const newState = updateSliderState({
+      styleGap,
+      sliderWidth,
+      castSize: cast.length,
+      castPictureWidth,
+      currentState: sliderState,
+      slide,
+    });
+    setSliderState(newState);
   }
 
   useEffect(() => {
