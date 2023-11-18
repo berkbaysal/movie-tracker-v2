@@ -26,13 +26,16 @@ function CastSlider({ cast }: ICastSliderProps) {
   const [sliderState, setSliderState] = useState<ICastSliderState>(INITIAL_SLIDE_STATE);
   const [castPictureWidth, setCastPictureWidth] = useState<number>(0);
 
-  const isSlideable = useMemo(() => getSlidesPerPage(slider.current?.clientWidth ?? 0) <= cast.length, [cast.length]);
-
   function setPictureSize() {
     const sliderWidth = slider.current?.clientWidth ?? 0;
     const gap = sliderFrame.current ? getComputedStyle(sliderFrame.current).gap : '0';
     const styleGap = parseFloat(gap);
     const targetWidth = getTargetWidth(styleGap, sliderWidth);
+    const isSlideable = getSlidesPerPage(slider.current?.clientWidth ?? 0) <= cast.length;
+    setSliderState({
+      ...INITIAL_SLIDE_STATE,
+      edgeVisible: isSlideable ? 'right' : 'none',
+    });
     setCastPictureWidth(targetWidth);
   }
 
@@ -57,17 +60,13 @@ function CastSlider({ cast }: ICastSliderProps) {
     function handleResize() {
       slider.current?.scrollTo(0, 0);
       setPictureSize();
-      setSliderState({
-        ...INITIAL_SLIDE_STATE,
-        edgeVisible: isSlideable ? 'right' : 'none',
-      });
     }
     window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [slider.current?.clientWidth, isSlideable]);
+  }, [slider.current?.clientWidth, cast.length]);
 
   return (
     <section aria-label="Cast">
