@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import '@styles';
-import { mockCredits } from '@utilities/mockData';
+import { mockMovieCreditsResponse } from '@services/models/mocks';
 import { CastSlider } from '@components';
 
 export default {
@@ -18,6 +18,6 @@ export default {
 
 export const Movie: StoryObj<typeof CastSlider> = {
   args: {
-    cast: mockCredits.cast,
+    cast: mockMovieCreditsResponse.cast,
   },
 };

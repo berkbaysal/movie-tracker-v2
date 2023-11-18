@@ -1,12 +1,13 @@
 import { Button } from '@elements';
-import { MovieCredits, MovieListResult } from '@utilities/interfacesAPI';
+import { MediaContentCredits, MediaContentDetails } from '@utilities/interfacesApp';
 import { imgURL, posterSize } from '@utilities/resources';
+import PlaceholderPoster from '@public/img/placeholder_poster.png';
 import Image from 'next/image';
 import React from 'react';
 
 interface IContentSumamryProps {
-  contentInfo: MovieListResult;
-  credits: MovieCredits;
+  contentInfo: MediaContentDetails;
+  credits: MediaContentCredits;
 }
 
 function ContentSummary({ contentInfo, credits }: IContentSumamryProps) {
@@ -18,7 +19,9 @@ function ContentSummary({ contentInfo, credits }: IContentSumamryProps) {
     <section aria-label="Details section" className="container-fluid o-background-container c-content-summary">
       <div className="container c-content-summary__container u-padding-ends-xsmall u-padding-ends-2xsmall@md-down">
         <Image
-          src={`${imgURL}/${posterSize.large.url}${contentInfo.poster_path}`}
+          src={
+            contentInfo.posterPath ? `${imgURL}/${posterSize.large.url}${contentInfo.posterPath}` : PlaceholderPoster
+          }
           alt={`${contentInfo.title} poster`}
           sizes="(max-width: 760px) 100vw 17vw"
           width={posterSize.large.width}
@@ -32,7 +35,7 @@ function ContentSummary({ contentInfo, credits }: IContentSumamryProps) {
           <div className="c-content-summary__title-container">
             <h1 className="c-content-summary__content-title">{contentInfo.title}</h1>
             <div className="c-content-summary__content-title--date-and-time">{` ${new Date(
-              contentInfo.release_date
+              contentInfo.year
             ).getFullYear()} •  ${contentInfo.runtime} min `}</div>
           </div>
           <div className="c-content-summary__content-overview">

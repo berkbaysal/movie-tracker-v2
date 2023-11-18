@@ -1,11 +1,10 @@
 import { StaticImageData } from 'next/image';
-import { MediaType } from './interfacesAPI';
 
-export interface TrendingResult {
-  title: string;
-  posterPath: string | null;
-  mediaType: MediaType;
+export type MediaType = 'movie' | 'tv' | 'person';
+
+export interface MediaContentGenre {
   id: number;
+  name: string;
 }
 
 export interface Post {
@@ -20,4 +19,38 @@ export interface EditorsPick {
   posterPath: string | null;
   year: string;
   id: number;
+}
+
+export interface MediaContent {
+  mediaType: MediaType;
+  id: number;
+  title: string;
+  year: string;
+  runtime?: number;
+  posterPath?: string;
+}
+
+export interface MediaContentDetails extends MediaContent {
+  overview: string;
+  tagline?: string;
+  genres: MediaContentGenre[];
+}
+
+export interface Cast {
+  id: number;
+  name: string;
+  character: string;
+  picturePath?: string;
+}
+
+export interface Crew {
+  id: number;
+  name: string;
+  job: string;
+  picturePath?: string;
+}
+
+export interface MediaContentCredits {
+  cast: Cast[];
+  crew: Crew[];
 }

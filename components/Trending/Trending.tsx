@@ -1,9 +1,9 @@
+import { MediaContent } from '@utilities/interfacesApp';
 import React from 'react';
-import { TrendingResult } from '@utilities/interfacesApp';
 import TrendingUnit from './TrendingUnit/TrendingUnit';
 
 interface TrendingProps {
-  trending: TrendingResult[];
+  trending: MediaContent[];
 }
 
 function Trending({ trending }: TrendingProps) {

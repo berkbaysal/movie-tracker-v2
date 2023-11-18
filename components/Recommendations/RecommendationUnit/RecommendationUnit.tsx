@@ -1,32 +1,34 @@
-import { MediaType } from '@utilities/interfacesAPI';
+import { MediaContent } from '@utilities/interfacesApp';
 import { imgURL, posterSize } from '@utilities/resources';
+import PlaceholderPoster from '@public/img/placeholder_poster.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
 interface IRecommendationUnitProps {
-  id: number;
-  mediaType: MediaType;
-  posterPath: string | null;
-  title: string;
+  reccomendation: MediaContent;
 }
 
-function RecommendationUnit({ id, mediaType, posterPath, title }: IRecommendationUnitProps) {
+function RecommendationUnit({ reccomendation }: IRecommendationUnitProps) {
   const sizes = '(max-width: 760px) 33vw, 17vw';
 
   return (
-    <Link href={`/${mediaType}/${id}`}>
+    <Link href={`/${reccomendation.mediaType}/${reccomendation.id}`}>
       <div className="c-recommendation-unit">
         <Image
           className="c-recommendation-unit__poster"
-          src={`${imgURL}/${posterSize.medium.url}${posterPath}`}
-          alt={`${title} poster`}
+          src={
+            reccomendation.posterPath
+              ? `${imgURL}/${posterSize.medium.url}${reccomendation.posterPath}`
+              : PlaceholderPoster
+          }
+          alt={`${reccomendation.title} poster`}
           sizes={sizes}
           width={posterSize.medium.width}
           height={posterSize.medium.height}
           placeholder="empty"
         />
-        <h3 className="c-recommendation-unit__title">{`${title}`}</h3>
+        <h3 className="c-recommendation-unit__title">{`${reccomendation.title}`}</h3>
       </div>
     </Link>
   );

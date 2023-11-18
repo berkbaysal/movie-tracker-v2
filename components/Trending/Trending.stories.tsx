@@ -1,11 +1,9 @@
-import { filterTrendingResults } from '@services/apiServices';
-import { mockTrendingApiData } from '@utilities/mockData';
-import { TrendingResult } from '@utilities/interfacesApp';
 import { Trending } from '@components';
 import '@styles';
 import { Meta, StoryObj } from '@storybook/react';
-
-const mockTrendingResults: TrendingResult[] = filterTrendingResults(mockTrendingApiData, 9);
+import { mapTrendingResponseToMediaContent } from '@utilities/mappers';
+import { mockTrendingResponse } from '@services/models/mocks';
+import { TrendingResponse } from '@services/models';
 
 export default {
   title: 'Components/Trending',
@@ -18,5 +16,5 @@ export default {
 } as Meta<typeof Trending>;
 
 export const Default: StoryObj<typeof Trending> = {
-  args: { trending: mockTrendingResults },
+  args: { trending: mapTrendingResponseToMediaContent(mockTrendingResponse.results as TrendingResponse[]) },
 };
