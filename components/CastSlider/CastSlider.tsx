@@ -4,7 +4,7 @@ import PlaceholderAvatar from '@public/img/placeholder_avatar.png';
 import { Cast } from '@utilities/interfacesApp';
 import { imgURL, posterSize } from '@utilities/resources';
 import Image from 'next/image';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import {
   activeButtonStyle,
@@ -13,6 +13,7 @@ import {
   INITIAL_SLIDE_STATE,
   getTargetWidth,
   updateSliderState,
+  getSlidesPerPage,
 } from './castSliderConfig';
 
 interface ICastSliderProps {
@@ -25,13 +26,18 @@ function CastSlider({ cast }: ICastSliderProps) {
   const [sliderState, setSliderState] = useState<ICastSliderState>(INITIAL_SLIDE_STATE);
   const [castPictureWidth, setCastPictureWidth] = useState<number>(0);
 
-  function setCastPictureSize() {
+  const setCastPictureSize = useCallback(() => {
     if (!sliderFrame.current || !slider.current) return;
     const sliderWidth = slider.current.clientWidth ?? 0;
     const styleGap = parseFloat(getComputedStyle(sliderFrame.current).gap);
     const targetWidth = getTargetWidth(styleGap, sliderWidth);
+    const isSlideable = getSlidesPerPage(sliderWidth) < cast.length;
+    setSliderState({
+      ...INITIAL_SLIDE_STATE,
+      edgeVisible: isSlideable ? 'right' : 'none',
+    });
     setCastPictureWidth(targetWidth);
-  }
+  }, [cast.length]);
 
   function handleScroll(slide: 'left' | 'right') {
     if (!sliderFrame.current || !slider.current) return;
@@ -52,7 +58,6 @@ function CastSlider({ cast }: ICastSliderProps) {
   useEffect(() => {
     setCastPictureSize();
     function handleResize() {
-      setSliderState(INITIAL_SLIDE_STATE);
       slider.current?.scrollTo(0, 0);
       setCastPictureSize();
     }
@@ -61,7 +66,7 @@ function CastSlider({ cast }: ICastSliderProps) {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [slider.current?.clientWidth]);
+  }, [slider.current?.clientWidth, setCastPictureSize]);
 
   return (
     <section aria-label="Cast">
@@ -78,7 +83,7 @@ function CastSlider({ cast }: ICastSliderProps) {
                 <div className="c-cast-slider__slider-control-overlay">
                   <BsChevronLeft
                     className="c-cast-slider__slider-control"
-                    style={sliderState.edgeVisible === 'right' ? inactiveButtonStyle : activeButtonStyle}
+                    style={['both', 'left'].includes(sliderState.edgeVisible) ? activeButtonStyle : inactiveButtonStyle}
                     role="button"
                     onClick={() => {
                       handleScroll('left');
@@ -117,7 +122,9 @@ function CastSlider({ cast }: ICastSliderProps) {
                 <div className="c-cast-slider__slider-control-overlay">
                   <BsChevronRight
                     className="c-cast-slider__slider-control"
-                    style={sliderState.edgeVisible === 'left' ? inactiveButtonStyle : activeButtonStyle}
+                    style={
+                      ['both', 'right'].includes(sliderState.edgeVisible) ? activeButtonStyle : inactiveButtonStyle
+                    }
                     role="button"
                     onClick={() => {
                       handleScroll('right');

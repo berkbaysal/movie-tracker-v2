@@ -1,4 +1,4 @@
-export type TCastSliderEdgeVisible = 'left' | 'right' | 'both';
+export type TCastSliderEdgeVisible = 'left' | 'right' | 'both' | 'none';
 
 export interface ICastSliderState {
   currentOffset: number;
@@ -9,10 +9,10 @@ export interface ICastSliderState {
 export const INITIAL_SLIDE_STATE: ICastSliderState = {
   currentOffset: 0,
   currentPage: 1,
-  edgeVisible: 'right',
+  edgeVisible: 'none',
 };
 
-interface ISliderUpdateParams {
+export interface ISliderUpdateParams {
   styleGap: number;
   sliderWidth: number;
   castSize: number;
