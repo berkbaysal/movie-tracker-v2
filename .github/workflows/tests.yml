@@ -7,14 +7,23 @@ on:
     branches: [main]
 
 jobs:
-  tests:
+  install:
+    name: Install
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js
+
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
-      - run: npm install
-      - run: npm test
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm test
+
+      - name: Post Coverage
+        uses: coverallsapp/github-action@v2
