@@ -17,10 +17,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
-      - run: npm install
+        run: npm install
 
       - name: Run Tests
-      - run: npm test
+        run: npm test
 
       - name: Post Coverage
         uses: coverallsapp/github-action@v2
