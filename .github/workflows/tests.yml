@@ -25,7 +25,7 @@ jobs:
 
     steps:
       - run: npm test
-    needs: install
+    needs: [install]
 
   post-coverage:
     name: Post Coverage
