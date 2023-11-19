@@ -14,38 +14,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js
+      - name: Install Dependencies
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
       - run: npm install
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.npm
-            ~/.cache
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        if: success()
 
-  test:
-    name: Run Tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.x'
+      - name: Run Tests
       - run: npm test
-    needs: [install]
 
-  post-coverage:
-    name: Post Coverage
-    runs-on: ubuntu-latest
-    steps:
-      - name: Coveralls
+      - name: Post Coverage
         uses: coverallsapp/github-action@v2
-
-    needs: [install, test]
