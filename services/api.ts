@@ -3,10 +3,13 @@ import { apiURL } from '@utilities/resources';
 import { MediaContent, MediaContentCredits, MediaContentDetails } from '@utilities/interfacesApp';
 import axios from 'axios';
 import {
-  mapMovieCreditsResponseToMediaContent,
+  mapMovieCreditsResponseToMediaContentCredits,
   mapMovieDetailResponseToMediaContent,
   mapMovieRecommendationResponseToMediaContent,
   mapTrendingResponseToMediaContent,
+  mapTvCreditsResponseToMediaContentCredits,
+  mapTvDetailResponseToMediaContent,
+  mapTvRecommendationResponseToMediaContent,
 } from '@utilities/mappers';
 import {
   MovieCreditsResponse,
@@ -14,6 +17,9 @@ import {
   MovieRecommendationResponse,
   PaginatedResponse,
   TrendingResponse,
+  TvDetailResponse,
+  TvCreditsResponse,
+  TvRecommendationResponse,
 } from './models';
 
 dotenv.config();
@@ -28,6 +34,7 @@ interface GetTrendingListParameters {
   period?: 'week' | 'day';
 }
 
+// Trending
 export async function getTrendingList({ limit = 20, period = 'week' }: GetTrendingListParameters = {}): Promise<
   MediaContent[]
 > {
@@ -40,6 +47,7 @@ export async function getTrendingList({ limit = 20, period = 'week' }: GetTrendi
   return fetchRes.slice(0, maxResults);
 }
 
+// Movie
 export async function getMovieInfo(id: number): Promise<MediaContentDetails> {
   const fetchRes = await axios
     .get<MovieDetailResponse>(`${apiURL}/movie/${id}`, { params })
@@ -53,7 +61,7 @@ export async function getMovieCredits(id: number): Promise<MediaContentCredits> 
   const fetchRes = await axios
     .get<MovieCreditsResponse>(`${apiURL}/movie/${id}/credits`, { params })
     .then((res) => res.data)
-    .then((res) => mapMovieCreditsResponseToMediaContent(res));
+    .then((res) => mapMovieCreditsResponseToMediaContentCredits(res));
 
   return fetchRes;
 }
@@ -63,6 +71,34 @@ export async function getMovieRecommendations(id: number): Promise<MediaContent[
     .get<PaginatedResponse<MovieRecommendationResponse>>(`${apiURL}/movie/${id}/recommendations`, { params })
     .then((res) => res.data)
     .then((res) => mapMovieRecommendationResponseToMediaContent(res.results));
+
+  return fetchRes;
+}
+
+// TV
+export async function getTvShowInfo(id: number): Promise<MediaContentDetails> {
+  const fetchRes = await axios
+    .get<TvDetailResponse>(`${apiURL}/tv/${id}`, { params })
+    .then((res) => res.data)
+    .then((res) => mapTvDetailResponseToMediaContent(res));
+
+  return fetchRes;
+}
+
+export async function getTvCredits(id: number): Promise<MediaContentCredits> {
+  const fetchRes = await axios
+    .get<TvCreditsResponse>(`${apiURL}/tv/${id}/credits`, { params })
+    .then((res) => res.data)
+    .then((res) => mapTvCreditsResponseToMediaContentCredits(res));
+
+  return fetchRes;
+}
+
+export async function getTvRecommendations(id: number): Promise<MediaContent[]> {
+  const fetchRes = await axios
+    .get<PaginatedResponse<TvRecommendationResponse>>(`${apiURL}/tv/${id}/recommendations`, { params })
+    .then((res) => res.data)
+    .then((res) => mapTvRecommendationResponseToMediaContent(res.results));
 
   return fetchRes;
 }
