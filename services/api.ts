@@ -7,6 +7,7 @@ import {
   mapMovieDetailResponseToMediaContent,
   mapMovieRecommendationResponseToMediaContent,
   mapTrendingResponseToMediaContent,
+  mapTvDetailResponseToMediaContent,
 } from '@utilities/mappers';
 import {
   MovieCreditsResponse,
@@ -15,6 +16,7 @@ import {
   PaginatedResponse,
   TrendingResponse,
 } from './models';
+import TvDetailResponse from './models/response/tv/TvDetailResponse.type';
 
 dotenv.config();
 
@@ -45,6 +47,15 @@ export async function getMovieInfo(id: number): Promise<MediaContentDetails> {
     .get<MovieDetailResponse>(`${apiURL}/movie/${id}`, { params })
     .then((res) => res.data)
     .then((res) => mapMovieDetailResponseToMediaContent(res));
+
+  return fetchRes;
+}
+
+export async function getTvShowInfo(id: number): Promise<MediaContentDetails> {
+  const fetchRes = await axios
+    .get<TvDetailResponse>(`${apiURL}/tv/${id}`, { params })
+    .then((res) => res.data)
+    .then((res) => mapTvDetailResponseToMediaContent(res));
 
   return fetchRes;
 }

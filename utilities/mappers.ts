@@ -6,6 +6,7 @@ import {
   TrendingResponse,
   TvSearchResultResponse,
 } from '@services/models';
+import TvDetailResponse from '@services/models/response/tv/TvDetailResponse.type';
 import { Cast, Crew, MediaContent, MediaContentCredits, MediaContentDetails } from './interfacesApp';
 
 // Movie
@@ -57,6 +58,20 @@ export function mapTvSearchResultToMediaContent(response: TvSearchResultResponse
     title: response.name,
     year: response.first_air_date,
     posterPath: response.poster_path,
+  };
+}
+
+export function mapTvDetailResponseToMediaContent(response: TvDetailResponse): MediaContentDetails {
+  return {
+    mediaType: 'tv',
+    id: response.id,
+    title: response.name,
+    year: response.first_air_date,
+    runtime: response.episode_run_time[0],
+    posterPath: response.poster_path,
+    overview: response.overview,
+    tagline: response.tagline,
+    genres: response.genres,
   };
 }
 
