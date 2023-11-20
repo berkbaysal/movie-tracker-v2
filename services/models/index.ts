@@ -11,6 +11,7 @@ export type { default as MovieCreditsResponse } from './response/movie/MovieCred
 export type { default as TvSearchResultResponse } from './response/tv/TvSearchResultResponse.type';
 export type { default as TvDetailResponse } from './response/tv/TvDetailResponse.type';
 export type { default as TvCreditsResponse } from './response/tv/TvCreditsResponse.type';
+export type { default as TvRecommendationResponse } from './response/tv/TvRecommendationResponse.type';
 
 // Trending
 export type { default as TrendingResponse } from './response/trending/TrendingResponse.type';

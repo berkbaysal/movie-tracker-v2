@@ -9,6 +9,7 @@ import {
   mapTrendingResponseToMediaContent,
   mapTvCreditsResponseToMediaContentCredits,
   mapTvDetailResponseToMediaContent,
+  mapTvRecommendationResponseToMediaContent,
 } from '@utilities/mappers';
 import {
   MovieCreditsResponse,
@@ -18,6 +19,7 @@ import {
   TrendingResponse,
   TvDetailResponse,
   TvCreditsResponse,
+  TvRecommendationResponse,
 } from './models';
 
 dotenv.config();
@@ -88,6 +90,15 @@ export async function getTvCredits(id: number): Promise<MediaContentCredits> {
     .get<TvCreditsResponse>(`${apiURL}/tv/${id}/credits`, { params })
     .then((res) => res.data)
     .then((res) => mapTvCreditsResponseToMediaContentCredits(res));
+
+  return fetchRes;
+}
+
+export async function getTvRecommendations(id: number): Promise<MediaContent[]> {
+  const fetchRes = await axios
+    .get<PaginatedResponse<TvRecommendationResponse>>(`${apiURL}/tv/${id}/recommendations`, { params })
+    .then((res) => res.data)
+    .then((res) => mapTvRecommendationResponseToMediaContent(res.results));
 
   return fetchRes;
 }

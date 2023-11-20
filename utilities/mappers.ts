@@ -5,6 +5,7 @@ import {
   MovieSearchResultResponse,
   TrendingResponse,
   TvCreditsResponse,
+  TvRecommendationResponse,
   TvSearchResultResponse,
 } from '@services/models';
 import TvDetailResponse from '@services/models/response/tv/TvDetailResponse.type';
@@ -130,6 +131,21 @@ export function mapTvCreditsResponseToMediaContentCredits(response: TvCreditsRes
     cast,
     crew,
   };
+}
+
+export function mapTvRecommendationResponseToMediaContent(response: TvRecommendationResponse[]): MediaContent[] {
+  const formattedResults: MediaContent[] = [];
+  response.forEach((item) => {
+    formattedResults.push({
+      mediaType: item.media_type,
+      id: item.id,
+      title: item.name,
+      year: item.first_air_date,
+      posterPath: item.poster_path,
+    } as MediaContent);
+  });
+
+  return formattedResults;
 }
 
 // Trending
