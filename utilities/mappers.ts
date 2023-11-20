@@ -4,6 +4,7 @@ import {
   MovieRecommendationResponse,
   MovieSearchResultResponse,
   TrendingResponse,
+  TvCreditsResponse,
   TvSearchResultResponse,
 } from '@services/models';
 import TvDetailResponse from '@services/models/response/tv/TvDetailResponse.type';
@@ -49,54 +50,7 @@ export function mapMovieRecommendationResponseToMediaContent(response: MovieReco
   return formattedResults;
 }
 
-// Tv
-
-export function mapTvSearchResultToMediaContent(response: TvSearchResultResponse): MediaContent {
-  return {
-    mediaType: 'tv',
-    id: response.id,
-    title: response.name,
-    year: response.first_air_date,
-    posterPath: response.poster_path,
-  };
-}
-
-export function mapTvDetailResponseToMediaContent(response: TvDetailResponse): MediaContentDetails {
-  return {
-    mediaType: 'tv',
-    id: response.id,
-    title: response.name,
-    year: response.first_air_date,
-    runtime: response.episode_run_time[0],
-    posterPath: response.poster_path,
-    overview: response.overview,
-    tagline: response.tagline,
-    genres: response.genres,
-  };
-}
-
-// Trending
-
-export function mapTrendingResponseToMediaContent(response: TrendingResponse[]): MediaContent[] {
-  const formattedResults: MediaContent[] = [];
-  response
-    .filter((item) => item.media_type === 'movie' || item.media_type === 'tv')
-    .forEach((item) => {
-      formattedResults.push({
-        mediaType: item.media_type,
-        id: item.id,
-        title: item.title || item.name,
-        year: item.release_date || item.first_air_date,
-        posterPath: item.poster_path,
-      } as MediaContent);
-    });
-
-  return formattedResults;
-}
-
-// Credits
-
-export function mapMovieCreditsResponseToMediaContent(response: MovieCreditsResponse): MediaContentCredits {
+export function mapMovieCreditsResponseToMediaContentCredits(response: MovieCreditsResponse): MediaContentCredits {
   const cast: Cast[] = [];
   const crew: Crew[] = [];
 
@@ -123,3 +77,78 @@ export function mapMovieCreditsResponseToMediaContent(response: MovieCreditsResp
     crew,
   };
 }
+
+// Tv
+
+export function mapTvSearchResultToMediaContent(response: TvSearchResultResponse): MediaContent {
+  return {
+    mediaType: 'tv',
+    id: response.id,
+    title: response.name,
+    year: response.first_air_date,
+    posterPath: response.poster_path,
+  };
+}
+
+export function mapTvDetailResponseToMediaContent(response: TvDetailResponse): MediaContentDetails {
+  return {
+    mediaType: 'tv',
+    id: response.id,
+    title: response.name,
+    year: response.first_air_date,
+    runtime: response.episode_run_time[0],
+    posterPath: response.poster_path,
+    overview: response.overview,
+    tagline: response.tagline,
+    genres: response.genres,
+  };
+}
+
+export function mapTvCreditsResponseToMediaContentCredits(response: TvCreditsResponse): MediaContentCredits {
+  const cast: Cast[] = [];
+  const crew: Crew[] = [];
+
+  response.cast.forEach((item) => {
+    cast.push({
+      id: item.id,
+      name: item.name,
+      character: item.character,
+      picturePath: item.profile_path,
+    });
+  });
+
+  response.crew.forEach((item) => {
+    crew.push({
+      id: item.id,
+      name: item.name,
+      job: item.job,
+      picturePath: item.profile_path,
+    });
+  });
+
+  return {
+    cast,
+    crew,
+  };
+}
+
+// Trending
+
+export function mapTrendingResponseToMediaContent(response: TrendingResponse[]): MediaContent[] {
+  const formattedResults: MediaContent[] = [];
+  response
+    .filter((item) => item.media_type === 'movie' || item.media_type === 'tv')
+    .forEach((item) => {
+      formattedResults.push({
+        mediaType: item.media_type,
+        id: item.id,
+        title: item.title || item.name,
+        year: item.release_date || item.first_air_date,
+        posterPath: item.poster_path,
+      } as MediaContent);
+    });
+
+  return formattedResults;
+}
+
+// Credits

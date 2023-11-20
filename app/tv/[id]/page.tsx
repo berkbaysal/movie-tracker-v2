@@ -1,4 +1,4 @@
-import { getMovieCredits, getMovieRecommendations, getTvShowInfo } from '@services/api';
+import { getMovieRecommendations, getTvCredits, getTvShowInfo } from '@services/api';
 import { ContentSummary, CastSlider, Recommendations } from '@components';
 import React from 'react';
 import { Metadata } from 'next';
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: IMoviePageProps): Promise<Met
 async function MoviePage({ params }: IMoviePageProps) {
   const [movieInfo, credits, recommendations] = await Promise.all([
     getTvShowInfo(params.id),
-    getMovieCredits(params.id),
+    getTvCredits(params.id),
     getMovieRecommendations(params.id),
   ]);
 
