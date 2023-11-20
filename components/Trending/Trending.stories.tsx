@@ -15,6 +15,10 @@ export default {
   },
 } as Meta<typeof Trending>;
 
+const data = mapTrendingResponseToMediaContent(mockTrendingResponse.results as TrendingResponse[]).slice(0, 9);
+
 export const Default: StoryObj<typeof Trending> = {
-  args: { trending: mapTrendingResponseToMediaContent(mockTrendingResponse.results as TrendingResponse[]) },
+  args: {
+    trending: data,
+  },
 };
