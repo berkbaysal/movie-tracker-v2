@@ -4,3 +4,7 @@ export { default as mockMovieRecommendationResponse } from './movie/MovieRecomme
 export { default as mockMovieDetailResponse } from './movie/MovieDetailResponse.json';
 // trending
 export { default as mockTrendingResponse } from './trending/TrendingResponse.json';
+// tv
+export { default as mockTvCreditsResponse } from './tv/TvCreditsResponse.json';
+export { default as mockTvRecommendationResponse } from './tv/TvRecommendationResponse.json';
+export { default as mockTvDetailResponse } from './tv/TvDetailResponse.json';
