@@ -1,6 +1,6 @@
 import { Button } from '@elements';
 import { MediaContentCredits, MediaContentDetails } from '@utilities/interfacesApp';
-import { imgURL, posterSize } from '@utilities/resources';
+import { backdropSize, imgURL, posterSize } from '@utilities/resources';
 import PlaceholderPoster from '@public/img/placeholder_poster.png';
 import Image from 'next/image';
 import React from 'react';
@@ -17,6 +17,15 @@ function ContentSummary({ contentInfo, credits }: IContentSumamryProps) {
 
   return (
     <section aria-label="Details section" className="container-fluid o-background-container c-content-summary">
+      <Image
+        src={`${imgURL}/${backdropSize.large.url}${contentInfo.backgroundImagePath}`}
+        alt="Background image"
+        sizes="100vw"
+        width={backdropSize.large.width}
+        height={backdropSize.large.height}
+        className="c-content-summary__background-image"
+      />
+      <div className="c-content-summary__overlay" />
       <div className="container c-content-summary__container u-padding-ends-xsmall u-padding-ends-2xsmall@md-down">
         <Image
           src={
