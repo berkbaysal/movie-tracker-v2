@@ -14,3 +14,12 @@ export const posterSize: {
   large: { url: 'w500', width: 500, height: 750 },
   xlarge: { url: 'w780', width: 780, height: 1169 },
 };
+
+export const backdropSize: {
+  [key: string]: { url: string; width: number; height: number };
+} = {
+  thumbnail: { url: 'w300', width: 300, height: 169 },
+  small: { url: 'w780', width: 780, height: 439 },
+  medium: { url: 'w1280', width: 1280, height: 720 },
+  large: { url: 'original', width: 1920, height: 1080 },
+};
