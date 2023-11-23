@@ -23,6 +23,7 @@ export function mapMovieDetailResponseToMediaContent(response: MovieDetailRespon
     overview: response.overview,
     tagline: response.tagline,
     genres: response.genres,
+    backgroundImagePath: response.backdrop_path,
   };
 }
 
@@ -33,6 +34,7 @@ export function mapMovieSearchResultToMediaContent(response: MovieSearchResultRe
     title: response.title,
     year: response.release_date,
     posterPath: response.poster_path,
+    backgroundImagePath: response.backdrop_path,
   };
 }
 
@@ -45,6 +47,7 @@ export function mapMovieRecommendationResponseToMediaContent(response: MovieReco
       title: item.title,
       year: item.release_date,
       posterPath: item.poster_path,
+      backgroundImagePath: item.backdrop_path,
     } as MediaContent);
   });
 
@@ -88,6 +91,7 @@ export function mapTvSearchResultToMediaContent(response: TvSearchResultResponse
     title: response.name,
     year: response.first_air_date,
     posterPath: response.poster_path,
+    backgroundImagePath: response.backdrop_path,
   };
 }
 
@@ -102,6 +106,7 @@ export function mapTvDetailResponseToMediaContent(response: TvDetailResponse): M
     overview: response.overview,
     tagline: response.tagline,
     genres: response.genres,
+    backgroundImagePath: response.backdrop_path,
   };
 }
 
@@ -142,6 +147,7 @@ export function mapTvRecommendationResponseToMediaContent(response: TvRecommenda
       title: item.name,
       year: item.first_air_date,
       posterPath: item.poster_path,
+      backgroundImagePath: item.backdrop_path,
     } as MediaContent);
   });
 
@@ -161,6 +167,7 @@ export function mapTrendingResponseToMediaContent(response: TrendingResponse[]):
         title: item.title || item.name,
         year: item.release_date || item.first_air_date,
         posterPath: item.poster_path,
+        backgroundImagePath: item.backdrop_path,
       } as MediaContent);
     });
 

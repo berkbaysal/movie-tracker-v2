@@ -28,6 +28,7 @@ export interface MediaContent {
   year: string;
   runtime?: number;
   posterPath?: string;
+  backgroundImagePath?: string;
 }
 
 export interface MediaContentDetails extends MediaContent {
