@@ -15,7 +15,9 @@ jest.mock('./castSliderConfig');
 const mockedUpdateSlider = updateSliderState as jest.MockedFunction<typeof updateSliderState>;
 const mockTargetWidth = getTargetWidth as jest.MockedFunction<typeof getTargetWidth>;
 
-Element.prototype.scrollTo = () => {};
+const mockScrollTo = jest.fn();
+
+Element.prototype.scrollTo = mockScrollTo;
 
 describe('Cast slider functionality', () => {
   afterEach(jest.clearAllMocks);
@@ -70,7 +72,14 @@ describe('Slider interaction', () => {
     expect(slider).toHaveStyle('transform: translateX(-0px)');
   });
 
-  test('Slider resets position on resize', () => {
+  test('Slider resets position correctly on resize for non touch devices', () => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(() => ({
+        matches: true,
+      })),
+    });
+
     render(<CastSlider cast={mockMovieCreditsResponse.cast} />);
 
     const sliderButtons = screen.getAllByRole('button');
@@ -83,5 +92,29 @@ describe('Slider interaction', () => {
 
     fireEvent.resize(window);
     expect(slider).toHaveStyle('transform: translateX(-0px)');
+    expect(mockScrollTo).toBeCalledTimes(1);
+  });
+
+  test('Slider resets position correctly on resize for touch devices', () => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(() => ({
+        matches: false,
+      })),
+    });
+
+    render(<CastSlider cast={mockMovieCreditsResponse.cast} />);
+
+    const sliderButtons = screen.getAllByRole('button');
+    const slider = screen.getByTestId('slider-frame');
+    expect(sliderButtons).toHaveLength(2);
+
+    fireEvent.click(sliderButtons[1]);
+    expect(mockedUpdateSlider).toHaveBeenCalledTimes(1);
+    expect(slider).toHaveStyle('transform: translateX(-1280px)');
+
+    fireEvent.resize(window);
+    expect(slider).toHaveStyle('transform: translateX(-0px)');
+    expect(mockScrollTo).toBeCalledTimes(0);
   });
 });
