@@ -12,13 +12,13 @@
       padding-bottom: pad(small);
     }
 
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(md) {
       display: flex;
       overflow: scroll;
       flex-wrap: nowrap;
       -ms-overflow-style: none; /* IE and Edge */
       scroll-behavior: smooth;
-      scrollbar-width: none; /* Firefox */
+      scrollbar-width: auto; /* Firefox */
 
       &::-webkit-scrollbar {
         display: none; /*Chrome, Safari and Opera */

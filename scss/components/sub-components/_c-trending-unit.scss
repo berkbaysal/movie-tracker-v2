@@ -8,10 +8,14 @@
   cursor: pointer;
   line-height: 1.25;
 
-  @include media-breakpoint-down(sm) {
-    width: 57vw;
+  @include media-breakpoint-down(md) {
+    width: 35vw;
     height: 100%;
     margin-right: pad(xsmall);
+  }
+
+  @include media-breakpoint-down(sm) {
+    width: 57vw;
   }
 
   &__trending-poster {
@@ -40,7 +44,7 @@
     font-size: 0.75rem;
     transition: $g-poster-hover-transition;
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
       position: absolute;
       bottom: 0;
       left: 0;
@@ -53,12 +57,8 @@
       font-size: 1rem;
     }
 
-    &--slide-up {
-      transform: translateY(0%);
-    }
-
     &--top-trending {
-      @include media-breakpoint-up(md) {
+      @include media-breakpoint-up(lg) {
         padding-top: pad(xsmall);
         padding-right: pad(2xsmall);
         padding-bottom: pad(xsmall);
@@ -73,5 +73,9 @@
         font-size: 1.5rem;
       }
     }
+  }
+
+  &:hover &__title {
+    transform: translateY(0%);
   }
 }
