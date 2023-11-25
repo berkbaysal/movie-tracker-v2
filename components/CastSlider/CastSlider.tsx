@@ -4,7 +4,7 @@ import PlaceholderAvatar from '@public/img/placeholder_avatar.png';
 import { Cast } from '@utilities/interfacesApp';
 import { imgURL, posterSize } from '@utilities/resources';
 import Image from 'next/image';
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import {
   activeButtonStyle,
@@ -58,14 +58,17 @@ function CastSlider({ cast }: ICastSliderProps) {
   useEffect(() => {
     setPictureSize();
     function handleResize() {
-      slider.current?.scrollTo(0, 0);
       setPictureSize();
+      if (window.matchMedia('(pointer: fine)').matches) {
+        slider.current?.scrollTo(0, 0);
+      }
     }
     window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('resize', handleResize);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slider.current?.clientWidth, cast.length]);
 
   return (
