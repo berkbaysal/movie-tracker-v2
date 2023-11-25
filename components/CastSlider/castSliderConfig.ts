@@ -24,7 +24,7 @@ export interface ISliderUpdateParams {
 export function getSlidesPerPage(sliderSize: number) {
   switch (true) {
     case sliderSize < 400:
-      return 2;
+      return 3;
     case sliderSize < 768:
       return 4;
     case sliderSize < 800:
