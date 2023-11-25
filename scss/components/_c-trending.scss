@@ -16,6 +16,7 @@
       display: flex;
       overflow: scroll;
       flex-wrap: nowrap;
+      padding-left: pad(xsmall);
       -ms-overflow-style: none; /* IE and Edge */
       scroll-behavior: smooth;
       scrollbar-width: auto; /* Firefox */
