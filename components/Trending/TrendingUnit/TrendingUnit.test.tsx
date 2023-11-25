@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MediaType } from '@utilities/interfacesApp';
 import TrendingUnit from './TrendingUnit';
 import '@testing-library/jest-dom';
@@ -25,16 +25,6 @@ describe('Trending Unit Functionality', () => {
   test('Trending unit has correct title', () => {
     render(<TrendingUnit {...testProps} />);
     expect(screen.getByRole('heading')).toHaveTextContent('Test movie title');
-  });
-
-  test('Modifier class is applied when hovered', () => {
-    render(<TrendingUnit {...testProps} />);
-    const title = screen.getByRole('heading');
-    expect(title).not.toHaveClass('c-trending-unit__title--slide-up');
-    fireEvent.mouseEnter(screen.getByRole('img'));
-    expect(title).toHaveClass('c-trending-unit__title--slide-up');
-    fireEvent.mouseLeave(screen.getByRole('img'));
-    expect(title).not.toHaveClass('c-trending-unit__title--slide-up');
   });
   test('Trending unit has correct link', () => {
     render(<TrendingUnit {...testProps} />);

@@ -11,7 +11,7 @@
     grid-template-columns: 1.5rem auto 1.5rem;
   }
 
-  @media (hover: none) {
+  @media (hover: none), (pointer: coarse) {
     display: block;
   }
 
@@ -23,7 +23,7 @@
     height: 100%;
     flex-shrink: 1;
 
-    @media (hover: none) {
+    @media (hover: none), (pointer: coarse) {
       overflow: scroll;
       padding: 0.5rem 0;
       -ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -43,7 +43,7 @@
     gap: 0.5rem;
     transition: $g-transition-duration ease-in-out;
 
-    @media (hover: none) {
+    @media (hover: none), (pointer: coarse) {
       padding-left: 2rem;
       @include media-breakpoint-down(md) {
         padding-left: 1rem;
@@ -112,7 +112,7 @@
     background-color: $color-text-reverse;
     color: $color-text-reverse;
 
-    @media (hover: none) {
+    @media (hover: none), (pointer: coarse) {
       display: none;
     }
   }
@@ -132,7 +132,7 @@
   }
 
   &__ignores-bounds-on-touch {
-    @media (hover: none) {
+    @media (hover: none), (pointer: coarse) {
       padding-right: 0;
       padding-left: 0;
       margin-right: 0;

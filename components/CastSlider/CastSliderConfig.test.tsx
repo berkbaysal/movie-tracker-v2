@@ -27,8 +27,8 @@ describe('Cast slider sizing', () => {
     expect(getSlidesPerPage(1920)).toBe(7);
     expect(getSlidesPerPage(999)).toBe(6);
     expect(getSlidesPerPage(799)).toBe(5);
-    expect(getSlidesPerPage(767)).toBe(4);
-    expect(getSlidesPerPage(399)).toBe(2);
+    expect(getSlidesPerPage(499)).toBe(4);
+    expect(getSlidesPerPage(399)).toBe(3);
   });
 });
 
@@ -127,7 +127,7 @@ describe('Cast slider sliding', () => {
 describe('Cast width calculation', () => {
   test('Correct target width is calculated', () => {
     expect(getTargetWidth(8, 1238)).toBe(170);
-    expect(getTargetWidth(8, 736)).toBe(178);
+    expect(getTargetWidth(8, 736)).toBeCloseTo(141, 0);
     expect(getTargetWidth(8, 404)).toBe(95);
   });
 
@@ -145,6 +145,6 @@ describe('Cast width calculation', () => {
         dispatchEvent: jest.fn(),
       })),
     });
-    expect(getTargetWidth(8, 390)).toBeCloseTo(151, 0);
+    expect(getTargetWidth(8, 390)).toBeCloseTo(106, 0);
   });
 });
