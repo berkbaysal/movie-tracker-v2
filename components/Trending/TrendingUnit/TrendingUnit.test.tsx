@@ -26,9 +26,24 @@ describe('Trending Unit Functionality', () => {
     render(<TrendingUnit {...testProps} />);
     expect(screen.getByRole('heading')).toHaveTextContent('Test movie title');
   });
+
   test('Trending unit has correct link', () => {
     render(<TrendingUnit {...testProps} />);
     expect(screen.getByRole('link')).toHaveAttribute('href', '/movie/123456');
+  });
+
+  test('Trending unit has correct image', () => {
+    render(<TrendingUnit {...testProps} />);
+    expect(screen.getByRole('img')).toHaveAttribute('src', expect.stringContaining('ekZobS8isE6mA53RAiGDG93hBxL.jpg'));
+  });
+
+  test('Trending unit displays fallback image if path is undefined', () => {
+    render(<TrendingUnit {...testProps} posterPath={undefined} />);
+    expect(screen.getByRole('img')).toHaveAttribute(
+      'src',
+      expect.not.stringContaining('ekZobS8isE6mA53RAiGDG93hBxL.jpg')
+    );
+    expect(screen.getByRole('img')).toHaveAttribute('src', expect.stringContaining('.jpg'));
   });
 });
 
