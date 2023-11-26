@@ -11,7 +11,7 @@ jest.mock('axios');
 
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
-describe('Footer Functionality', () => {
+describe('Content Summary Functionality', () => {
   afterEach(jest.clearAllMocks);
   let contentInfo: MediaContentDetails;
   let credits: MediaContentCredits;
@@ -26,6 +26,20 @@ describe('Footer Functionality', () => {
   test('Content Summary renders', () => {
     render(<ContentSummary contentInfo={contentInfo} credits={credits} />);
     expect(screen.getByRole('region')).toBeInTheDocument();
+  });
+
+  test('Background image is displayed if available', () => {
+    render(<ContentSummary contentInfo={contentInfo} credits={credits} />);
+    expect(screen.getByAltText('Background image')).toBeInTheDocument();
+  });
+
+  test('Background image is NOT displayed if unavailable', () => {
+    const modifiedContentInfo = {
+      ...contentInfo,
+      backgroundImagePath: undefined,
+    };
+    render(<ContentSummary contentInfo={modifiedContentInfo} credits={credits} />);
+    expect(screen.queryByAltText('Background image')).toBeNull();
   });
 });
 
