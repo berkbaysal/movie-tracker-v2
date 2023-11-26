@@ -17,6 +17,11 @@
     font-size: 0.9rem;
     font-weight: 600;
     line-height: 1.25rem;
+
+    @include media-breakpoint-down(md) {
+      font-size: 0.8rem;
+      line-height: 1rem;
+    }
   }
 
   &:hover {
