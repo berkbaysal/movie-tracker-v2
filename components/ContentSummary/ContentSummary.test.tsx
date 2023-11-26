@@ -11,7 +11,7 @@ jest.mock('axios');
 
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
-describe('Footer Functionality', () => {
+describe('Content Summary Functionality', () => {
   afterEach(jest.clearAllMocks);
   let contentInfo: MediaContentDetails;
   let credits: MediaContentCredits;
