@@ -17,15 +17,19 @@ function ContentSummary({ contentInfo, credits }: IContentSumamryProps) {
 
   return (
     <section aria-label="Details section" className="container-fluid o-background-container c-content-summary">
-      <Image
-        src={`${imgURL}/${backdropSize.large.url}${contentInfo.backgroundImagePath}`}
-        alt="Background image"
-        sizes="100vw"
-        width={backdropSize.large.width}
-        height={backdropSize.large.height}
-        className="c-content-summary__background-image"
-      />
-      <div className="c-content-summary__overlay" />
+      {contentInfo.backgroundImagePath && (
+        <>
+          <Image
+            src={`${imgURL}/${backdropSize.large.url}${contentInfo.backgroundImagePath}`}
+            alt="Background image"
+            sizes="100vw"
+            width={backdropSize.large.width}
+            height={backdropSize.large.height}
+            className="c-content-summary__background-image"
+          />
+          <div className="c-content-summary__overlay" />
+        </>
+      )}
       <div className="container c-content-summary__container u-padding-ends-xsmall u-padding-ends-2xsmall@md-down">
         <Image
           src={

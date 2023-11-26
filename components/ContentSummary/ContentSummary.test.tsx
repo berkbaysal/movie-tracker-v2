@@ -27,6 +27,20 @@ describe('Content Summary Functionality', () => {
     render(<ContentSummary contentInfo={contentInfo} credits={credits} />);
     expect(screen.getByRole('region')).toBeInTheDocument();
   });
+
+  test('Background image is displayed if available', () => {
+    render(<ContentSummary contentInfo={contentInfo} credits={credits} />);
+    expect(screen.getByAltText('Background image')).toBeInTheDocument();
+  });
+
+  test('Background image is NOT displayed if unavailable', () => {
+    const modifiedContentInfo = {
+      ...contentInfo,
+      backgroundImagePath: undefined,
+    };
+    render(<ContentSummary contentInfo={modifiedContentInfo} credits={credits} />);
+    expect(screen.queryByAltText('Background image')).toBeNull();
+  });
 });
 
 describe('Credits filter functionality', () => {
