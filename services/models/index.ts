@@ -15,3 +15,6 @@ export type { default as TvRecommendationResponse } from './response/tv/TvRecomm
 
 // Trending
 export type { default as TrendingResponse } from './response/trending/TrendingResponse.type';
+
+// Search
+export type { default as MultiSearchResponse } from './response/search/MultiSearchResponse.type';
