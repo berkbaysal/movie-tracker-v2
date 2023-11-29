@@ -6,6 +6,7 @@ import {
   mapMovieCreditsResponseToMediaContentCredits,
   mapMovieDetailResponseToMediaContent,
   mapMovieRecommendationResponseToMediaContent,
+  mapMultiSearchResponseToMediaContent,
   mapTrendingResponseToMediaContent,
   mapTvCreditsResponseToMediaContentCredits,
   mapTvDetailResponseToMediaContent,
@@ -20,6 +21,7 @@ import {
   TvDetailResponse,
   TvCreditsResponse,
   TvRecommendationResponse,
+  MultiSearchResponse,
 } from './models';
 
 dotenv.config();
@@ -99,6 +101,16 @@ export async function getTvRecommendations(id: number): Promise<MediaContent[]> 
     .get<PaginatedResponse<TvRecommendationResponse>>(`${apiURL}/tv/${id}/recommendations`, { params })
     .then((res) => res.data)
     .then((res) => mapTvRecommendationResponseToMediaContent(res.results));
+
+  return fetchRes;
+}
+
+// Search
+export async function searchMediaContent(query: string): Promise<MediaContent[]> {
+  const fetchRes = await axios
+    .get<PaginatedResponse<MultiSearchResponse>>(`${apiURL}/search/multi?query=${query}`, { params })
+    .then((res) => res.data)
+    .then((res) => mapMultiSearchResponseToMediaContent(res.results));
 
   return fetchRes;
 }

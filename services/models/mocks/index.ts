@@ -8,3 +8,5 @@ export { default as mockTrendingResponse } from './trending/TrendingResponse.jso
 export { default as mockTvCreditsResponse } from './tv/TvCreditsResponse.json';
 export { default as mockTvRecommendationResponse } from './tv/TvRecommendationResponse.json';
 export { default as mockTvDetailResponse } from './tv/TvDetailResponse.json';
+// search
+export { default as mockMultiSearchResponse } from './search/MultiSearchResponse.json';
