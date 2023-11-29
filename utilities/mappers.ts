@@ -3,6 +3,7 @@ import {
   MovieDetailResponse,
   MovieRecommendationResponse,
   MovieSearchResultResponse,
+  MultiSearchResponse,
   TrendingResponse,
   TvCreditsResponse,
   TvRecommendationResponse,
@@ -174,4 +175,22 @@ export function mapTrendingResponseToMediaContent(response: TrendingResponse[]):
   return formattedResults;
 }
 
-// Credits
+// Search
+
+export function mapMultiSearchResponseToMediaContent(response: MultiSearchResponse[]): MediaContent[] {
+  const formattedResults: MediaContent[] = [];
+  response
+    .filter((item) => item.media_type === 'movie' || item.media_type === 'tv')
+    .forEach((item) => {
+      formattedResults.push({
+        mediaType: item.media_type,
+        id: item.id,
+        title: item.title || item.name,
+        year: item.release_date || item.first_air_date,
+        posterPath: item.poster_path,
+        backgroundImagePath: item.backdrop_path,
+      } as MediaContent);
+    });
+
+  return formattedResults;
+}
