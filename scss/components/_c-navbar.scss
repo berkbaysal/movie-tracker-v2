@@ -1,6 +1,12 @@
 .c-navbar {
+  position: relative;
   border-bottom: px-to-rem(4px) solid $color-primary;
   background-color: #fff;
+
+  &__container {
+    position: relative;
+    z-index: $g-z-index-front;
+  }
 
   &__logo {
     width: auto;
