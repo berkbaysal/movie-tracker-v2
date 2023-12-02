@@ -4,11 +4,12 @@ import { Button } from '@elements';
 import Logo from '@public/img/logo.svg';
 import Link from 'next/link';
 import SearchBar from './SearchBar/SearchBar';
+import SearchResults from './SearchResults/SearchResults';
 
 function Navbar() {
   return (
     <nav className="container-fluid o-background-container c-navbar">
-      <div className="container">
+      <div className="container c-navbar__container">
         <div className="row">
           <div className="col  u-display-flex">
             <Link href="/">
@@ -21,6 +22,7 @@ function Navbar() {
           </div>
         </div>
       </div>
+      <SearchResults />
     </nav>
   );
 }
