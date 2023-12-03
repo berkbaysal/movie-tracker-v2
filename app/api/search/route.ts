@@ -5,7 +5,7 @@ import { searchMediaContent } from '@services/api';
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const query = searchParams.get('search');
+    const query = searchParams.get('query');
     if (!query) {
       return NextResponse.json({ error: 'No search query provided' }, { status: 400 });
     }
