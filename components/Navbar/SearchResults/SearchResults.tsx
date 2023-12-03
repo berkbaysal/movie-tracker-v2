@@ -1,6 +1,11 @@
+import { MediaContent } from '@utilities/interfacesApp';
 import React from 'react';
 
-function Search() {
+interface SearchResultProps {
+  results: MediaContent[];
+}
+
+function Search({ results }: SearchResultProps) {
   return (
     <div className="container-fluid c-search">
       <div className="container">

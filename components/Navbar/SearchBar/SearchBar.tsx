@@ -1,19 +1,22 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-function SearchBar() {
-  const [input, setInput] = useState<string>('');
+interface SearchBarProps {
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+}
 
+function SearchBar({ query, setQuery }: SearchBarProps) {
   return (
     <div className="c-search-bar">
       <input
         className="c-search-bar__input-field u-display-none@sm-down"
         placeholder="Search..."
         type="search"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
       />
       <AiOutlineSearch className="c-search-bar__search-icon u-display-none@md-up" role="button" />
     </div>
