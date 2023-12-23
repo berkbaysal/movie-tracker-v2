@@ -146,6 +146,7 @@
     height: 100%;
     filter: saturate(0);
     object-fit: cover;
+    object-position: 50% 25%;
 
     @include media-breakpoint-down(xs) {
       display: none;
