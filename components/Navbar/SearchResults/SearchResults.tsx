@@ -7,7 +7,7 @@ interface SearchResultProps {
 
 function Search({ results }: SearchResultProps) {
   return (
-    <div className="container-fluid c-search">
+    <div className="container-fluid c-search-results">
       <div className="container">
         <div className="row">
           <div className="col">Search</div>
