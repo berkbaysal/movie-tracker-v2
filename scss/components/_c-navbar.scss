@@ -1,7 +1,19 @@
 .c-navbar {
-  position: relative;
+  position: sticky;
+  z-index: $g-z-index-front;
+  top: 0;
   border-bottom: px-to-rem(4px) solid $color-primary;
   background-color: #fff;
+
+  &__overlay {
+    position: absolute;
+    z-index: $g-z-index-front;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+  }
 
   &__container {
     position: relative;
