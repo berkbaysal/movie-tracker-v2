@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@elements';
 import { MediaContent } from '@utilities/interfacesApp';
+import { usePathname } from 'next/navigation';
 import Logo from '@public/img/logo.svg';
 import Link from 'next/link';
 import SearchBar from './SearchBar/SearchBar';
@@ -14,6 +15,8 @@ function Navbar() {
   const [query, setQuery] = useState('');
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchResults, setSearchResults] = useState<MediaContent[]>([]);
+
+  const pathName = usePathname();
 
   useEffect(() => {
     axios
@@ -25,6 +28,11 @@ function Navbar() {
         setSearchResults([]);
       });
   }, [query]);
+
+  useEffect(() => {
+    setIsSearchVisible(false);
+    setQuery('');
+  }, [pathName]);
 
   return (
     <nav className="container-fluid o-background-container c-navbar">
