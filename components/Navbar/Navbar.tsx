@@ -12,6 +12,7 @@ import SearchResults from './SearchResults/SearchResults';
 
 function Navbar() {
   const [query, setQuery] = useState('');
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchResults, setSearchResults] = useState<MediaContent[]>([]);
 
   useEffect(() => {
@@ -27,6 +28,7 @@ function Navbar() {
 
   return (
     <nav className="container-fluid o-background-container c-navbar">
+      <div className="c-navbar__overlay" />
       <div className="container c-navbar__container">
         <div className="row">
           <div className="col  u-display-flex">
