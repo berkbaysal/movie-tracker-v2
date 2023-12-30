@@ -33,7 +33,7 @@ function Search({ results, isVisible }: SearchResultProps) {
       <div className="container u-height-100%">
         <div className="row u-height-100%">
           <div className="col c-search-results__result-grid">
-            {results.slice(0, 12).map((result) => (
+            {results.map((result) => (
               <Link className="c-search-results__grid-cell" key={result.id} href={`/${result.mediaType}/${result.id}`}>
                 <div className="c-search-results__poster-wrapper">
                   <Image

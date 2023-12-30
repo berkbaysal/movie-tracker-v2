@@ -16,13 +16,26 @@ function Navbar() {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchResults, setSearchResults] = useState<MediaContent[]>([]);
 
+  function getResultLimit(screenWidth: number, isLandscape: boolean): number {
+    if (!isLandscape) {
+      return 12;
+    }
+    if (screenWidth > 991) {
+      return 12;
+    }
+    if (screenWidth > 576) {
+      return 6;
+    }
+    return 2;
+  }
+
   const pathName = usePathname();
 
   useEffect(() => {
     axios
       .get(`/api/search?query=${query}`)
       .then((res) => {
-        setSearchResults(res.data);
+        setSearchResults(res.data.slice(0, getResultLimit(window.innerWidth, window.innerWidth > window.innerHeight)));
       })
       .catch(() => {
         setSearchResults([]);

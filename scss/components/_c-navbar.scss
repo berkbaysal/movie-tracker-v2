@@ -1,5 +1,7 @@
 .c-navbar {
-  position: relative;
+  position: sticky;
+  z-index: $g-z-index-front;
+  top: 0;
   border-bottom: px-to-rem(4px) solid $color-primary;
   background-color: #fff;
 
