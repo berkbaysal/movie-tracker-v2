@@ -3,11 +3,11 @@
   z-index: $g-z-index-middle;
   top: 100%;
   left: 0;
-  display: none; // TODO: remove
+  // display: none; // TODO: remove
   width: 100%;
   height: 50vh;
   background-color: #fff;
-  transform: translateY(-100%);
+  transform: translateY(-0%);
   transition: $g-transition-duration ease-in-out;
 
   &__result-grid {
@@ -17,7 +17,7 @@
     grid-template-rows: repeat(4, 1fr);
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1rem;
-    padding: 1rem;
+    padding: 2rem 1rem;
   }
 
   &__grid-cell {
@@ -32,5 +32,29 @@
     overflow: hidden;
     height: 100%;
     aspect-ratio: 92/138;
+  }
+
+  &__media-type-indicator {
+    display: inline-block;
+    flex-grow: 0;
+    background-color: $color-secondary;
+    border-radius: 1rem;
+  }
+
+  &__media-type {
+    flex-grow: 0;
+    padding: 0.1rem 0.5rem;
+    color: $color-text-reverse;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-transform: uppercase;
   }
 }

@@ -1,4 +1,4 @@
-import { MediaContent } from '@utilities/interfacesApp';
+import { MediaContent, MediaType } from '@utilities/interfacesApp';
 import React from 'react';
 import PlaceholderPoster from '@public/img/placeholder_poster.png';
 import { imgURL, posterSize } from '@utilities/resources';
@@ -6,6 +6,19 @@ import Image from 'next/image';
 
 interface SearchResultProps {
   results: MediaContent[];
+}
+
+function getMediaTypeString(mediaType: MediaType): string {
+  switch (mediaType) {
+    case 'movie':
+      return 'Movie';
+    case 'tv':
+      return 'TV Show';
+    case 'person':
+      return 'Person';
+    default:
+      return '';
+  }
 }
 
 function Search({ results }: SearchResultProps) {
@@ -26,7 +39,12 @@ function Search({ results }: SearchResultProps) {
                     className="c-search-results__grid-cell__image"
                   />
                 </div>
-                <div className="c-search-results__grid-cell__title">{result.title}</div>
+                <div className="c-search-results__info-wrapper">
+                  <div className="c-search-results__media-type-indicator">
+                    <div className="c-search-results__media-type">{getMediaTypeString(result.mediaType)}</div>
+                  </div>
+                  <div className="c-search-results__title">{result.title}</div>
+                </div>
               </div>
             ))}
           </div>
