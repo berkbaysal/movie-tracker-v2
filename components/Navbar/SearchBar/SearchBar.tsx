@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 
 interface SearchBarProps {
@@ -10,6 +10,16 @@ interface SearchBarProps {
 }
 
 function SearchBar({ query, setQuery, setResultsVisible = () => {} }: SearchBarProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (query.length > 0 && document.activeElement === inputRef.current) {
+      setResultsVisible(true);
+    } else {
+      setResultsVisible(false);
+    }
+  }, [query, setResultsVisible]);
+
   return (
     <div className="c-search-bar">
       <input
@@ -19,9 +29,12 @@ function SearchBar({ query, setQuery, setResultsVisible = () => {} }: SearchBarP
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onFocus={() => {
-          setResultsVisible(true);
+          if (query.length > 0) {
+            setResultsVisible(true);
+          }
         }}
         onBlur={() => setResultsVisible(false)}
+        ref={inputRef}
       />
       <AiOutlineSearch className="c-search-bar__search-icon u-display-none@md-up" role="button" />
     </div>
