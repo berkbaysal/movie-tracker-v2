@@ -36,13 +36,13 @@ function Navbar() {
               <Image src={Logo} alt="Movie tracker logo" className="c-navbar__logo" />
             </Link>
             <div className="c-navbar__menu">
-              <SearchBar query={query} setQuery={setQuery} />
+              <SearchBar query={query} setQuery={setQuery} setResultsVisible={setIsSearchVisible} />
               <Button label="Log In" role="link" />
             </div>
           </div>
         </div>
       </div>
-      <SearchResults results={searchResults} />
+      <SearchResults results={searchResults} isVisible={isSearchVisible} />
     </nav>
   );
 }

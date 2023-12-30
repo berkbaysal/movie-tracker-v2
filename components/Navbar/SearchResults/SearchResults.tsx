@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 interface SearchResultProps {
   results: MediaContent[];
+  isVisible: boolean;
 }
 
 function getMediaTypeString(mediaType: MediaType): string {
@@ -22,9 +23,13 @@ function getMediaTypeString(mediaType: MediaType): string {
   }
 }
 
-function Search({ results }: SearchResultProps) {
+function Search({ results, isVisible }: SearchResultProps) {
   return (
-    <div className="container-fluid c-search-results">
+    <div
+      className={`container-fluid c-search-results ${
+        isVisible ? 'c-search-results--visible' : 'c-search-results--hidden'
+      }`}
+    >
       <div className="container u-height-100%">
         <div className="row u-height-100%">
           <div className="col c-search-results__result-grid">
