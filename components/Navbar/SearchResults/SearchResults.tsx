@@ -3,6 +3,7 @@ import React from 'react';
 import PlaceholderPoster from '@public/img/placeholder_poster.png';
 import { imgURL, posterSize } from '@utilities/resources';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface SearchResultProps {
   results: MediaContent[];
@@ -28,7 +29,7 @@ function Search({ results }: SearchResultProps) {
         <div className="row u-height-100%">
           <div className="col c-search-results__result-grid">
             {results.slice(0, 12).map((result) => (
-              <div className="c-search-results__grid-cell" key={result.id}>
+              <Link className="c-search-results__grid-cell" key={result.id} href={`/${result.mediaType}/${result.id}`}>
                 <div className="c-search-results__poster-wrapper">
                   <Image
                     src={
@@ -45,7 +46,7 @@ function Search({ results }: SearchResultProps) {
                   </div>
                   <div className="c-search-results__title">{result.title}</div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
