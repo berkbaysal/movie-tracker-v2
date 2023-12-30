@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@elements';
 import { MediaContent } from '@utilities/interfacesApp';
+import { usePathname } from 'next/navigation';
 import Logo from '@public/img/logo.svg';
 import Link from 'next/link';
 import SearchBar from './SearchBar/SearchBar';
@@ -12,21 +13,43 @@ import SearchResults from './SearchResults/SearchResults';
 
 function Navbar() {
   const [query, setQuery] = useState('');
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchResults, setSearchResults] = useState<MediaContent[]>([]);
+
+  function getResultLimit(screenWidth: number, isLandscape: boolean): number {
+    if (!isLandscape) {
+      return 12;
+    }
+    if (screenWidth > 991) {
+      return 12;
+    }
+    if (screenWidth > 576) {
+      return 6;
+    }
+    return 2;
+  }
+
+  const pathName = usePathname();
 
   useEffect(() => {
     axios
       .get(`/api/search?query=${query}`)
       .then((res) => {
-        setSearchResults(res.data);
+        setSearchResults(res.data.slice(0, getResultLimit(window.innerWidth, window.innerWidth > window.innerHeight)));
       })
       .catch(() => {
         setSearchResults([]);
       });
   }, [query]);
 
+  useEffect(() => {
+    setIsSearchVisible(false);
+    setQuery('');
+  }, [pathName]);
+
   return (
     <nav className="container-fluid o-background-container c-navbar">
+      <div className="c-navbar__overlay" />
       <div className="container c-navbar__container">
         <div className="row">
           <div className="col  u-display-flex">
@@ -34,13 +57,13 @@ function Navbar() {
               <Image src={Logo} alt="Movie tracker logo" className="c-navbar__logo" />
             </Link>
             <div className="c-navbar__menu">
-              <SearchBar query={query} setQuery={setQuery} />
+              <SearchBar query={query} setQuery={setQuery} setResultsVisible={setIsSearchVisible} />
               <Button label="Log In" role="link" />
             </div>
           </div>
         </div>
       </div>
-      <SearchResults results={searchResults} />
+      <SearchResults results={searchResults} isVisible={isSearchVisible} />
     </nav>
   );
 }
