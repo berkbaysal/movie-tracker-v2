@@ -4,6 +4,11 @@ import userEvent from '@testing-library/user-event';
 import SearchBar from './SearchBar';
 import '@testing-library/jest-dom';
 
+let mockQuery = '';
+const mockedSetQuery: React.Dispatch<React.SetStateAction<string>> = jest.fn((input) => {
+  mockQuery += input;
+});
+
 describe('Search Bar Functionality', () => {
   test('Search bar renders', () => {
     render(<SearchBar query="" setQuery={() => {}} />);
@@ -22,9 +27,10 @@ describe('Search Bar Functionality', () => {
   });
 
   test('Search bar is responsive to keyboard inputs', async () => {
-    render(<SearchBar query="" setQuery={() => {}} />);
+    render(<SearchBar query="" setQuery={mockedSetQuery} />);
     const input = screen.getByRole('searchbox');
     await userEvent.type(input, 'This is a test message.');
-    expect(input).toHaveValue('This is a test message.');
+    expect(mockedSetQuery).toHaveBeenCalledTimes('This is a test message.'.length);
+    expect(mockQuery).toBe('This is a test message.');
   });
 });
